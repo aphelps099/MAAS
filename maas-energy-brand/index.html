@@ -266,16 +266,19 @@
             white-space: nowrap;
         }
 
-        /* Ghosted logo background */
-        .hero-logo-ghost {
+        /* Rotating gear icon */
+        .hero-gear {
             position: absolute;
-            top: 12%;
-            right: -5%;
-            width: 55%;
-            max-width: 650px;
-            opacity: 0.05;
-            filter: grayscale(100%);
+            top: 50%;
+            right: -10%;
+            width: 70vw;
+            max-width: 800px;
+            height: auto;
+            transform: translateY(-50%);
+            opacity: 0.06;
             pointer-events: none;
+            will-change: transform;
+            transition: transform 0.1s linear;
         }
 
         .hero-content {
@@ -1161,7 +1164,7 @@
             .hero { padding: 0 24px 60px; min-height: 90vh; }
             .hero-title { font-size: clamp(3rem, 15vw, 6rem); }
             .hero-ghost { display: none; }
-            .hero-logo-ghost { display: none; }
+            .hero-gear { opacity: 0.04; width: 100vw; right: -30%; }
             .hero-gradient-mesh { opacity: 0.4; }
             .hero-scroll { display: none; }
 
@@ -1232,8 +1235,8 @@
         <!-- Ghost typography -->
         <span class="hero-ghost">ENERGY</span>
 
-        <!-- Logo watermark -->
-        <img src="https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png" alt="" class="hero-logo-ghost" aria-hidden="true">
+        <!-- Rotating gear icon -->
+        <img src="https://look-serious.com/wp-content/uploads/2026/01/Gear_White.png" alt="" class="hero-gear" id="heroGear" aria-hidden="true">
 
         <!-- Content -->
         <div class="hero-content">
@@ -1554,7 +1557,7 @@
 
         // Parallax effect on scroll
         const heroGhost = document.querySelector('.hero-ghost');
-        const heroLogoGhost = document.querySelector('.hero-logo-ghost');
+        const heroGear = document.getElementById('heroGear');
         const ctaLogoBg = document.querySelector('.cta-logo-bg');
         const impactGhost = document.querySelector('.impact-ghost');
 
@@ -1567,13 +1570,13 @@
             // Hero parallax - ghost text moves slower
             if (heroGhost) {
                 const heroOffset = scrollY * 0.3;
-                heroGhost.style.transform = `translateY(calc(-50% + ${heroOffset}px))`;
+                heroGhost.style.transform = `translate(-50%, calc(-50% + ${heroOffset}px))`;
             }
 
-            // Hero logo ghost - subtle parallax
-            if (heroLogoGhost) {
-                const logoOffset = scrollY * 0.15;
-                heroLogoGhost.style.transform = `translateY(${logoOffset}px)`;
+            // Hero gear - rotation on scroll
+            if (heroGear) {
+                const rotation = scrollY * 0.05; // Slow rotation
+                heroGear.style.transform = `translateY(-50%) rotate(${rotation}deg)`;
             }
 
             // CTA section logo parallax

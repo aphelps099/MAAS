@@ -422,6 +422,12 @@
                         <span class="control-label" style="margin: 0;">Show Department Badge</span>
                     </label>
                 </div>
+                <div class="control-group">
+                    <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+                        <input type="checkbox" id="showGearBg" style="width: 18px; height: 18px; accent-color: var(--maas-green);">
+                        <span class="control-label" style="margin: 0;">Show Gear Icon Background</span>
+                    </label>
+                </div>
             </div>
 
             <div class="sidebar-section">
@@ -456,7 +462,8 @@
             showLogo: true,
             showTagline: true,
             showName: true,
-            showRole: false
+            showRole: false,
+            showGearBg: false
         };
 
         // Canvas setup
@@ -467,7 +474,14 @@
 
         // Logo image
         const logoImg = new Image();
+        logoImg.crossOrigin = 'anonymous';
         logoImg.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
+        const LOGO_ASPECT_RATIO = 1000 / 350; // Hardcoded fallback: 2.857
+
+        // Gear icon image
+        const gearImg = new Image();
+        gearImg.crossOrigin = 'anonymous';
+        gearImg.src = 'https://look-serious.com/wp-content/uploads/2026/01/Gear_White.png';
 
         // DOM elements
         const templateCards = document.querySelectorAll('.template-card');
@@ -481,6 +495,7 @@
         const showTaglineCheckbox = document.getElementById('showTagline');
         const showNameCheckbox = document.getElementById('showName');
         const showRoleCheckbox = document.getElementById('showRole');
+        const showGearBgCheckbox = document.getElementById('showGearBg');
         const downloadBtn = document.getElementById('downloadBtn');
 
         // Event listeners
@@ -545,6 +560,11 @@
 
         showRoleCheckbox.addEventListener('change', (e) => {
             state.showRole = e.target.checked;
+            render();
+        });
+
+        showGearBgCheckbox.addEventListener('change', (e) => {
+            state.showGearBg = e.target.checked;
             render();
         });
 
@@ -620,6 +640,24 @@
                     ctx.fill();
                     break;
             }
+
+            // Draw gear icon background if enabled
+            if (state.showGearBg && gearImg.complete) {
+                drawGearBackground();
+            }
+        }
+
+        function drawGearBackground() {
+            // Draw large gear icon as background texture element
+            // Positioned on the left side, cropped/oversized for visual impact
+            const gearSize = canvas.height * 1.8; // Larger than canvas height
+            const gearX = -gearSize * 0.25; // Cropped on left edge
+            const gearY = (canvas.height - gearSize) / 2;
+
+            ctx.save();
+            ctx.globalAlpha = 0.06; // Very subtle
+            ctx.drawImage(gearImg, gearX, gearY, gearSize, gearSize);
+            ctx.restore();
         }
 
         function drawContent() {
@@ -631,9 +669,12 @@
 
             // Draw logo with correct aspect ratio
             if (state.showLogo && logoImg.complete) {
-                // Preserve natural aspect ratio (original is ~1000x350 = 2.86:1)
+                // Use hardcoded aspect ratio (1000:350 = 2.857) to ensure correct proportions
                 const logoHeight = 70;
-                const logoWidth = logoHeight * (logoImg.naturalWidth / logoImg.naturalHeight);
+                const aspectRatio = logoImg.naturalWidth && logoImg.naturalHeight
+                    ? logoImg.naturalWidth / logoImg.naturalHeight
+                    : LOGO_ASPECT_RATIO;
+                const logoWidth = logoHeight * aspectRatio;
                 const logoX = contentX - logoWidth;
                 ctx.drawImage(logoImg, logoX, currentY, logoWidth, logoHeight);
                 currentY += logoHeight + 24;
@@ -731,6 +772,7 @@
 
         // Initialize
         logoImg.onload = render;
+        gearImg.onload = render;
         if (logoImg.complete) render();
     </script>
 </body>
