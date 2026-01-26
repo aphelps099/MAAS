@@ -920,18 +920,29 @@
            CULTURE BLURB SECTION
            ===================== */
         .culture-blurb {
-            background: var(--near-black);
+            background: var(--charcoal);
             padding: 120px 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-top: 1px solid rgba(45, 139, 78, 0.1);
-            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .culture-blurb::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(0, 255, 136, 0.06) 1.5px, transparent 1.5px);
+            background-size: 32px 32px;
+            pointer-events: none;
         }
 
         .culture-blurb-content {
             max-width: 800px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .culture-blurb-label {
