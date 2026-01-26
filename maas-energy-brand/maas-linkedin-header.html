@@ -8,7 +8,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/svg+xml" href="./assets/maas-icon.svg">
 
@@ -28,9 +28,8 @@
             --white: #ffffff;
             --muted-green: #4A5D52;
             --text-secondary: rgba(255, 255, 255, 0.7);
-            --serif: 'Georgia', serif;
-            --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            --mono: 'JetBrains Mono', 'Consolas', monospace;
+            --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'Space Mono', 'Courier New', monospace;
         }
 
         *, *::before, *::after {
@@ -42,7 +41,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--sans);
+            font-family: var(--font-display);
             background: var(--near-black);
             color: var(--white);
             line-height: 1.6;
@@ -102,7 +101,7 @@
         }
 
         .sidebar-title {
-            font-family: var(--mono);
+            font-family: var(--font-mono);
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
@@ -129,7 +128,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             color: var(--white);
-            font-family: var(--sans);
+            font-family: var(--font-display);
             font-size: 0.9rem;
             transition: border-color 0.2s;
         }
@@ -150,7 +149,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             color: var(--white);
-            font-family: var(--sans);
+            font-family: var(--font-display);
             font-size: 0.9rem;
             cursor: pointer;
             appearance: none;
@@ -209,7 +208,7 @@
             gap: 8px;
             padding: 14px 24px;
             border-radius: 8px;
-            font-family: var(--sans);
+            font-family: var(--font-display);
             font-weight: 600;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -256,7 +255,7 @@
         }
 
         .preview-dimensions {
-            font-family: var(--mono);
+            font-family: var(--font-mono);
             font-size: 0.75rem;
             color: var(--muted-green);
             margin-top: 16px;
@@ -413,6 +412,12 @@
                 </div>
                 <div class="control-group">
                     <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+                        <input type="checkbox" id="showName" checked style="width: 18px; height: 18px; accent-color: var(--maas-green);">
+                        <span class="control-label" style="margin: 0;">Show Name & Title</span>
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
                         <input type="checkbox" id="showRole" style="width: 18px; height: 18px; accent-color: var(--maas-green);">
                         <span class="control-label" style="margin: 0;">Show Department Badge</span>
                     </label>
@@ -450,6 +455,7 @@
             tagline: 'Powering Tomorrow from Today\'s Waste',
             showLogo: true,
             showTagline: true,
+            showName: true,
             showRole: false
         };
 
@@ -473,6 +479,7 @@
         const customTaglineGroup = document.getElementById('customTaglineGroup');
         const showLogoCheckbox = document.getElementById('showLogo');
         const showTaglineCheckbox = document.getElementById('showTagline');
+        const showNameCheckbox = document.getElementById('showName');
         const showRoleCheckbox = document.getElementById('showRole');
         const downloadBtn = document.getElementById('downloadBtn');
 
@@ -528,6 +535,11 @@
 
         showTaglineCheckbox.addEventListener('change', (e) => {
             state.showTagline = e.target.checked;
+            render();
+        });
+
+        showNameCheckbox.addEventListener('change', (e) => {
+            state.showName = e.target.checked;
             render();
         });
 
@@ -614,29 +626,52 @@
             const rightPadding = 80;
             const contentX = canvas.width - rightPadding;
 
-            // Draw logo
+            // Calculate vertical positioning based on what's shown
+            let currentY = 80;
+
+            // Draw logo with correct aspect ratio
             if (state.showLogo && logoImg.complete) {
-                const logoWidth = 200;
-                const logoHeight = 48;
+                // Preserve natural aspect ratio (original is ~1000x350 = 2.86:1)
+                const logoHeight = 70;
+                const logoWidth = logoHeight * (logoImg.naturalWidth / logoImg.naturalHeight);
                 const logoX = contentX - logoWidth;
-                const logoY = state.showTagline ? 80 : (canvas.height - logoHeight) / 2;
-                ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight);
+                ctx.drawImage(logoImg, logoX, currentY, logoWidth, logoHeight);
+                currentY += logoHeight + 24;
             }
 
             // Draw tagline
             if (state.showTagline) {
-                ctx.font = '600 24px Inter, sans-serif';
+                ctx.font = '600 24px Outfit, sans-serif';
                 ctx.fillStyle = state.template === 'split' ? '#0D1210' : '#FFFFFF';
                 ctx.textAlign = 'right';
+                ctx.fillText(state.tagline, contentX, currentY + 24);
+                currentY += 48;
+            }
 
-                const taglineY = state.showLogo ? 180 : canvas.height / 2;
-                ctx.fillText(state.tagline, contentX, taglineY);
+            // Draw personalization (name and title)
+            if (state.showName && (state.userName || state.userTitle)) {
+                currentY += 16;
+
+                if (state.userName) {
+                    ctx.font = '700 32px Outfit, sans-serif';
+                    ctx.fillStyle = state.template === 'split' ? '#0D1210' : '#FFFFFF';
+                    ctx.textAlign = 'right';
+                    ctx.fillText(state.userName, contentX, currentY + 32);
+                    currentY += 40;
+                }
+
+                if (state.userTitle) {
+                    ctx.font = '400 18px "Space Mono", monospace';
+                    ctx.fillStyle = state.template === 'split' ? 'rgba(13, 18, 16, 0.7)' : 'rgba(255, 255, 255, 0.7)';
+                    ctx.textAlign = 'right';
+                    ctx.fillText(state.userTitle, contentX, currentY + 18);
+                }
             }
 
             // Draw role badge
             if (state.showRole) {
                 const badgeText = state.role.toUpperCase();
-                ctx.font = '600 14px "JetBrains Mono", monospace';
+                ctx.font = '700 14px "Space Mono", monospace';
                 const badgeWidth = ctx.measureText(badgeText).width + 32;
                 const badgeHeight = 36;
                 const badgeX = contentX - badgeWidth;
