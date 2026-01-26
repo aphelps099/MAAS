@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Header Builder | MAAS Energy Works</title>
+    <meta name="description" content="Create professional LinkedIn cover images with MAAS Energy Works branding.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/svg+xml" href="./assets/maas-icon.svg">
+
+    <style>
+        :root {
+            --maas-green: #2D8B4E;
+            --maas-green-bright: #3CAF5C;
+            --maas-green-glow: rgba(45, 139, 78, 0.15);
+            --biogas-blue: #1E7F9C;
+            --biogas-blue-light: #2CA3C4;
+            --earth-brown: #6B5344;
+            --cream: #F5F2EB;
+            --warm-white: #FDFCFA;
+            --near-black: #0D1210;
+            --dark-gray: #1A1F1C;
+            --charcoal: #242B27;
+            --white: #ffffff;
+            --muted-green: #4A5D52;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --serif: 'Georgia', serif;
+            --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--near-black);
+            color: var(--white);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: rgba(13, 18, 16, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+        }
+
+        .nav-logo { height: 36px; width: auto; }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover { color: var(--maas-green); }
+
+        /* Layout */
+        .builder-layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            min-height: 100vh;
+            padding-top: 76px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--dark-gray);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 32px 24px;
+            overflow-y: auto;
+            max-height: calc(100vh - 76px);
+        }
+
+        .sidebar-section {
+            margin-bottom: 32px;
+        }
+
+        .sidebar-title {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted-green);
+            margin-bottom: 16px;
+        }
+
+        /* Form Controls */
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .control-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--charcoal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .control-input:focus {
+            outline: none;
+            border-color: var(--maas-green);
+        }
+
+        .control-input::placeholder {
+            color: var(--muted-green);
+        }
+
+        .control-select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--charcoal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234A5D52' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .control-select:focus {
+            outline: none;
+            border-color: var(--maas-green);
+        }
+
+        /* Template Grid */
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .template-card {
+            background: var(--charcoal);
+            border-radius: 8px;
+            padding: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .template-card:hover {
+            border-color: rgba(45, 139, 78, 0.5);
+        }
+
+        .template-card.active {
+            border-color: var(--maas-green);
+        }
+
+        .template-preview {
+            aspect-ratio: 4/1;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        .template-name {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--maas-green);
+            color: var(--near-black);
+        }
+
+        .btn-primary:hover {
+            background: var(--maas-green-bright);
+        }
+
+        /* Preview Area */
+        .preview-area {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--charcoal);
+        }
+
+        .preview-container {
+            width: 100%;
+            max-width: 1584px;
+            aspect-ratio: 4/1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .header-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .preview-dimensions {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--muted-green);
+            margin-top: 16px;
+        }
+
+        .preview-note {
+            font-size: 0.8rem;
+            color: var(--muted-green);
+            margin-top: 12px;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        /* Role Tags */
+        .role-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .role-tag {
+            padding: 8px 14px;
+            background: var(--charcoal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .role-tag:hover {
+            border-color: var(--maas-green);
+        }
+
+        .role-tag.active {
+            background: var(--maas-green-glow);
+            border-color: var(--maas-green);
+            color: var(--maas-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .builder-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                max-height: none;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .preview-container {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav { padding: 16px 20px; }
+            .sidebar { padding: 24px 20px; }
+            .preview-area { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Brand House
+        </a>
+        <img src="./assets/maas-logo-primary.svg" alt="MAAS Energy Works" class="nav-logo">
+    </nav>
+
+    <div class="builder-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Template Style</h3>
+                <div class="template-grid">
+                    <div class="template-card active" data-template="gradient">
+                        <div class="template-preview" style="background: linear-gradient(135deg, #0D1210 0%, #1A1F1C 50%, #2D8B4E 100%);"></div>
+                        <span class="template-name">Gradient</span>
+                    </div>
+                    <div class="template-card" data-template="solid">
+                        <div class="template-preview" style="background: #0D1210;"></div>
+                        <span class="template-name">Solid Dark</span>
+                    </div>
+                    <div class="template-card" data-template="pattern">
+                        <div class="template-preview" style="background: linear-gradient(90deg, rgba(45,139,78,0.05) 1px, transparent 1px), linear-gradient(rgba(45,139,78,0.05) 1px, transparent 1px); background-size: 30px 30px; background-color: #0D1210;"></div>
+                        <span class="template-name">Grid Pattern</span>
+                    </div>
+                    <div class="template-card" data-template="split">
+                        <div class="template-preview" style="background: linear-gradient(90deg, #0D1210 60%, #2D8B4E 60%);"></div>
+                        <span class="template-name">Split</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Your Role</h3>
+                <div class="role-tags">
+                    <span class="role-tag active" data-role="Engineering">Engineering</span>
+                    <span class="role-tag" data-role="Operations">Operations</span>
+                    <span class="role-tag" data-role="Development">Development</span>
+                    <span class="role-tag" data-role="Finance">Finance</span>
+                    <span class="role-tag" data-role="Leadership">Leadership</span>
+                    <span class="role-tag" data-role="Business Dev">Business Dev</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Personalization</h3>
+                <div class="control-group">
+                    <label class="control-label">Your Name</label>
+                    <input type="text" class="control-input" id="userName" placeholder="John Smith">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Job Title</label>
+                    <input type="text" class="control-input" id="userTitle" placeholder="Senior Engineer">
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Tagline</h3>
+                <div class="control-group">
+                    <select class="control-select" id="tagline">
+                        <option value="Powering Tomorrow from Today's Waste">Powering Tomorrow from Today's Waste</option>
+                        <option value="America's #1 Dairy Digester Developer">America's #1 Dairy Digester Developer</option>
+                        <option value="Transforming Agriculture. Powering Progress.">Transforming Agriculture. Powering Progress.</option>
+                        <option value="Renewable Natural Gas Solutions">Renewable Natural Gas Solutions</option>
+                        <option value="70+ Digesters. 11 States. One Mission.">70+ Digesters. 11 States. One Mission.</option>
+                        <option value="custom">Custom Tagline...</option>
+                    </select>
+                </div>
+                <div class="control-group" id="customTaglineGroup" style="display: none;">
+                    <input type="text" class="control-input" id="customTagline" placeholder="Enter custom tagline">
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Display Options</h3>
+                <div class="control-group">
+                    <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+                        <input type="checkbox" id="showLogo" checked style="width: 18px; height: 18px; accent-color: var(--maas-green);">
+                        <span class="control-label" style="margin: 0;">Show Company Logo</span>
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+                        <input type="checkbox" id="showTagline" checked style="width: 18px; height: 18px; accent-color: var(--maas-green);">
+                        <span class="control-label" style="margin: 0;">Show Tagline</span>
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+                        <input type="checkbox" id="showRole" style="width: 18px; height: 18px; accent-color: var(--maas-green);">
+                        <span class="control-label" style="margin: 0;">Show Department Badge</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <button class="btn btn-primary" id="downloadBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download Header
+                </button>
+            </div>
+        </aside>
+
+        <main class="preview-area">
+            <div class="preview-container">
+                <canvas id="headerCanvas" class="header-canvas"></canvas>
+            </div>
+            <p class="preview-dimensions">1584 x 396 pixels (LinkedIn recommended size)</p>
+            <p class="preview-note">Note: The left portion of the header may be covered by your profile photo on LinkedIn.</p>
+        </main>
+    </div>
+
+    <script>
+        // State
+        const state = {
+            template: 'gradient',
+            role: 'Engineering',
+            userName: '',
+            userTitle: '',
+            tagline: 'Powering Tomorrow from Today\'s Waste',
+            showLogo: true,
+            showTagline: true,
+            showRole: false
+        };
+
+        // Canvas setup
+        const canvas = document.getElementById('headerCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 1584;
+        canvas.height = 396;
+
+        // Logo image
+        const logoImg = new Image();
+        logoImg.src = './assets/maas-logo-white.svg';
+
+        // DOM elements
+        const templateCards = document.querySelectorAll('.template-card');
+        const roleTags = document.querySelectorAll('.role-tag');
+        const userNameInput = document.getElementById('userName');
+        const userTitleInput = document.getElementById('userTitle');
+        const taglineSelect = document.getElementById('tagline');
+        const customTaglineInput = document.getElementById('customTagline');
+        const customTaglineGroup = document.getElementById('customTaglineGroup');
+        const showLogoCheckbox = document.getElementById('showLogo');
+        const showTaglineCheckbox = document.getElementById('showTagline');
+        const showRoleCheckbox = document.getElementById('showRole');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // Event listeners
+        templateCards.forEach(card => {
+            card.addEventListener('click', () => {
+                templateCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                state.template = card.dataset.template;
+                render();
+            });
+        });
+
+        roleTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                roleTags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+                state.role = tag.dataset.role;
+                render();
+            });
+        });
+
+        userNameInput.addEventListener('input', (e) => {
+            state.userName = e.target.value;
+            render();
+        });
+
+        userTitleInput.addEventListener('input', (e) => {
+            state.userTitle = e.target.value;
+            render();
+        });
+
+        taglineSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'custom') {
+                customTaglineGroup.style.display = 'block';
+                state.tagline = customTaglineInput.value || '';
+            } else {
+                customTaglineGroup.style.display = 'none';
+                state.tagline = e.target.value;
+            }
+            render();
+        });
+
+        customTaglineInput.addEventListener('input', (e) => {
+            state.tagline = e.target.value;
+            render();
+        });
+
+        showLogoCheckbox.addEventListener('change', (e) => {
+            state.showLogo = e.target.checked;
+            render();
+        });
+
+        showTaglineCheckbox.addEventListener('change', (e) => {
+            state.showTagline = e.target.checked;
+            render();
+        });
+
+        showRoleCheckbox.addEventListener('change', (e) => {
+            state.showRole = e.target.checked;
+            render();
+        });
+
+        downloadBtn.addEventListener('click', downloadImage);
+
+        // Render function
+        function render() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw background based on template
+            drawBackground();
+
+            // Draw content
+            drawContent();
+        }
+
+        function drawBackground() {
+            switch (state.template) {
+                case 'gradient':
+                    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                    gradient.addColorStop(0, '#0D1210');
+                    gradient.addColorStop(0.5, '#1A1F1C');
+                    gradient.addColorStop(1, '#2D8B4E');
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    break;
+
+                case 'solid':
+                    ctx.fillStyle = '#0D1210';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    // Add subtle gradient overlay
+                    const solidGrad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                    solidGrad.addColorStop(0, 'rgba(45, 139, 78, 0)');
+                    solidGrad.addColorStop(1, 'rgba(45, 139, 78, 0.1)');
+                    ctx.fillStyle = solidGrad;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    break;
+
+                case 'pattern':
+                    ctx.fillStyle = '#0D1210';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    // Draw grid pattern
+                    ctx.strokeStyle = 'rgba(45, 139, 78, 0.08)';
+                    ctx.lineWidth = 1;
+                    const gridSize = 40;
+                    for (let x = 0; x <= canvas.width; x += gridSize) {
+                        ctx.beginPath();
+                        ctx.moveTo(x, 0);
+                        ctx.lineTo(x, canvas.height);
+                        ctx.stroke();
+                    }
+                    for (let y = 0; y <= canvas.height; y += gridSize) {
+                        ctx.beginPath();
+                        ctx.moveTo(0, y);
+                        ctx.lineTo(canvas.width, y);
+                        ctx.stroke();
+                    }
+                    break;
+
+                case 'split':
+                    ctx.fillStyle = '#0D1210';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#2D8B4E';
+                    ctx.fillRect(canvas.width * 0.65, 0, canvas.width * 0.35, canvas.height);
+                    // Add diagonal transition
+                    ctx.beginPath();
+                    ctx.moveTo(canvas.width * 0.6, 0);
+                    ctx.lineTo(canvas.width * 0.65, canvas.height);
+                    ctx.lineTo(canvas.width * 0.65, 0);
+                    ctx.closePath();
+                    ctx.fillStyle = '#2D8B4E';
+                    ctx.fill();
+                    break;
+            }
+        }
+
+        function drawContent() {
+            const rightPadding = 80;
+            const contentX = canvas.width - rightPadding;
+
+            // Draw logo
+            if (state.showLogo && logoImg.complete) {
+                const logoWidth = 200;
+                const logoHeight = 48;
+                const logoX = contentX - logoWidth;
+                const logoY = state.showTagline ? 80 : (canvas.height - logoHeight) / 2;
+                ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight);
+            }
+
+            // Draw tagline
+            if (state.showTagline) {
+                ctx.font = '600 24px Inter, sans-serif';
+                ctx.fillStyle = state.template === 'split' ? '#0D1210' : '#FFFFFF';
+                ctx.textAlign = 'right';
+
+                const taglineY = state.showLogo ? 180 : canvas.height / 2;
+                ctx.fillText(state.tagline, contentX, taglineY);
+            }
+
+            // Draw role badge
+            if (state.showRole) {
+                const badgeText = state.role.toUpperCase();
+                ctx.font = '600 14px "JetBrains Mono", monospace';
+                const badgeWidth = ctx.measureText(badgeText).width + 32;
+                const badgeHeight = 36;
+                const badgeX = contentX - badgeWidth;
+                const badgeY = canvas.height - 80;
+
+                // Badge background
+                ctx.fillStyle = 'rgba(45, 139, 78, 0.2)';
+                roundRect(ctx, badgeX, badgeY, badgeWidth, badgeHeight, 6);
+                ctx.fill();
+
+                // Badge border
+                ctx.strokeStyle = '#2D8B4E';
+                ctx.lineWidth = 1;
+                roundRect(ctx, badgeX, badgeY, badgeWidth, badgeHeight, 6);
+                ctx.stroke();
+
+                // Badge text
+                ctx.fillStyle = '#3CAF5C';
+                ctx.textAlign = 'center';
+                ctx.fillText(badgeText, badgeX + badgeWidth / 2, badgeY + 24);
+            }
+
+            // Draw decorative elements based on template
+            if (state.template === 'gradient' || state.template === 'solid') {
+                // Draw subtle dots pattern on left side
+                ctx.fillStyle = 'rgba(45, 139, 78, 0.1)';
+                for (let i = 0; i < 5; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        ctx.beginPath();
+                        ctx.arc(100 + i * 60, 120 + j * 80, 4, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+            }
+        }
+
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = `maas-linkedin-header-${state.template}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Initialize
+        logoImg.onload = render;
+        if (logoImg.complete) render();
+    </script>
+</body>
+</html>

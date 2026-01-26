@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" fill="none">
+  <defs>
+    <linearGradient id="farmGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2D8B4E;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#2D8B4E;stop-opacity:0.1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rolling hills background -->
+  <path d="M0 180 Q100 140 200 160 Q300 180 400 150 Q500 120 600 140 Q700 160 800 130 L800 200 L0 200 Z" fill="url(#farmGradient)"/>
+
+  <!-- Barn structure -->
+  <g transform="translate(100, 60)">
+    <!-- Barn body -->
+    <rect x="0" y="40" width="80" height="60" fill="#1A1F1C"/>
+    <!-- Barn roof -->
+    <path d="M-5 40 L40 5 L85 40 Z" fill="#242B27"/>
+    <!-- Barn door -->
+    <rect x="30" y="65" width="20" height="35" fill="#0D1210"/>
+    <!-- Silo -->
+    <rect x="85" y="20" width="25" height="80" fill="#1A1F1C"/>
+    <ellipse cx="97.5" cy="20" rx="12.5" ry="5" fill="#242B27"/>
+  </g>
+
+  <!-- Digester dome 1 -->
+  <g transform="translate(280, 80)">
+    <ellipse cx="40" cy="60" rx="50" ry="15" fill="#1A1F1C"/>
+    <path d="M0 60 Q0 20 40 10 Q80 20 80 60" fill="#242B27"/>
+    <!-- Gas pipe -->
+    <rect x="35" y="0" width="10" height="15" fill="#2D8B4E" opacity="0.8"/>
+  </g>
+
+  <!-- Digester dome 2 -->
+  <g transform="translate(420, 90)">
+    <ellipse cx="35" cy="50" rx="42" ry="12" fill="#1A1F1C"/>
+    <path d="M0 50 Q0 18 35 10 Q70 18 70 50" fill="#242B27"/>
+    <!-- Gas pipe -->
+    <rect x="30" y="0" width="10" height="12" fill="#2D8B4E" opacity="0.8"/>
+  </g>
+
+  <!-- Wind turbine -->
+  <g transform="translate(580, 30)">
+    <rect x="8" y="30" width="4" height="90" fill="#4A5D52"/>
+    <circle cx="10" cy="30" r="4" fill="#4A5D52"/>
+    <!-- Blades -->
+    <line x1="10" y1="30" x2="10" y2="0" stroke="#4A5D52" stroke-width="2"/>
+    <line x1="10" y1="30" x2="35" y2="45" stroke="#4A5D52" stroke-width="2"/>
+    <line x1="10" y1="30" x2="-15" y2="45" stroke="#4A5D52" stroke-width="2"/>
+  </g>
+
+  <!-- Trees/vegetation -->
+  <g fill="#1A1F1C">
+    <!-- Tree 1 -->
+    <ellipse cx="50" cy="130" rx="20" ry="30"/>
+    <rect x="47" y="150" width="6" height="20"/>
+    <!-- Tree 2 -->
+    <ellipse cx="650" cy="110" rx="25" ry="35"/>
+    <rect x="647" y="135" width="6" height="25"/>
+    <!-- Bushes -->
+    <ellipse cx="720" cy="150" rx="30" ry="15"/>
+    <ellipse cx="750" cy="145" rx="25" ry="12"/>
+  </g>
+
+  <!-- Cows silhouettes -->
+  <g fill="#242B27">
+    <!-- Cow 1 -->
+    <ellipse cx="200" cy="155" rx="12" ry="8"/>
+    <circle cx="190" cy="150" r="4"/>
+    <rect x="192" y="158" width="3" height="8"/>
+    <rect x="202" y="158" width="3" height="8"/>
+    <!-- Cow 2 -->
+    <ellipse cx="240" cy="160" rx="10" ry="6"/>
+    <circle cx="232" cy="156" r="3"/>
+    <rect x="234" y="163" width="2" height="6"/>
+    <rect x="242" y="163" width="2" height="6"/>
+  </g>
+
+  <!-- Fence line -->
+  <g stroke="#4A5D52" stroke-width="1" opacity="0.5">
+    <line x1="0" y1="175" x2="800" y2="175"/>
+    <line x1="20" y1="165" x2="20" y2="180"/>
+    <line x1="60" y1="165" x2="60" y2="180"/>
+    <line x1="100" y1="165" x2="100" y2="180"/>
+    <line x1="700" y1="165" x2="700" y2="180"/>
+    <line x1="740" y1="165" x2="740" y2="180"/>
+    <line x1="780" y1="165" x2="780" y2="180"/>
+  </g>
+</svg>

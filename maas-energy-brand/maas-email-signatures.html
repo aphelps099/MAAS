@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Signatures | MAAS Energy Works</title>
+    <meta name="description" content="Professional email signature designs for MAAS Energy Works team members.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/svg+xml" href="./assets/maas-icon.svg">
+
+    <style>
+        :root {
+            --maas-green: #2D8B4E;
+            --maas-green-bright: #3CAF5C;
+            --maas-green-glow: rgba(45, 139, 78, 0.15);
+            --biogas-blue: #1E7F9C;
+            --biogas-blue-light: #2CA3C4;
+            --earth-brown: #6B5344;
+            --cream: #F5F2EB;
+            --warm-white: #FDFCFA;
+            --near-black: #0D1210;
+            --dark-gray: #1A1F1C;
+            --charcoal: #242B27;
+            --white: #ffffff;
+            --muted-green: #4A5D52;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --serif: 'Georgia', serif;
+            --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--near-black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: rgba(13, 18, 16, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+        }
+
+        .nav-logo { height: 36px; width: auto; }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover { color: var(--maas-green); }
+
+        /* Layout */
+        .builder-layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            min-height: 100vh;
+            padding-top: 76px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--dark-gray);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 32px 24px;
+            overflow-y: auto;
+            max-height: calc(100vh - 76px);
+        }
+
+        .sidebar-section {
+            margin-bottom: 32px;
+        }
+
+        .sidebar-title {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted-green);
+            margin-bottom: 16px;
+        }
+
+        /* Form Controls */
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .control-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--charcoal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .control-input:focus {
+            outline: none;
+            border-color: var(--maas-green);
+        }
+
+        .control-input::placeholder {
+            color: var(--muted-green);
+        }
+
+        .control-select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--charcoal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234A5D52' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .control-select:focus {
+            outline: none;
+            border-color: var(--maas-green);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--maas-green);
+            color: var(--near-black);
+        }
+
+        .btn-primary:hover {
+            background: var(--maas-green-bright);
+        }
+
+        .btn-secondary {
+            background: var(--charcoal);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 12px;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--maas-green);
+        }
+
+        /* Preview Area */
+        .preview-area {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--charcoal);
+        }
+
+        .preview-container {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .preview-label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted-green);
+            margin-bottom: 16px;
+        }
+
+        /* Email Signature Preview (simulates email client) */
+        .email-preview {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .email-header {
+            background: #f5f5f5;
+            padding: 16px 24px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .email-header-row {
+            display: flex;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        .email-header-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .email-header-label {
+            width: 60px;
+            color: #666;
+        }
+
+        .email-body {
+            padding: 32px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .email-body p {
+            margin-bottom: 16px;
+        }
+
+        .email-body .greeting {
+            margin-bottom: 24px;
+        }
+
+        /* Signature Styles */
+        .signature {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid #2D8B4E;
+        }
+
+        .signature-main {
+            display: flex;
+            gap: 20px;
+        }
+
+        .signature-logo {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+        }
+
+        .signature-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .signature-content {
+            flex: 1;
+        }
+
+        .signature-name {
+            font-weight: 700;
+            font-size: 16px;
+            color: #0D1210;
+            margin-bottom: 2px;
+        }
+
+        .signature-title {
+            font-size: 14px;
+            color: #2D8B4E;
+            margin-bottom: 12px;
+        }
+
+        .signature-company {
+            font-weight: 600;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .signature-contact {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .signature-contact a {
+            color: #2D8B4E;
+            text-decoration: none;
+        }
+
+        .signature-contact a:hover {
+            text-decoration: underline;
+        }
+
+        .signature-tagline {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+            font-style: italic;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .signature-social {
+            margin-top: 12px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .signature-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #2D8B4E;
+            border-radius: 4px;
+            color: white;
+        }
+
+        /* Style Variations */
+        .signature.minimal {
+            border-top: none;
+            padding-top: 16px;
+        }
+
+        .signature.minimal .signature-main {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .signature.minimal .signature-logo {
+            width: 120px;
+            height: 30px;
+        }
+
+        .signature.centered {
+            text-align: center;
+        }
+
+        .signature.centered .signature-main {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signature.centered .signature-logo {
+            width: 140px;
+            height: 35px;
+            margin-bottom: 8px;
+        }
+
+        /* Copy Success */
+        .copy-success {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--maas-green);
+            color: var(--near-black);
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .copy-success.show {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .builder-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                max-height: none;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav { padding: 16px 20px; }
+            .sidebar { padding: 24px 20px; }
+            .preview-area { padding: 20px; }
+            .email-body { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Brand House
+        </a>
+        <img src="./assets/maas-logo-primary.svg" alt="MAAS Energy Works" class="nav-logo">
+    </nav>
+
+    <div class="builder-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Your Information</h3>
+                <div class="control-group">
+                    <label class="control-label">Full Name</label>
+                    <input type="text" class="control-input" id="fullName" placeholder="John Smith" value="John Smith">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Job Title</label>
+                    <input type="text" class="control-input" id="jobTitle" placeholder="Senior Project Engineer" value="Senior Project Engineer">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Email</label>
+                    <input type="email" class="control-input" id="email" placeholder="john@maasenergy.com" value="john@maasenergy.com">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Phone</label>
+                    <input type="tel" class="control-input" id="phone" placeholder="(530) 555-0123" value="(530) 555-0123">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Mobile (Optional)</label>
+                    <input type="tel" class="control-input" id="mobile" placeholder="(530) 555-0124">
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Signature Style</h3>
+                <div class="control-group">
+                    <select class="control-select" id="signatureStyle">
+                        <option value="standard">Standard (with icon)</option>
+                        <option value="minimal">Minimal</option>
+                        <option value="centered">Centered</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Options</h3>
+                <div class="control-group">
+                    <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+                        <input type="checkbox" id="showTagline" checked style="width: 18px; height: 18px; accent-color: var(--maas-green);">
+                        <span class="control-label" style="margin: 0;">Include Company Tagline</span>
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+                        <input type="checkbox" id="showSocial" style="width: 18px; height: 18px; accent-color: var(--maas-green);">
+                        <span class="control-label" style="margin: 0;">Include Social Links</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <button class="btn btn-primary" id="copyHtmlBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    Copy HTML
+                </button>
+                <button class="btn btn-secondary" id="copyTextBtn">
+                    Copy Plain Text
+                </button>
+            </div>
+
+            <div class="sidebar-section" style="background: var(--charcoal); border-radius: 8px; padding: 16px;">
+                <h3 class="sidebar-title" style="margin-bottom: 12px;">How to Use</h3>
+                <ol style="font-size: 0.85rem; color: var(--text-secondary); padding-left: 20px; line-height: 1.8;">
+                    <li>Fill in your details</li>
+                    <li>Choose a style</li>
+                    <li>Click "Copy HTML"</li>
+                    <li>Paste in your email client's signature settings</li>
+                </ol>
+            </div>
+        </aside>
+
+        <main class="preview-area">
+            <div class="preview-container">
+                <p class="preview-label">Email Preview</p>
+                <div class="email-preview">
+                    <div class="email-header">
+                        <div class="email-header-row">
+                            <span class="email-header-label">From:</span>
+                            <span id="previewFrom">john@maasenergy.com</span>
+                        </div>
+                        <div class="email-header-row">
+                            <span class="email-header-label">To:</span>
+                            <span>client@example.com</span>
+                        </div>
+                        <div class="email-header-row">
+                            <span class="email-header-label">Subject:</span>
+                            <span>Project Update - Dairy Digester Installation</span>
+                        </div>
+                    </div>
+                    <div class="email-body">
+                        <p class="greeting">Hi Sarah,</p>
+                        <p>Thank you for your time on today's call. I wanted to follow up with the project timeline we discussed.</p>
+                        <p>Please let me know if you have any questions about the next steps.</p>
+                        <p>Best regards,</p>
+
+                        <div class="signature" id="signaturePreview">
+                            <!-- Signature content rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="copy-success" id="copySuccess">Copied to clipboard!</div>
+
+    <script>
+        // State
+        const state = {
+            fullName: 'John Smith',
+            jobTitle: 'Senior Project Engineer',
+            email: 'john@maasenergy.com',
+            phone: '(530) 555-0123',
+            mobile: '',
+            style: 'standard',
+            showTagline: true,
+            showSocial: false
+        };
+
+        // DOM Elements
+        const fullNameInput = document.getElementById('fullName');
+        const jobTitleInput = document.getElementById('jobTitle');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const mobileInput = document.getElementById('mobile');
+        const styleSelect = document.getElementById('signatureStyle');
+        const showTaglineCheckbox = document.getElementById('showTagline');
+        const showSocialCheckbox = document.getElementById('showSocial');
+        const copyHtmlBtn = document.getElementById('copyHtmlBtn');
+        const copyTextBtn = document.getElementById('copyTextBtn');
+        const signaturePreview = document.getElementById('signaturePreview');
+        const previewFrom = document.getElementById('previewFrom');
+        const copySuccess = document.getElementById('copySuccess');
+
+        // Event Listeners
+        fullNameInput.addEventListener('input', (e) => { state.fullName = e.target.value; render(); });
+        jobTitleInput.addEventListener('input', (e) => { state.jobTitle = e.target.value; render(); });
+        emailInput.addEventListener('input', (e) => {
+            state.email = e.target.value;
+            previewFrom.textContent = e.target.value;
+            render();
+        });
+        phoneInput.addEventListener('input', (e) => { state.phone = e.target.value; render(); });
+        mobileInput.addEventListener('input', (e) => { state.mobile = e.target.value; render(); });
+        styleSelect.addEventListener('change', (e) => { state.style = e.target.value; render(); });
+        showTaglineCheckbox.addEventListener('change', (e) => { state.showTagline = e.target.checked; render(); });
+        showSocialCheckbox.addEventListener('change', (e) => { state.showSocial = e.target.checked; render(); });
+        copyHtmlBtn.addEventListener('click', copyHtml);
+        copyTextBtn.addEventListener('click', copyText);
+
+        function render() {
+            let html = '';
+            const logoUrl = 'https://maasenergy.com/logo-icon.png'; // Placeholder URL
+
+            if (state.style === 'standard') {
+                html = `
+                    <table cellpadding="0" cellspacing="0" border="0" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; border-top: 2px solid #2D8B4E; padding-top: 16px; margin-top: 24px;">
+                        <tr>
+                            <td style="vertical-align: top; padding-right: 16px;">
+                                <img src="./assets/maas-icon.svg" alt="MAAS" width="50" height="50" style="display: block;">
+                            </td>
+                            <td style="vertical-align: top;">
+                                <p style="margin: 0 0 2px 0; font-weight: 700; font-size: 15px; color: #0D1210;">${state.fullName}</p>
+                                <p style="margin: 0 0 10px 0; font-size: 13px; color: #2D8B4E;">${state.jobTitle}</p>
+                                <p style="margin: 0 0 6px 0; font-weight: 600; font-size: 13px; color: #333;">MAAS Energy Works</p>
+                                <p style="margin: 0; font-size: 12px; color: #666; line-height: 1.8;">
+                                    <a href="mailto:${state.email}" style="color: #2D8B4E; text-decoration: none;">${state.email}</a><br>
+                                    ${state.phone}${state.mobile ? '<br>' + state.mobile + ' (mobile)' : ''}
+                                </p>
+                                ${state.showTagline ? `<p style="margin: 12px 0 0 0; padding-top: 10px; border-top: 1px solid #e0e0e0; font-style: italic; font-size: 11px; color: #666;">Powering Tomorrow from Today's Waste</p>` : ''}
+                                ${state.showSocial ? `
+                                <p style="margin: 10px 0 0 0;">
+                                    <a href="https://linkedin.com/company/maas-energy" style="display: inline-block; width: 24px; height: 24px; background: #2D8B4E; border-radius: 4px; text-align: center; line-height: 24px; color: white; text-decoration: none; margin-right: 8px;">in</a>
+                                </p>` : ''}
+                            </td>
+                        </tr>
+                    </table>
+                `;
+            } else if (state.style === 'minimal') {
+                html = `
+                    <table cellpadding="0" cellspacing="0" border="0" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin-top: 24px;">
+                        <tr>
+                            <td>
+                                <img src="./assets/maas-logo-primary.svg" alt="MAAS Energy Works" width="120" height="30" style="display: block; margin-bottom: 12px;">
+                                <p style="margin: 0 0 2px 0; font-weight: 700; font-size: 14px; color: #0D1210;">${state.fullName}</p>
+                                <p style="margin: 0 0 8px 0; font-size: 12px; color: #2D8B4E;">${state.jobTitle}</p>
+                                <p style="margin: 0; font-size: 12px; color: #666;">
+                                    ${state.email} | ${state.phone}
+                                </p>
+                                ${state.showTagline ? `<p style="margin: 10px 0 0 0; font-style: italic; font-size: 11px; color: #999;">Powering Tomorrow from Today's Waste</p>` : ''}
+                            </td>
+                        </tr>
+                    </table>
+                `;
+            } else if (state.style === 'centered') {
+                html = `
+                    <table cellpadding="0" cellspacing="0" border="0" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin-top: 24px; width: 100%;">
+                        <tr>
+                            <td style="text-align: center;">
+                                <img src="./assets/maas-logo-primary.svg" alt="MAAS Energy Works" width="140" height="35" style="display: inline-block; margin-bottom: 12px;">
+                                <p style="margin: 0 0 2px 0; font-weight: 700; font-size: 15px; color: #0D1210;">${state.fullName}</p>
+                                <p style="margin: 0 0 10px 0; font-size: 13px; color: #2D8B4E;">${state.jobTitle}</p>
+                                <p style="margin: 0; font-size: 12px; color: #666;">
+                                    <a href="mailto:${state.email}" style="color: #2D8B4E; text-decoration: none;">${state.email}</a> | ${state.phone}
+                                </p>
+                                ${state.showTagline ? `<p style="margin: 12px 0 0 0; font-style: italic; font-size: 11px; color: #666;">Powering Tomorrow from Today's Waste</p>` : ''}
+                            </td>
+                        </tr>
+                    </table>
+                `;
+            }
+
+            signaturePreview.innerHTML = html;
+            signaturePreview.className = `signature ${state.style}`;
+        }
+
+        function copyHtml() {
+            const html = signaturePreview.innerHTML;
+            navigator.clipboard.writeText(html).then(() => {
+                showCopySuccess();
+            });
+        }
+
+        function copyText() {
+            let text = `${state.fullName}\n${state.jobTitle}\nMAAS Energy Works\n\n${state.email}\n${state.phone}`;
+            if (state.mobile) text += `\n${state.mobile} (mobile)`;
+            if (state.showTagline) text += `\n\nPowering Tomorrow from Today's Waste`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                showCopySuccess();
+            });
+        }
+
+        function showCopySuccess() {
+            copySuccess.classList.add('show');
+            setTimeout(() => {
+                copySuccess.classList.remove('show');
+            }, 2000);
+        }
+
+        // Initial render
+        render();
+    </script>
+</body>
+</html>

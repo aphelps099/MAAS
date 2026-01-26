@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Cards | MAAS Energy Works</title>
+    <meta name="description" content="Print-ready business card designs for MAAS Energy Works team members.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/svg+xml" href="./assets/maas-icon.svg">
+
+    <style>
+        :root {
+            --maas-green: #2D8B4E;
+            --maas-green-bright: #3CAF5C;
+            --maas-green-glow: rgba(45, 139, 78, 0.15);
+            --biogas-blue: #1E7F9C;
+            --biogas-blue-light: #2CA3C4;
+            --earth-brown: #6B5344;
+            --cream: #F5F2EB;
+            --warm-white: #FDFCFA;
+            --near-black: #0D1210;
+            --dark-gray: #1A1F1C;
+            --charcoal: #242B27;
+            --white: #ffffff;
+            --muted-green: #4A5D52;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --serif: 'Georgia', serif;
+            --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--near-black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: rgba(13, 18, 16, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+        }
+
+        .nav-logo { height: 36px; width: auto; }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover { color: var(--maas-green); }
+
+        /* Layout */
+        .builder-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            min-height: 100vh;
+            padding-top: 76px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--dark-gray);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 32px 24px;
+            overflow-y: auto;
+            max-height: calc(100vh - 76px);
+        }
+
+        .sidebar-section {
+            margin-bottom: 32px;
+        }
+
+        .sidebar-title {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted-green);
+            margin-bottom: 16px;
+        }
+
+        /* Form Controls */
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .control-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--charcoal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .control-input:focus {
+            outline: none;
+            border-color: var(--maas-green);
+        }
+
+        .control-input::placeholder {
+            color: var(--muted-green);
+        }
+
+        .control-select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--charcoal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234A5D52' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .control-select:focus {
+            outline: none;
+            border-color: var(--maas-green);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--maas-green);
+            color: var(--near-black);
+        }
+
+        .btn-primary:hover {
+            background: var(--maas-green-bright);
+        }
+
+        /* Preview Area */
+        .preview-area {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--charcoal);
+            min-height: calc(100vh - 76px);
+        }
+
+        .card-preview-container {
+            perspective: 1000px;
+        }
+
+        .card-flipper {
+            position: relative;
+            width: 350px;
+            height: 200px;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .card-flipper.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Card Styles */
+        .business-card {
+            width: 100%;
+            height: 100%;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Style: Dark */
+        .card-dark {
+            background: linear-gradient(135deg, var(--near-black) 0%, var(--charcoal) 100%);
+            color: var(--white);
+        }
+
+        .card-dark .card-logo {
+            height: 24px;
+            margin-bottom: auto;
+        }
+
+        .card-dark .card-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .card-dark .card-title {
+            font-size: 12px;
+            color: var(--maas-green);
+            margin-bottom: 16px;
+        }
+
+        .card-dark .card-contact {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .card-dark .card-contact a {
+            color: var(--maas-green);
+        }
+
+        /* Style: Light */
+        .card-light {
+            background: var(--warm-white);
+            color: var(--near-black);
+        }
+
+        .card-light .card-logo {
+            height: 24px;
+            margin-bottom: auto;
+        }
+
+        .card-light .card-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .card-light .card-title {
+            font-size: 12px;
+            color: var(--maas-green);
+            margin-bottom: 16px;
+        }
+
+        .card-light .card-contact {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .card-light .card-contact a {
+            color: var(--maas-green);
+        }
+
+        /* Style: Green Accent */
+        .card-accent {
+            background: var(--near-black);
+            color: var(--white);
+            position: relative;
+        }
+
+        .card-accent::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--maas-green);
+        }
+
+        .card-accent .card-logo {
+            height: 24px;
+            margin-bottom: auto;
+            margin-left: 6px;
+        }
+
+        .card-accent .card-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 2px;
+            margin-left: 6px;
+        }
+
+        .card-accent .card-title {
+            font-size: 12px;
+            color: var(--maas-green);
+            margin-bottom: 16px;
+            margin-left: 6px;
+        }
+
+        .card-accent .card-contact {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-left: 6px;
+        }
+
+        .card-accent .card-contact a {
+            color: var(--maas-green);
+        }
+
+        /* Card Back */
+        .card-back-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-back-dark {
+            background: var(--near-black);
+        }
+
+        .card-back-dark::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(90deg, rgba(45, 139, 78, 0.05) 1px, transparent 1px),
+                linear-gradient(rgba(45, 139, 78, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .card-back-light {
+            background: var(--warm-white);
+        }
+
+        .card-back-light::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(90deg, rgba(45, 139, 78, 0.08) 1px, transparent 1px),
+                linear-gradient(rgba(45, 139, 78, 0.08) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .card-back-logo {
+            position: relative;
+            z-index: 1;
+            height: 40px;
+            margin-bottom: 12px;
+        }
+
+        .card-back-tagline {
+            position: relative;
+            z-index: 1;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--maas-green);
+        }
+
+        .card-back-website {
+            position: absolute;
+            bottom: 20px;
+            font-size: 10px;
+            color: var(--muted-green);
+        }
+
+        /* Flip Button */
+        .flip-btn {
+            margin-top: 24px;
+            padding: 12px 24px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flip-btn:hover {
+            border-color: var(--maas-green);
+            color: var(--maas-green);
+        }
+
+        /* Specs */
+        .specs-box {
+            background: var(--dark-gray);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 24px;
+        }
+
+        .specs-title {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted-green);
+            margin-bottom: 12px;
+        }
+
+        .specs-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .specs-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .specs-label {
+            color: var(--text-secondary);
+        }
+
+        .specs-value {
+            color: var(--white);
+            font-family: var(--mono);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .builder-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                max-height: none;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .preview-area {
+                min-height: 500px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .nav { padding: 16px 20px; }
+            .sidebar { padding: 24px 20px; }
+            .preview-area { padding: 20px; }
+
+            .card-flipper {
+                width: 300px;
+                height: 171px;
+            }
+
+            .business-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Brand House
+        </a>
+        <img src="./assets/maas-logo-primary.svg" alt="MAAS Energy Works" class="nav-logo">
+    </nav>
+
+    <div class="builder-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Your Information</h3>
+                <div class="control-group">
+                    <label class="control-label">Full Name</label>
+                    <input type="text" class="control-input" id="fullName" placeholder="John Smith" value="John Smith">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Job Title</label>
+                    <input type="text" class="control-input" id="jobTitle" placeholder="Senior Project Engineer" value="Senior Project Engineer">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Email</label>
+                    <input type="email" class="control-input" id="email" placeholder="john@maasenergy.com" value="john@maasenergy.com">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Phone</label>
+                    <input type="tel" class="control-input" id="phone" placeholder="(530) 555-0123" value="(530) 555-0123">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Mobile (Optional)</label>
+                    <input type="tel" class="control-input" id="mobile" placeholder="(530) 555-0124">
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Card Style</h3>
+                <div class="control-group">
+                    <select class="control-select" id="cardStyle">
+                        <option value="dark">Dark Theme</option>
+                        <option value="light">Light Theme</option>
+                        <option value="accent">Green Accent</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <button class="btn btn-primary" id="downloadBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download Print File
+                </button>
+            </div>
+
+            <div class="specs-box">
+                <h4 class="specs-title">Print Specifications</h4>
+                <div class="specs-row">
+                    <span class="specs-label">Size</span>
+                    <span class="specs-value">3.5" x 2"</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">Bleed</span>
+                    <span class="specs-value">0.125"</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">Resolution</span>
+                    <span class="specs-value">300 DPI</span>
+                </div>
+                <div class="specs-row">
+                    <span class="specs-label">Color Mode</span>
+                    <span class="specs-value">CMYK</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="preview-area">
+            <div class="card-preview-container">
+                <div class="card-flipper" id="cardFlipper">
+                    <div class="card-front">
+                        <div class="business-card card-dark" id="cardFrontContent">
+                            <img src="./assets/maas-logo-white.svg" alt="MAAS Energy Works" class="card-logo">
+                            <div class="card-info">
+                                <p class="card-name" id="cardName">John Smith</p>
+                                <p class="card-title" id="cardTitle">Senior Project Engineer</p>
+                                <div class="card-contact">
+                                    <a href="mailto:john@maasenergy.com" id="cardEmail">john@maasenergy.com</a><br>
+                                    <span id="cardPhone">(530) 555-0123</span>
+                                    <span id="cardMobile"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="card-back-content card-back-dark" id="cardBackContent">
+                            <img src="./assets/maas-logo-white.svg" alt="MAAS Energy Works" class="card-back-logo" id="cardBackLogo">
+                            <p class="card-back-tagline">Powering Tomorrow from Today's Waste</p>
+                            <p class="card-back-website">maasenergy.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="flip-btn" id="flipBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 1l4 4-4 4"/>
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                    <path d="M7 23l-4-4 4-4"/>
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+                </svg>
+                Flip Card
+            </button>
+        </main>
+    </div>
+
+    <script>
+        // State
+        const state = {
+            fullName: 'John Smith',
+            jobTitle: 'Senior Project Engineer',
+            email: 'john@maasenergy.com',
+            phone: '(530) 555-0123',
+            mobile: '',
+            style: 'dark'
+        };
+
+        // DOM Elements
+        const fullNameInput = document.getElementById('fullName');
+        const jobTitleInput = document.getElementById('jobTitle');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const mobileInput = document.getElementById('mobile');
+        const cardStyleSelect = document.getElementById('cardStyle');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const flipBtn = document.getElementById('flipBtn');
+        const cardFlipper = document.getElementById('cardFlipper');
+        const cardFrontContent = document.getElementById('cardFrontContent');
+        const cardBackContent = document.getElementById('cardBackContent');
+        const cardBackLogo = document.getElementById('cardBackLogo');
+
+        // Card elements
+        const cardName = document.getElementById('cardName');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardEmail = document.getElementById('cardEmail');
+        const cardPhone = document.getElementById('cardPhone');
+        const cardMobile = document.getElementById('cardMobile');
+
+        // Event Listeners
+        fullNameInput.addEventListener('input', (e) => { state.fullName = e.target.value; render(); });
+        jobTitleInput.addEventListener('input', (e) => { state.jobTitle = e.target.value; render(); });
+        emailInput.addEventListener('input', (e) => { state.email = e.target.value; render(); });
+        phoneInput.addEventListener('input', (e) => { state.phone = e.target.value; render(); });
+        mobileInput.addEventListener('input', (e) => { state.mobile = e.target.value; render(); });
+        cardStyleSelect.addEventListener('change', (e) => { state.style = e.target.value; render(); });
+
+        flipBtn.addEventListener('click', () => {
+            cardFlipper.classList.toggle('flipped');
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            alert('In production, this would generate a print-ready PDF with proper bleed and CMYK colors.');
+        });
+
+        function render() {
+            // Update card content
+            cardName.textContent = state.fullName;
+            cardTitle.textContent = state.jobTitle;
+            cardEmail.textContent = state.email;
+            cardEmail.href = `mailto:${state.email}`;
+            cardPhone.textContent = state.phone;
+            cardMobile.textContent = state.mobile ? `\n${state.mobile} (mobile)` : '';
+
+            // Update card style
+            cardFrontContent.className = 'business-card';
+            cardBackContent.className = 'card-back-content';
+
+            const cardLogo = cardFrontContent.querySelector('.card-logo');
+
+            switch (state.style) {
+                case 'dark':
+                    cardFrontContent.classList.add('card-dark');
+                    cardBackContent.classList.add('card-back-dark');
+                    cardLogo.src = './assets/maas-logo-white.svg';
+                    cardBackLogo.src = './assets/maas-logo-white.svg';
+                    break;
+                case 'light':
+                    cardFrontContent.classList.add('card-light');
+                    cardBackContent.classList.add('card-back-light');
+                    cardLogo.src = './assets/maas-logo-primary.svg';
+                    cardBackLogo.src = './assets/maas-logo-primary.svg';
+                    break;
+                case 'accent':
+                    cardFrontContent.classList.add('card-accent');
+                    cardBackContent.classList.add('card-back-dark');
+                    cardLogo.src = './assets/maas-logo-white.svg';
+                    cardBackLogo.src = './assets/maas-logo-white.svg';
+                    break;
+            }
+        }
+
+        // Initial render
+        render();
+    </script>
+</body>
+</html>

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern Studio | MAAS Energy Works</title>
+    <meta name="description" content="Create custom branded patterns for MAAS Energy Works presentations and marketing materials.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/svg+xml" href="./assets/maas-icon.svg">
+
+    <style>
+        :root {
+            --maas-green: #2D8B4E;
+            --maas-green-bright: #3CAF5C;
+            --maas-green-glow: rgba(45, 139, 78, 0.15);
+            --biogas-blue: #1E7F9C;
+            --biogas-blue-light: #2CA3C4;
+            --earth-brown: #6B5344;
+            --cream: #F5F2EB;
+            --warm-white: #FDFCFA;
+            --near-black: #0D1210;
+            --dark-gray: #1A1F1C;
+            --charcoal: #242B27;
+            --white: #ffffff;
+            --muted-green: #4A5D52;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --serif: 'Georgia', serif;
+            --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--near-black);
+            color: var(--white);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: rgba(13, 18, 16, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+        }
+
+        .nav-logo { height: 36px; width: auto; }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover { color: var(--maas-green); }
+
+        /* Main Layout */
+        .studio-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            min-height: 100vh;
+            padding-top: 76px;
+        }
+
+        /* Sidebar Controls */
+        .sidebar {
+            background: var(--dark-gray);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 32px 24px;
+            overflow-y: auto;
+            max-height: calc(100vh - 76px);
+        }
+
+        .sidebar-section {
+            margin-bottom: 32px;
+        }
+
+        .sidebar-title {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--muted-green);
+            margin-bottom: 16px;
+        }
+
+        /* Form Controls */
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .control-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--charcoal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .control-input:focus {
+            outline: none;
+            border-color: var(--maas-green);
+        }
+
+        .control-select {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--charcoal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234A5D52' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .control-select:focus {
+            outline: none;
+            border-color: var(--maas-green);
+        }
+
+        .control-range {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 6px;
+            background: var(--charcoal);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .control-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--maas-green);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .control-range::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .range-value {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--maas-green);
+            margin-top: 8px;
+        }
+
+        /* Color Swatches */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .color-swatch {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.05);
+        }
+
+        .color-swatch.active {
+            border-color: var(--white);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--maas-green);
+            color: var(--near-black);
+        }
+
+        .btn-primary:hover {
+            background: var(--maas-green-bright);
+        }
+
+        .btn-secondary {
+            background: var(--charcoal);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--maas-green);
+        }
+
+        /* Preview Area */
+        .preview-area {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--charcoal);
+        }
+
+        .preview-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .pattern-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .preview-dimensions {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--muted-green);
+            margin-top: 16px;
+        }
+
+        /* Pattern Presets */
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .preset-card {
+            background: var(--charcoal);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .preset-card:hover {
+            border-color: rgba(45, 139, 78, 0.5);
+        }
+
+        .preset-card.active {
+            border-color: var(--maas-green);
+        }
+
+        .preset-preview {
+            aspect-ratio: 16/9;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .preset-name {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .studio-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                max-height: none;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .nav { padding: 16px 24px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Brand House
+        </a>
+        <img src="./assets/maas-logo-primary.svg" alt="MAAS Energy Works" class="nav-logo">
+    </nav>
+
+    <div class="studio-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Pattern Type</h3>
+                <div class="preset-grid">
+                    <div class="preset-card active" data-pattern="grid">
+                        <div class="preset-preview" style="background: linear-gradient(90deg, rgba(45,139,78,0.1) 1px, transparent 1px), linear-gradient(rgba(45,139,78,0.1) 1px, transparent 1px); background-size: 20px 20px; background-color: #0D1210;"></div>
+                        <span class="preset-name">Grid</span>
+                    </div>
+                    <div class="preset-card" data-pattern="dots">
+                        <div class="preset-preview" style="background: radial-gradient(circle, rgba(45,139,78,0.3) 2px, transparent 2px); background-size: 20px 20px; background-color: #0D1210;"></div>
+                        <span class="preset-name">Dots</span>
+                    </div>
+                    <div class="preset-card" data-pattern="diagonal">
+                        <div class="preset-preview" style="background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(45,139,78,0.1) 10px, rgba(45,139,78,0.1) 11px); background-color: #0D1210;"></div>
+                        <span class="preset-name">Diagonal</span>
+                    </div>
+                    <div class="preset-card" data-pattern="waves">
+                        <div class="preset-preview" style="background: repeating-linear-gradient(0deg, transparent, transparent 8px, rgba(45,139,78,0.08) 8px, rgba(45,139,78,0.08) 16px); background-color: #0D1210;"></div>
+                        <span class="preset-name">Waves</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Primary Color</h3>
+                <div class="color-grid">
+                    <div class="color-swatch active" style="background: #2D8B4E;" data-color="#2D8B4E"></div>
+                    <div class="color-swatch" style="background: #3CAF5C;" data-color="#3CAF5C"></div>
+                    <div class="color-swatch" style="background: #1E7F9C;" data-color="#1E7F9C"></div>
+                    <div class="color-swatch" style="background: #2CA3C4;" data-color="#2CA3C4"></div>
+                    <div class="color-swatch" style="background: #6B5344;" data-color="#6B5344"></div>
+                    <div class="color-swatch" style="background: #4A5D52;" data-color="#4A5D52"></div>
+                    <div class="color-swatch" style="background: #FFFFFF;" data-color="#FFFFFF"></div>
+                    <div class="color-swatch" style="background: #F5F2EB;" data-color="#F5F2EB"></div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Background</h3>
+                <div class="control-group">
+                    <select class="control-select" id="bgColor">
+                        <option value="#0D1210">Near Black</option>
+                        <option value="#1A1F1C">Dark Gray</option>
+                        <option value="#242B27">Charcoal</option>
+                        <option value="#2D8B4E">MAAS Green</option>
+                        <option value="#1E7F9C">Biogas Blue</option>
+                        <option value="#F5F2EB">Cream</option>
+                        <option value="#FFFFFF">White</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Pattern Settings</h3>
+                <div class="control-group">
+                    <label class="control-label">Pattern Size</label>
+                    <input type="range" class="control-range" id="patternSize" min="10" max="100" value="40">
+                    <div class="range-value"><span id="sizeValue">40</span>px</div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Opacity</label>
+                    <input type="range" class="control-range" id="patternOpacity" min="5" max="50" value="15">
+                    <div class="range-value"><span id="opacityValue">15</span>%</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Canvas Size</h3>
+                <div class="control-group">
+                    <select class="control-select" id="canvasSize">
+                        <option value="1920x1080">1920 x 1080 (HD)</option>
+                        <option value="1200x628">1200 x 628 (Social)</option>
+                        <option value="1584x396">1584 x 396 (LinkedIn)</option>
+                        <option value="1080x1080">1080 x 1080 (Square)</option>
+                        <option value="1080x1920">1080 x 1920 (Story)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Add Logo</h3>
+                <div class="control-group">
+                    <select class="control-select" id="logoOption">
+                        <option value="none">No Logo</option>
+                        <option value="bottom-right">Bottom Right</option>
+                        <option value="bottom-left">Bottom Left</option>
+                        <option value="center">Center</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <button class="btn btn-primary" id="downloadBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download PNG
+                </button>
+                <button class="btn btn-secondary" id="copyBtn" style="margin-top: 12px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    Copy CSS
+                </button>
+            </div>
+        </aside>
+
+        <main class="preview-area">
+            <div class="preview-container">
+                <canvas id="patternCanvas" class="pattern-canvas"></canvas>
+            </div>
+            <p class="preview-dimensions" id="dimensionLabel">1920 x 1080 pixels</p>
+        </main>
+    </div>
+
+    <script>
+        // State
+        const state = {
+            pattern: 'grid',
+            primaryColor: '#2D8B4E',
+            bgColor: '#0D1210',
+            size: 40,
+            opacity: 15,
+            canvasWidth: 1920,
+            canvasHeight: 1080,
+            logo: 'none'
+        };
+
+        // DOM elements
+        const canvas = document.getElementById('patternCanvas');
+        const ctx = canvas.getContext('2d');
+        const presetCards = document.querySelectorAll('.preset-card');
+        const colorSwatches = document.querySelectorAll('.color-swatch');
+        const bgColorSelect = document.getElementById('bgColor');
+        const sizeRange = document.getElementById('patternSize');
+        const opacityRange = document.getElementById('patternOpacity');
+        const canvasSizeSelect = document.getElementById('canvasSize');
+        const logoSelect = document.getElementById('logoOption');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const sizeValue = document.getElementById('sizeValue');
+        const opacityValue = document.getElementById('opacityValue');
+        const dimensionLabel = document.getElementById('dimensionLabel');
+
+        // Logo image
+        const logoImg = new Image();
+        logoImg.src = './assets/maas-logo-white.svg';
+
+        // Initialize
+        function init() {
+            updateCanvas();
+            setupEventListeners();
+        }
+
+        function setupEventListeners() {
+            presetCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    presetCards.forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+                    state.pattern = card.dataset.pattern;
+                    updateCanvas();
+                });
+            });
+
+            colorSwatches.forEach(swatch => {
+                swatch.addEventListener('click', () => {
+                    colorSwatches.forEach(s => s.classList.remove('active'));
+                    swatch.classList.add('active');
+                    state.primaryColor = swatch.dataset.color;
+                    updateCanvas();
+                });
+            });
+
+            bgColorSelect.addEventListener('change', (e) => {
+                state.bgColor = e.target.value;
+                updateCanvas();
+            });
+
+            sizeRange.addEventListener('input', (e) => {
+                state.size = parseInt(e.target.value);
+                sizeValue.textContent = state.size;
+                updateCanvas();
+            });
+
+            opacityRange.addEventListener('input', (e) => {
+                state.opacity = parseInt(e.target.value);
+                opacityValue.textContent = state.opacity;
+                updateCanvas();
+            });
+
+            canvasSizeSelect.addEventListener('change', (e) => {
+                const [w, h] = e.target.value.split('x').map(Number);
+                state.canvasWidth = w;
+                state.canvasHeight = h;
+                dimensionLabel.textContent = `${w} x ${h} pixels`;
+                updateCanvas();
+            });
+
+            logoSelect.addEventListener('change', (e) => {
+                state.logo = e.target.value;
+                updateCanvas();
+            });
+
+            downloadBtn.addEventListener('click', downloadImage);
+            copyBtn.addEventListener('click', copyCSS);
+        }
+
+        function hexToRgba(hex, alpha) {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
+        function updateCanvas() {
+            // Set canvas size
+            canvas.width = state.canvasWidth;
+            canvas.height = state.canvasHeight;
+
+            // Draw background
+            ctx.fillStyle = state.bgColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw pattern
+            const patternColor = hexToRgba(state.primaryColor, state.opacity / 100);
+
+            ctx.strokeStyle = patternColor;
+            ctx.fillStyle = patternColor;
+
+            switch (state.pattern) {
+                case 'grid':
+                    drawGrid();
+                    break;
+                case 'dots':
+                    drawDots();
+                    break;
+                case 'diagonal':
+                    drawDiagonal();
+                    break;
+                case 'waves':
+                    drawWaves();
+                    break;
+            }
+
+            // Draw logo if selected
+            if (state.logo !== 'none' && logoImg.complete) {
+                drawLogo();
+            }
+        }
+
+        function drawGrid() {
+            ctx.lineWidth = 1;
+
+            // Vertical lines
+            for (let x = 0; x <= canvas.width; x += state.size) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+
+            // Horizontal lines
+            for (let y = 0; y <= canvas.height; y += state.size) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+        }
+
+        function drawDots() {
+            const dotRadius = Math.max(2, state.size / 15);
+
+            for (let x = state.size / 2; x < canvas.width; x += state.size) {
+                for (let y = state.size / 2; y < canvas.height; y += state.size) {
+                    ctx.beginPath();
+                    ctx.arc(x, y, dotRadius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        function drawDiagonal() {
+            ctx.lineWidth = 1;
+            const spacing = state.size;
+
+            for (let i = -canvas.height; i < canvas.width + canvas.height; i += spacing) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i + canvas.height, canvas.height);
+                ctx.stroke();
+            }
+        }
+
+        function drawWaves() {
+            ctx.lineWidth = 1;
+            const spacing = state.size;
+
+            for (let y = 0; y < canvas.height; y += spacing) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+
+                for (let x = 0; x <= canvas.width; x += 10) {
+                    const waveY = y + Math.sin(x / 50) * (spacing / 4);
+                    ctx.lineTo(x, waveY);
+                }
+
+                ctx.stroke();
+            }
+        }
+
+        function drawLogo() {
+            const logoWidth = 180;
+            const logoHeight = 40;
+            const padding = 40;
+
+            let x, y;
+
+            switch (state.logo) {
+                case 'bottom-right':
+                    x = canvas.width - logoWidth - padding;
+                    y = canvas.height - logoHeight - padding;
+                    break;
+                case 'bottom-left':
+                    x = padding;
+                    y = canvas.height - logoHeight - padding;
+                    break;
+                case 'center':
+                    x = (canvas.width - logoWidth) / 2;
+                    y = (canvas.height - logoHeight) / 2;
+                    break;
+            }
+
+            ctx.drawImage(logoImg, x, y, logoWidth, logoHeight);
+        }
+
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = `maas-pattern-${state.pattern}-${state.canvasWidth}x${state.canvasHeight}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function copyCSS() {
+            const css = generateCSS();
+            navigator.clipboard.writeText(css).then(() => {
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                }, 2000);
+            });
+        }
+
+        function generateCSS() {
+            const patternColor = hexToRgba(state.primaryColor, state.opacity / 100);
+            let backgroundCSS = '';
+
+            switch (state.pattern) {
+                case 'grid':
+                    backgroundCSS = `background-image:
+    linear-gradient(90deg, ${patternColor} 1px, transparent 1px),
+    linear-gradient(${patternColor} 1px, transparent 1px);
+background-size: ${state.size}px ${state.size}px;`;
+                    break;
+                case 'dots':
+                    backgroundCSS = `background-image: radial-gradient(circle, ${patternColor} ${Math.max(2, state.size / 15)}px, transparent ${Math.max(2, state.size / 15)}px);
+background-size: ${state.size}px ${state.size}px;`;
+                    break;
+                case 'diagonal':
+                    backgroundCSS = `background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent ${state.size - 1}px,
+    ${patternColor} ${state.size - 1}px,
+    ${patternColor} ${state.size}px
+);`;
+                    break;
+                case 'waves':
+                    backgroundCSS = `background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent ${state.size - 1}px,
+    ${patternColor} ${state.size - 1}px,
+    ${patternColor} ${state.size}px
+);`;
+                    break;
+            }
+
+            return `.maas-pattern {
+    background-color: ${state.bgColor};
+    ${backgroundCSS}
+}`;
+        }
+
+        // Wait for logo to load then init
+        logoImg.onload = init;
+        if (logoImg.complete) init();
+    </script>
+</body>
+</html>

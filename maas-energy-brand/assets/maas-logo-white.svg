@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" fill="none">
+  <!-- Leaf/Energy Icon - White version -->
+  <g transform="translate(0, 8)">
+    <!-- Outer leaf shape -->
+    <path d="M22 2C12 8 4 20 4 32C4 38 8 44 14 44C18 44 22 42 26 38C30 42 34 44 38 44C44 44 48 38 48 32C48 20 40 8 30 2C28 1 24 1 22 2Z" fill="#FFFFFF"/>
+    <!-- Inner energy symbol -->
+    <path d="M26 12L20 26H26L24 38L34 22H28L30 12H26Z" fill="#0D1210" opacity="0.9"/>
+    <!-- Circular flow lines -->
+    <path d="M14 28C14 22 18 16 26 14" stroke="#0D1210" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+    <path d="M38 28C38 22 34 16 26 14" stroke="#0D1210" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+  </g>
+
+  <!-- MAAS Text -->
+  <text x="60" y="42" font-family="'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="700" fill="#FFFFFF" letter-spacing="0.02em">MAAS</text>
+
+  <!-- Energy Works Text -->
+  <text x="152" y="42" font-family="'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="300" fill="#FFFFFF" letter-spacing="0.02em">ENERGY</text>
+
+  <!-- Works subtext -->
+  <text x="60" y="56" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10" font-weight="500" fill="#FFFFFF" letter-spacing="0.25em" opacity="0.7">WORKS</text>
+</svg>

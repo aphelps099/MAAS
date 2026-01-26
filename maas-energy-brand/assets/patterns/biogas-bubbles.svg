@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <radialGradient id="bubble1" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#3CAF5C;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#2D8B4E;stop-opacity:0.1"/>
+    </radialGradient>
+    <radialGradient id="bubble2" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#2CA3C4;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#1E7F9C;stop-opacity:0.08"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Large bubbles -->
+  <circle cx="80" cy="320" r="45" fill="url(#bubble1)" stroke="#2D8B4E" stroke-width="1" stroke-opacity="0.2"/>
+  <circle cx="200" cy="280" r="60" fill="url(#bubble2)" stroke="#1E7F9C" stroke-width="1" stroke-opacity="0.2"/>
+  <circle cx="320" cy="340" r="38" fill="url(#bubble1)" stroke="#2D8B4E" stroke-width="1" stroke-opacity="0.2"/>
+
+  <!-- Medium bubbles -->
+  <circle cx="120" cy="220" r="28" fill="url(#bubble2)" stroke="#1E7F9C" stroke-width="0.5" stroke-opacity="0.15"/>
+  <circle cx="280" cy="200" r="35" fill="url(#bubble1)" stroke="#2D8B4E" stroke-width="0.5" stroke-opacity="0.15"/>
+  <circle cx="60" cy="180" r="22" fill="url(#bubble1)" stroke="#2D8B4E" stroke-width="0.5" stroke-opacity="0.15"/>
+  <circle cx="340" cy="240" r="25" fill="url(#bubble2)" stroke="#1E7F9C" stroke-width="0.5" stroke-opacity="0.15"/>
+
+  <!-- Small bubbles -->
+  <circle cx="160" cy="160" r="15" fill="url(#bubble1)" stroke="#2D8B4E" stroke-width="0.5" stroke-opacity="0.1"/>
+  <circle cx="240" cy="140" r="18" fill="url(#bubble2)" stroke="#1E7F9C" stroke-width="0.5" stroke-opacity="0.1"/>
+  <circle cx="100" cy="120" r="12" fill="url(#bubble1)" stroke="#2D8B4E" stroke-width="0.5" stroke-opacity="0.1"/>
+  <circle cx="300" cy="120" r="14" fill="url(#bubble1)" stroke="#2D8B4E" stroke-width="0.5" stroke-opacity="0.1"/>
+  <circle cx="180" cy="100" r="10" fill="url(#bubble2)" stroke="#1E7F9C" stroke-width="0.5" stroke-opacity="0.1"/>
+
+  <!-- Tiny bubbles -->
+  <circle cx="140" cy="80" r="6" fill="url(#bubble1)" stroke-opacity="0"/>
+  <circle cx="220" cy="70" r="8" fill="url(#bubble2)" stroke-opacity="0"/>
+  <circle cx="260" cy="60" r="5" fill="url(#bubble1)" stroke-opacity="0"/>
+  <circle cx="320" cy="80" r="7" fill="url(#bubble2)" stroke-opacity="0"/>
+  <circle cx="80" cy="60" r="4" fill="url(#bubble1)" stroke-opacity="0"/>
+  <circle cx="360" cy="160" r="9" fill="url(#bubble1)" stroke-opacity="0"/>
+  <circle cx="40" cy="260" r="8" fill="url(#bubble2)" stroke-opacity="0"/>
+
+  <!-- Rising motion lines -->
+  <path d="M80 360 Q75 340 80 320" stroke="#2D8B4E" stroke-width="1" stroke-opacity="0.15" fill="none"/>
+  <path d="M200 360 Q195 320 200 280" stroke="#1E7F9C" stroke-width="1" stroke-opacity="0.15" fill="none"/>
+  <path d="M320 400 Q315 370 320 340" stroke="#2D8B4E" stroke-width="1" stroke-opacity="0.15" fill="none"/>
+</svg>

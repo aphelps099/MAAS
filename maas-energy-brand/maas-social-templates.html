@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Templates | MAAS Energy Works</title>
+    <meta name="description" content="Ready-to-use social media templates for MAAS Energy Works brand communications.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/svg+xml" href="./assets/maas-icon.svg">
+
+    <style>
+        :root {
+            --maas-green: #2D8B4E;
+            --maas-green-bright: #3CAF5C;
+            --maas-green-glow: rgba(45, 139, 78, 0.15);
+            --biogas-blue: #1E7F9C;
+            --biogas-blue-light: #2CA3C4;
+            --earth-brown: #6B5344;
+            --cream: #F5F2EB;
+            --warm-white: #FDFCFA;
+            --near-black: #0D1210;
+            --dark-gray: #1A1F1C;
+            --charcoal: #242B27;
+            --white: #ffffff;
+            --muted-green: #4A5D52;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --serif: 'Georgia', serif;
+            --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--near-black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: rgba(13, 18, 16, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+        }
+
+        .nav-logo { height: 36px; width: auto; }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover { color: var(--maas-green); }
+
+        /* Header */
+        .page-header {
+            padding: 120px 40px 60px;
+            text-align: center;
+        }
+
+        .page-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--maas-green);
+            margin-bottom: 16px;
+        }
+
+        .page-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Template Sections */
+        .template-section {
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .section-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Template Grid */
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .template-card {
+            background: var(--dark-gray);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .template-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        .template-preview {
+            aspect-ratio: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-preview.landscape {
+            aspect-ratio: 1200/628;
+        }
+
+        .template-preview.story {
+            aspect-ratio: 9/16;
+            max-height: 400px;
+        }
+
+        /* Template Previews */
+        .preview-announcement {
+            background: linear-gradient(135deg, var(--near-black) 0%, var(--charcoal) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+            height: 100%;
+        }
+
+        .preview-announcement .badge {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--maas-green);
+            background: var(--maas-green-glow);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .preview-announcement .headline {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .preview-announcement .subtext {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .preview-stat {
+            background: var(--near-black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+            height: 100%;
+            position: relative;
+        }
+
+        .preview-stat::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(90deg, rgba(45, 139, 78, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(45, 139, 78, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .preview-stat .number {
+            font-family: var(--mono);
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--maas-green);
+            line-height: 1;
+            position: relative;
+        }
+
+        .preview-stat .label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            position: relative;
+        }
+
+        .preview-quote {
+            background: linear-gradient(180deg, var(--maas-green) 0%, #1f6b3b 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+            height: 100%;
+        }
+
+        .preview-quote .quote-mark {
+            font-family: var(--serif);
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.3);
+            line-height: 1;
+            margin-bottom: -20px;
+        }
+
+        .preview-quote .quote-text {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--white);
+        }
+
+        .preview-milestone {
+            background: var(--near-black);
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 40px;
+        }
+
+        .preview-milestone .content {
+            flex: 1;
+        }
+
+        .preview-milestone .year {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--maas-green);
+            margin-bottom: 12px;
+        }
+
+        .preview-milestone .title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .preview-milestone .desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .preview-milestone .visual {
+            width: 120px;
+            height: 120px;
+            background: var(--maas-green-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 24px;
+        }
+
+        .preview-milestone .visual svg {
+            width: 48px;
+            height: 48px;
+            color: var(--maas-green);
+        }
+
+        .preview-story {
+            background: linear-gradient(180deg, var(--near-black) 0%, var(--maas-green) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px 24px;
+            height: 100%;
+        }
+
+        .preview-story .top {
+            text-align: center;
+        }
+
+        .preview-story .badge {
+            font-family: var(--mono);
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--maas-green);
+            margin-bottom: 20px;
+        }
+
+        .preview-story .headline {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            line-height: 1.3;
+        }
+
+        .preview-story .bottom {
+            text-align: center;
+        }
+
+        .preview-story .cta {
+            display: inline-block;
+            background: var(--white);
+            color: var(--near-black);
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        /* Template Info */
+        .template-info {
+            padding: 20px;
+        }
+
+        .template-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .template-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .template-size {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--muted-green);
+        }
+
+        .template-download {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--maas-green);
+            transition: color 0.2s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .template-download:hover {
+            color: var(--maas-green-bright);
+        }
+
+        /* Logo Placeholder */
+        .logo-placeholder {
+            width: 100px;
+            height: 24px;
+            background: url('./assets/maas-logo-white.svg') center/contain no-repeat;
+            margin: 20px auto 0;
+        }
+
+        .logo-placeholder.dark {
+            background: url('./assets/maas-logo-primary.svg') center/contain no-repeat;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--muted-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav { padding: 16px 24px; }
+            .page-header { padding: 100px 24px 40px; }
+            .template-section { padding: 40px 24px; }
+        }
+
+        @media (max-width: 600px) {
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Brand House
+        </a>
+        <img src="./assets/maas-logo-primary.svg" alt="MAAS Energy Works" class="nav-logo">
+    </nav>
+
+    <header class="page-header">
+        <p class="page-eyebrow">Brand Assets</p>
+        <h1 class="page-title">Social Media Templates</h1>
+        <p class="page-subtitle">Ready-to-use templates for announcements, milestones, statistics, and more.</p>
+    </header>
+
+    <!-- Square Posts -->
+    <section class="template-section">
+        <div class="section-header">
+            <h2 class="section-title">Square Posts (1080 x 1080)</h2>
+            <p class="section-desc">Perfect for Instagram, LinkedIn, and Facebook feeds.</p>
+        </div>
+        <div class="template-grid">
+            <div class="template-card">
+                <div class="template-preview">
+                    <div class="preview-announcement">
+                        <span class="badge">Announcement</span>
+                        <h3 class="headline">We're Expanding to Texas</h3>
+                        <p class="subtext">New dairy digester projects coming soon</p>
+                        <div class="logo-placeholder"></div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <h3 class="template-name">Announcement</h3>
+                    <div class="template-meta">
+                        <span class="template-size">1080 x 1080</span>
+                        <button class="template-download" data-template="announcement">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-preview">
+                    <div class="preview-stat">
+                        <div class="number">70+</div>
+                        <div class="label">Digesters Developed</div>
+                        <div class="logo-placeholder"></div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <h3 class="template-name">Impact Statistic</h3>
+                    <div class="template-meta">
+                        <span class="template-size">1080 x 1080</span>
+                        <button class="template-download" data-template="stat">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-preview">
+                    <div class="preview-quote">
+                        <span class="quote-mark">"</span>
+                        <p class="quote-text">Transforming agricultural waste into clean energy for a sustainable future.</p>
+                        <div class="logo-placeholder"></div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <h3 class="template-name">Quote Card</h3>
+                    <div class="template-meta">
+                        <span class="template-size">1080 x 1080</span>
+                        <button class="template-download" data-template="quote">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Landscape Posts -->
+    <section class="template-section">
+        <div class="section-header">
+            <h2 class="section-title">Landscape Posts (1200 x 628)</h2>
+            <p class="section-desc">Optimized for LinkedIn and Twitter/X link previews.</p>
+        </div>
+        <div class="template-grid">
+            <div class="template-card">
+                <div class="template-preview landscape">
+                    <div class="preview-milestone">
+                        <div class="content">
+                            <p class="year">2025 Milestone</p>
+                            <h3 class="title">70th Facility Commissioned</h3>
+                            <p class="desc">Another step forward in our mission to transform agricultural waste into renewable energy.</p>
+                        </div>
+                        <div class="visual">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <h3 class="template-name">Milestone Achievement</h3>
+                    <div class="template-meta">
+                        <span class="template-size">1200 x 628</span>
+                        <button class="template-download" data-template="milestone">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-preview landscape">
+                    <div class="preview-announcement" style="flex-direction: row; text-align: left; gap: 40px;">
+                        <div style="flex: 1;">
+                            <span class="badge" style="display: inline-block;">Now Hiring</span>
+                            <h3 class="headline" style="margin-top: 16px;">Join Our Growing Team</h3>
+                            <p class="subtext">Engineering, Operations, and Development roles available</p>
+                        </div>
+                        <div class="logo-placeholder" style="margin: 0; width: 140px; height: 34px;"></div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <h3 class="template-name">Hiring / Careers</h3>
+                    <div class="template-meta">
+                        <span class="template-size">1200 x 628</span>
+                        <button class="template-download" data-template="hiring">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Templates -->
+    <section class="template-section">
+        <div class="section-header">
+            <h2 class="section-title">Story Templates (1080 x 1920)</h2>
+            <p class="section-desc">For Instagram and LinkedIn Stories.</p>
+        </div>
+        <div class="template-grid">
+            <div class="template-card">
+                <div class="template-preview story">
+                    <div class="preview-story">
+                        <div class="top">
+                            <p class="badge">New Project</p>
+                            <h3 class="headline">Breaking Ground in Idaho</h3>
+                        </div>
+                        <div class="bottom">
+                            <span class="cta">Swipe Up to Learn More</span>
+                            <div class="logo-placeholder" style="margin-top: 24px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="template-info">
+                    <h3 class="template-name">Story Announcement</h3>
+                    <div class="template-meta">
+                        <span class="template-size">1080 x 1920</span>
+                        <button class="template-download" data-template="story">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Guidelines -->
+    <section class="template-section" style="background: var(--dark-gray); margin: 40px; border-radius: 16px; max-width: calc(1400px - 80px);">
+        <div class="section-header">
+            <h2 class="section-title">Usage Guidelines</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+            <div>
+                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--maas-green);">Colors</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">Always use brand colors. Primary green (#2D8B4E) for accents, near-black (#0D1210) for backgrounds.</p>
+            </div>
+            <div>
+                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--maas-green);">Logo Placement</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">Include the MAAS logo on all social graphics. Use white version on dark backgrounds.</p>
+            </div>
+            <div>
+                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--maas-green);">Typography</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">Use Inter for body text, JetBrains Mono for statistics and labels, Georgia for headlines.</p>
+            </div>
+            <div>
+                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--maas-green);">Hashtags</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">#MAASEnergy #RenewableNaturalGas #DairyDigester #CleanEnergy #Sustainability</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-text">&copy; 2025 MAAS Energy Works. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Download template functionality
+        document.querySelectorAll('.template-download').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const templateType = this.dataset.template;
+                // In a real implementation, this would generate and download the image
+                alert(`Template "${templateType}" would be downloaded. In production, this would generate a high-resolution image file.`);
+            });
+        });
+    </script>
+</body>
+</html>

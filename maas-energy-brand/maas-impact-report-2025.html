@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Report 2025 | MAAS Energy Works</title>
+    <meta name="description" content="MAAS Energy Works 2025 Impact Report - Environmental achievements, sustainability metrics, and community impact.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/svg+xml" href="./assets/maas-icon.svg">
+
+    <style>
+        :root {
+            --maas-green: #2D8B4E;
+            --maas-green-bright: #3CAF5C;
+            --maas-green-glow: rgba(45, 139, 78, 0.15);
+            --biogas-blue: #1E7F9C;
+            --biogas-blue-light: #2CA3C4;
+            --earth-brown: #6B5344;
+            --cream: #F5F2EB;
+            --warm-white: #FDFCFA;
+            --near-black: #0D1210;
+            --dark-gray: #1A1F1C;
+            --charcoal: #242B27;
+            --white: #ffffff;
+            --muted-green: #4A5D52;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --serif: 'Georgia', serif;
+            --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--near-black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            background: rgba(13, 18, 16, 0.98);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+        }
+
+        .nav-logo { height: 36px; width: auto; }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover { color: var(--maas-green); }
+
+        /* Report Header */
+        .report-header {
+            padding: 160px 40px 100px;
+            background: linear-gradient(180deg, var(--near-black) 0%, var(--dark-gray) 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .report-header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(90deg, rgba(45, 139, 78, 0.02) 1px, transparent 1px),
+                linear-gradient(rgba(45, 139, 78, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .report-year {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--maas-green);
+            margin-bottom: 20px;
+        }
+
+        .report-title {
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .report-title em {
+            font-style: italic;
+            color: var(--maas-green);
+        }
+
+        .report-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 40px;
+        }
+
+        .section-dark { background: var(--near-black); }
+        .section-mid { background: var(--dark-gray); }
+        .section-accent { background: var(--charcoal); }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--maas-green);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Key Metrics */
+        .metrics-hero {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .metric-card {
+            background: var(--charcoal);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .metric-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 20px;
+            color: var(--maas-green);
+        }
+
+        .metric-value {
+            font-family: var(--mono);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--maas-green);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .metric-unit {
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .metric-label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+        }
+
+        /* Environmental Impact */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .impact-card {
+            background: var(--dark-gray);
+            border-radius: 16px;
+            padding: 48px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .impact-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .impact-card-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--maas-green-glow);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--maas-green);
+        }
+
+        .impact-card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .impact-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .impact-stat:last-child {
+            border-bottom: none;
+        }
+
+        .impact-stat-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .impact-stat-value {
+            font-family: var(--mono);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--maas-green);
+        }
+
+        /* State Map Section */
+        .map-section {
+            text-align: center;
+        }
+
+        .state-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .state-badge {
+            background: var(--charcoal);
+            border: 1px solid rgba(45, 139, 78, 0.3);
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .state-badge:hover {
+            border-color: var(--maas-green);
+            color: var(--maas-green);
+        }
+
+        /* Goals Progress */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .goal-card {
+            background: var(--charcoal);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .goal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .goal-progress {
+            height: 8px;
+            background: var(--dark-gray);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .goal-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--maas-green), var(--maas-green-bright));
+            border-radius: 4px;
+            transition: width 1s ease-out;
+        }
+
+        .goal-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+        }
+
+        .goal-current {
+            color: var(--maas-green);
+        }
+
+        .goal-target {
+            color: var(--text-secondary);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            text-align: center;
+            padding: 120px 40px;
+        }
+
+        .quote-text {
+            font-family: var(--serif);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-style: italic;
+            line-height: 1.5;
+            max-width: 900px;
+            margin: 0 auto 32px;
+            color: var(--text-secondary);
+        }
+
+        .quote-text::before { content: '"'; color: var(--maas-green); }
+        .quote-text::after { content: '"'; color: var(--maas-green); }
+
+        .quote-attribution {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--muted-green);
+        }
+
+        /* Timeline */
+        .year-highlights {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .highlight-card {
+            background: var(--charcoal);
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .highlight-quarter {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--maas-green);
+            margin-bottom: 16px;
+        }
+
+        .highlight-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .highlight-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Download Section */
+        .download-section {
+            text-align: center;
+            padding: 80px 40px;
+            background: var(--dark-gray);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 40px;
+            background: var(--maas-green);
+            color: var(--near-black);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover {
+            background: var(--maas-green-bright);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(45, 139, 78, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--muted-green);
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .nav { padding: 16px 24px; }
+
+            .metrics-hero {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .year-highlights {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .report-header { padding: 120px 20px 60px; }
+            .section { padding: 60px 20px; }
+
+            .metrics-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .year-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-value { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Brand House
+        </a>
+        <img src="./assets/maas-logo-primary.svg" alt="MAAS Energy Works" class="nav-logo">
+    </nav>
+
+    <!-- Report Header -->
+    <header class="report-header">
+        <p class="report-year">Annual Impact Report</p>
+        <h1 class="report-title">2025 <em>Sustainability</em> Report</h1>
+        <p class="report-subtitle">Measuring our progress in transforming agricultural waste into clean, renewable energy for America.</p>
+    </header>
+
+    <!-- Key Metrics -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Year in Numbers</p>
+                <h2 class="section-title">Key Performance Metrics</h2>
+            </div>
+            <div class="metrics-hero">
+                <div class="metric-card fade-up">
+                    <svg class="metric-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="24" cy="24" r="16"/>
+                        <path d="M24 16v16M16 24h16"/>
+                    </svg>
+                    <div class="metric-value"><span data-counter="70">0</span><span class="metric-unit">+</span></div>
+                    <p class="metric-label">Digesters Developed</p>
+                </div>
+                <div class="metric-card fade-up">
+                    <svg class="metric-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 40V20L24 8l16 12v20H8z"/>
+                        <rect x="18" y="28" width="12" height="12"/>
+                    </svg>
+                    <div class="metric-value"><span data-counter="11">0</span></div>
+                    <p class="metric-label">States Active</p>
+                </div>
+                <div class="metric-card fade-up">
+                    <div class="metric-value">$<span data-counter="600">0</span><span class="metric-unit">M+</span></div>
+                    <p class="metric-label">Financing Secured</p>
+                </div>
+                <div class="metric-card fade-up">
+                    <div class="metric-value">#<span data-counter="1">0</span></div>
+                    <p class="metric-label">U.S. Dairy Digester Developer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environmental Impact -->
+    <section class="section section-mid">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Environmental Impact</p>
+                <h2 class="section-title">Making a Measurable Difference</h2>
+                <p class="section-subtitle">Our digesters capture methane emissions and convert them into renewable energy, creating significant environmental benefits.</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card fade-up">
+                    <div class="impact-card-header">
+                        <div class="impact-card-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3 class="impact-card-title">Emissions Reduction</h3>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">Methane Captured (Annual)</span>
+                        <span class="impact-stat-value">2.5M+ tons</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">CO2 Equivalent Avoided</span>
+                        <span class="impact-stat-value">62.5M tons</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">Carbon Intensity Score</span>
+                        <span class="impact-stat-value">-350 CI</span>
+                    </div>
+                </div>
+                <div class="impact-card fade-up">
+                    <div class="impact-card-header">
+                        <div class="impact-card-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="impact-card-title">Energy Production</h3>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">RNG Produced (Annual)</span>
+                        <span class="impact-stat-value">45M+ MMBtu</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">Homes Equivalent</span>
+                        <span class="impact-stat-value">450,000+</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">Grid Injection Points</span>
+                        <span class="impact-stat-value">48</span>
+                    </div>
+                </div>
+                <div class="impact-card fade-up">
+                    <div class="impact-card-header">
+                        <div class="impact-card-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="impact-card-title">Community Impact</h3>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">Farm Partners</span>
+                        <span class="impact-stat-value">150+</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">Jobs Created</span>
+                        <span class="impact-stat-value">1,200+</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">Rural Investment</span>
+                        <span class="impact-stat-value">$180M+</span>
+                    </div>
+                </div>
+                <div class="impact-card fade-up">
+                    <div class="impact-card-header">
+                        <div class="impact-card-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="impact-card-title">Resource Recovery</h3>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">Manure Processed Daily</span>
+                        <span class="impact-stat-value">35M+ gal</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">Water Quality Improvement</span>
+                        <span class="impact-stat-value">95%+</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-stat-label">Nutrient Recovery</span>
+                        <span class="impact-stat-value">85%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Geographic Reach -->
+    <section class="section section-dark map-section">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">Geographic Reach</p>
+                <h2 class="section-title">Active Across America</h2>
+                <p class="section-subtitle">From California to Wisconsin, we're partnering with dairy farmers to create cleaner communities.</p>
+            </div>
+            <div class="state-grid">
+                <span class="state-badge">California</span>
+                <span class="state-badge">Idaho</span>
+                <span class="state-badge">Wisconsin</span>
+                <span class="state-badge">Michigan</span>
+                <span class="state-badge">Indiana</span>
+                <span class="state-badge">Ohio</span>
+                <span class="state-badge">New York</span>
+                <span class="state-badge">Pennsylvania</span>
+                <span class="state-badge">Texas</span>
+                <span class="state-badge">Arizona</span>
+                <span class="state-badge">Colorado</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Progress -->
+    <section class="section section-mid">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">2025 Goals</p>
+                <h2 class="section-title">Progress Toward Our Targets</h2>
+            </div>
+            <div class="goals-grid">
+                <div class="goal-card fade-up">
+                    <h3 class="goal-title">New Facilities Commissioned</h3>
+                    <div class="goal-progress">
+                        <div class="goal-progress-bar" style="width: 85%;"></div>
+                    </div>
+                    <div class="goal-meta">
+                        <span class="goal-current">17 completed</span>
+                        <span class="goal-target">Goal: 20</span>
+                    </div>
+                </div>
+                <div class="goal-card fade-up">
+                    <h3 class="goal-title">RNG Production Growth</h3>
+                    <div class="goal-progress">
+                        <div class="goal-progress-bar" style="width: 92%;"></div>
+                    </div>
+                    <div class="goal-meta">
+                        <span class="goal-current">+23% YoY</span>
+                        <span class="goal-target">Goal: +25%</span>
+                    </div>
+                </div>
+                <div class="goal-card fade-up">
+                    <h3 class="goal-title">New State Expansion</h3>
+                    <div class="goal-progress">
+                        <div class="goal-progress-bar" style="width: 100%;"></div>
+                    </div>
+                    <div class="goal-meta">
+                        <span class="goal-current">2 new states</span>
+                        <span class="goal-target">Goal: 2</span>
+                    </div>
+                </div>
+                <div class="goal-card fade-up">
+                    <h3 class="goal-title">Farm Partnership Growth</h3>
+                    <div class="goal-progress">
+                        <div class="goal-progress-bar" style="width: 78%;"></div>
+                    </div>
+                    <div class="goal-meta">
+                        <span class="goal-current">35 new partners</span>
+                        <span class="goal-target">Goal: 45</span>
+                    </div>
+                </div>
+                <div class="goal-card fade-up">
+                    <h3 class="goal-title">Operational Uptime</h3>
+                    <div class="goal-progress">
+                        <div class="goal-progress-bar" style="width: 98%;"></div>
+                    </div>
+                    <div class="goal-meta">
+                        <span class="goal-current">98.2%</span>
+                        <span class="goal-target">Goal: 98%</span>
+                    </div>
+                </div>
+                <div class="goal-card fade-up">
+                    <h3 class="goal-title">Safety Record</h3>
+                    <div class="goal-progress">
+                        <div class="goal-progress-bar" style="width: 100%;"></div>
+                    </div>
+                    <div class="goal-meta">
+                        <span class="goal-current">0 incidents</span>
+                        <span class="goal-target">Goal: 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote -->
+    <section class="quote-section section-accent">
+        <p class="quote-text">Our mission goes beyond energy production. We're building lasting partnerships with American farmers while creating meaningful environmental impact for generations to come.</p>
+        <p class="quote-attribution">MAAS Energy Works Leadership Team</p>
+    </section>
+
+    <!-- Year Highlights -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-eyebrow">2025 Milestones</p>
+                <h2 class="section-title">Year in Review</h2>
+            </div>
+            <div class="year-highlights">
+                <div class="highlight-card fade-up">
+                    <p class="highlight-quarter">Q1 2025</p>
+                    <h3 class="highlight-title">Texas Expansion</h3>
+                    <p class="highlight-desc">Launched first two dairy digester projects in Texas panhandle region.</p>
+                </div>
+                <div class="highlight-card fade-up">
+                    <p class="highlight-quarter">Q2 2025</p>
+                    <h3 class="highlight-title">$100M Financing Round</h3>
+                    <p class="highlight-desc">Secured major growth capital to accelerate project pipeline development.</p>
+                </div>
+                <div class="highlight-card fade-up">
+                    <p class="highlight-quarter">Q3 2025</p>
+                    <h3 class="highlight-title">70th Facility Milestone</h3>
+                    <p class="highlight-desc">Commissioned our 70th digester facility, solidifying market leadership.</p>
+                </div>
+                <div class="highlight-card fade-up">
+                    <p class="highlight-quarter">Q4 2025</p>
+                    <h3 class="highlight-title">Industry Recognition</h3>
+                    <p class="highlight-desc">Named Renewable Energy Developer of the Year by Clean Energy Association.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download -->
+    <section class="download-section">
+        <p class="section-subtitle" style="margin-bottom: 24px;">Download the complete 2025 Impact Report</p>
+        <a href="#" class="download-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download PDF Report
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">&copy; 2025 MAAS Energy Works. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Fade-up animation
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+        // Counter animation
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('[data-counter]').forEach(el => {
+            counterObserver.observe(el);
+        });
+
+        function animateCounter(element) {
+            const target = parseInt(element.dataset.counter);
+            const duration = 2000;
+            const start = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                element.textContent = Math.round(eased * target);
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Progress bar animation
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target.querySelector('.goal-progress-bar');
+                    if (bar) {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.goal-card').forEach(el => progressObserver.observe(el));
+    </script>
+</body>
+</html>

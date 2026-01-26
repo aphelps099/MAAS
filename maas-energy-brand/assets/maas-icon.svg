@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3CAF5C"/>
+      <stop offset="100%" style="stop-color:#2D8B4E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Leaf/Energy Icon -->
+  <!-- Outer leaf shape -->
+  <path d="M20 2C10 8 2 20 2 32C2 38 6 44 12 44C16 44 20 42 24 38C28 42 32 44 36 44C42 44 46 38 46 32C46 20 38 8 28 2C26 1 22 1 20 2Z" fill="url(#iconGradient)"/>
+
+  <!-- Inner energy/lightning symbol -->
+  <path d="M24 10L18 24H24L22 36L32 20H26L28 10H24Z" fill="#0D1210" opacity="0.9"/>
+
+  <!-- Circular flow accent lines -->
+  <path d="M12 26C12 20 16 14 24 12" stroke="#0D1210" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
+  <path d="M36 26C36 20 32 14 24 12" stroke="#0D1210" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
+</svg>
