@@ -247,23 +247,16 @@
             pointer-events: none;
         }
 
-        /* Ghost watermark */
-        .hero-ghost {
+        /* Subtle background pattern */
+        .hero-pattern {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: var(--font-display);
-            font-size: clamp(20rem, 35vw, 50rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -0.05em;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
-            line-height: 0.8;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(45, 139, 78, 0.08) 1.5px, transparent 1.5px);
+            background-size: 32px 32px;
             pointer-events: none;
-            user-select: none;
-            white-space: nowrap;
+            opacity: 0.6;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.4) 0%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.4) 0%, transparent 70%);
         }
 
         /* Rotating gear icon */
@@ -1481,8 +1474,8 @@
         <!-- Vignette -->
         <div class="hero-vignette"></div>
 
-        <!-- Ghost typography -->
-        <span class="hero-ghost">ENERGY</span>
+        <!-- Subtle dot pattern -->
+        <div class="hero-pattern"></div>
 
         <!-- Rotating gear icon -->
         <img src="https://look-serious.com/wp-content/uploads/2026/01/Gear_White.png" alt="" class="hero-gear" id="heroGear" aria-hidden="true">
@@ -1835,7 +1828,6 @@
         });
 
         // Parallax effect on scroll
-        const heroGhost = document.querySelector('.hero-ghost');
         const heroGear = document.getElementById('heroGear');
         const ctaLogoBg = document.querySelector('.cta-logo-bg');
         const impactGhost = document.querySelector('.impact-ghost');
@@ -1845,12 +1837,6 @@
         function updateParallax() {
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
-
-            // Hero parallax - ghost text moves slower
-            if (heroGhost) {
-                const heroOffset = scrollY * 0.3;
-                heroGhost.style.transform = `translate(-50%, calc(-50% + ${heroOffset}px))`;
-            }
 
             // Hero gear - rotation on scroll
             if (heroGear) {

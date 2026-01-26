@@ -472,15 +472,33 @@
         canvas.width = 1584;
         canvas.height = 396;
 
-        // Logo image
-        const logoImg = new Image();
-        logoImg.crossOrigin = 'anonymous';
-        logoImg.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
         const LOGO_ASPECT_RATIO = 1000 / 350; // Hardcoded fallback: 2.857
 
-        // Gear icon image
+        // Logo image - set up onload BEFORE setting src
+        const logoImg = new Image();
+        logoImg.crossOrigin = 'anonymous';
+        logoImg.onload = () => {
+            console.log('Logo loaded');
+            render();
+        };
+        logoImg.onerror = () => {
+            console.error('Logo failed to load');
+            render();
+        };
+
+        // Gear icon image - set up onload BEFORE setting src
         const gearImg = new Image();
         gearImg.crossOrigin = 'anonymous';
+        gearImg.onload = () => {
+            console.log('Gear icon loaded');
+            render();
+        };
+        gearImg.onerror = () => {
+            console.error('Gear icon failed to load');
+        };
+
+        // Now set the src to trigger loading
+        logoImg.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
         gearImg.src = 'https://look-serious.com/wp-content/uploads/2026/01/Gear_White.png';
 
         // DOM elements
@@ -770,25 +788,18 @@
             link.click();
         }
 
-        // Initialize - render immediately, then re-render when images load
+        // Initialize - render immediately
+        // The onload handlers are already set up before src assignment
+        // This ensures we render even if images haven't loaded yet
         render();
 
-        logoImg.onload = () => {
-            console.log('Logo loaded');
+        // Handle already-cached images (onload may not fire)
+        if (logoImg.complete && logoImg.naturalWidth > 0) {
             render();
-        };
-        logoImg.onerror = () => {
-            console.error('Logo failed to load');
+        }
+        if (gearImg.complete && gearImg.naturalWidth > 0) {
             render();
-        };
-
-        gearImg.onload = () => {
-            console.log('Gear icon loaded');
-            render();
-        };
-        gearImg.onerror = () => {
-            console.error('Gear icon failed to load');
-        };
+        }
     </script>
 </body>
 </html>
