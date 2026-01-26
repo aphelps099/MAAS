@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAAS Energy Works | Brand House</title>
-    <meta name="description" content="MAAS Energy Works - America's leading dairy digester developer. Powering tomorrow from today's waste through renewable natural gas and biogas solutions.">
+    <meta name="description" content="MAAS Energy Works - America's leading dairy digester developer. Powering tomorrow from today's waste.">
 
-    <!-- Preconnect for Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="./assets/maas-icon.svg">
 
     <style>
@@ -19,38 +18,31 @@
            CSS CUSTOM PROPERTIES
            ===================== */
         :root {
-            /* Primary Colors - Environmental Green */
-            --maas-green: #2D8B4E;
-            --maas-green-bright: #3CAF5C;
-            --maas-green-glow: rgba(45, 139, 78, 0.15);
+            /* Primary - Deep Forest Green */
+            --forest: #0A3D2E;
+            --forest-dark: #062A1F;
+            --forest-light: #0D4D3A;
 
-            /* Secondary - Biogas/Energy Accent */
-            --biogas-blue: #1E7F9C;
-            --biogas-blue-light: #2CA3C4;
-
-            /* Earth Tones - Agricultural Connection */
-            --earth-brown: #6B5344;
-            --cream: #F5F2EB;
-            --warm-white: #FDFCFA;
-
-            /* Dark Palette */
-            --near-black: #0D1210;
-            --dark-gray: #1A1F1C;
-            --charcoal: #242B27;
+            /* Accent - Electric Green */
+            --electric: #00FF88;
+            --electric-dim: rgba(0, 255, 136, 0.15);
 
             /* Neutrals */
-            --white: #ffffff;
-            --muted-green: #4A5D52;
-            --text-secondary: rgba(255, 255, 255, 0.7);
+            --cream: #F8F6F1;
+            --cream-dark: #EBE8E1;
+            --black: #0A0A0A;
+            --white: #FFFFFF;
 
             /* Typography */
-            --serif: 'Georgia', serif;
-            --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            --mono: 'JetBrains Mono', 'Consolas', monospace;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-mono: 'Space Mono', 'Courier New', monospace;
+
+            /* Spacing */
+            --nav-height: 80px;
         }
 
         /* =====================
-           RESET & BASE STYLES
+           RESET & BASE
            ===================== */
         *, *::before, *::after {
             box-sizing: border-box;
@@ -60,24 +52,51 @@
 
         html {
             scroll-behavior: smooth;
+            font-size: 16px;
         }
 
         body {
-            font-family: var(--sans);
-            background: var(--near-black);
-            color: var(--white);
+            font-family: var(--font-mono);
+            background: var(--cream);
+            color: var(--black);
             line-height: 1.6;
             overflow-x: hidden;
+            cursor: none;
         }
 
         a {
             color: inherit;
             text-decoration: none;
+            cursor: none;
         }
 
-        img, svg {
-            max-width: 100%;
-            height: auto;
+        button {
+            cursor: none;
+        }
+
+        ::selection {
+            background: var(--electric);
+            color: var(--black);
+        }
+
+        /* =====================
+           CUSTOM CURSOR
+           ===================== */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--electric);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor.hover {
+            transform: translate(-50%, -50%) scale(3);
         }
 
         /* =====================
@@ -89,60 +108,37 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 20px 40px;
-            background: linear-gradient(180deg, rgba(13, 18, 16, 0.95) 0%, rgba(13, 18, 16, 0) 100%);
+            padding: 0 60px;
+            height: var(--nav-height);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s ease, border-bottom 0.3s ease;
-        }
-
-        .nav.scrolled {
-            background: rgba(13, 18, 16, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+            mix-blend-mode: difference;
         }
 
         .nav-logo {
-            height: 40px;
+            height: 32px;
             width: auto;
+            filter: brightness(0) invert(1);
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 48px;
             align-items: center;
         }
 
         .nav-link {
-            font-family: var(--sans);
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: color 0.2s ease;
-            letter-spacing: 0.02em;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--white);
+            transition: opacity 0.3s ease;
         }
 
         .nav-link:hover {
-            color: var(--white);
-        }
-
-        .nav-cta {
-            font-family: var(--sans);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--near-black);
-            background: var(--maas-green);
-            padding: 12px 24px;
-            border-radius: 6px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(45, 139, 78, 0.3);
+            opacity: 0.6;
         }
 
         /* =====================
@@ -150,552 +146,713 @@
            ===================== */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(180deg, var(--near-black) 0%, #0F1512 50%, var(--charcoal) 100%);
+            background: var(--forest);
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
+            padding: 0 60px;
             overflow: hidden;
-            padding: 120px 40px 80px;
         }
 
-        .hero-grid {
+        /* Ghost watermark */
+        .hero-ghost {
             position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(90deg, rgba(45, 139, 78, 0.02) 1px, transparent 1px),
-                linear-gradient(rgba(45, 139, 78, 0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-        }
-
-        .hero-glow {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--maas-green-glow) 0%, transparent 70%);
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            right: -5%;
+            transform: translateY(-50%);
+            font-family: var(--font-display);
+            font-size: clamp(20rem, 35vw, 50rem);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.03);
+            line-height: 0.8;
+            pointer-events: none;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        /* Ghosted logo background */
+        .hero-logo-ghost {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            width: 40%;
+            max-width: 600px;
+            opacity: 0.06;
+            filter: grayscale(100%) brightness(10);
             pointer-events: none;
         }
 
         .hero-content {
-            text-align: center;
-            max-width: 900px;
             position: relative;
             z-index: 2;
+            max-width: 900px;
         }
 
         .hero-eyebrow {
-            font-family: var(--mono);
-            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--maas-green);
-            margin-bottom: 24px;
+            letter-spacing: 0.3em;
+            color: var(--electric);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--electric);
         }
 
         .hero-title {
-            font-family: var(--serif);
-            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 12vw, 14rem);
             font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 24px;
+            line-height: 0.9;
+            color: var(--white);
+            margin-bottom: 48px;
         }
 
         .hero-title em {
             font-style: italic;
-            color: var(--maas-green);
+            color: var(--electric);
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 500px;
+            line-height: 1.8;
+            margin-bottom: 48px;
         }
 
-        .hero-cta-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
+        .hero-cta {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 16px 32px;
-            border-radius: 8px;
-            font-family: var(--sans);
-            font-weight: 600;
-            font-size: 0.9rem;
+            gap: 16px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--maas-green);
-            color: var(--near-black);
-        }
-
-        .btn-primary:hover {
-            background: var(--maas-green-bright);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(45, 139, 78, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
+            letter-spacing: 0.15em;
             color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
         }
 
-        .btn-secondary:hover {
-            border-color: var(--maas-green);
-            color: var(--maas-green);
+        .hero-cta:hover {
+            border-color: var(--electric);
+            color: var(--electric);
+        }
+
+        .hero-cta svg {
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(8px);
         }
 
         /* =====================
-           STATISTICS SECTION
+           MARQUEE
            ===================== */
-        .stats-section {
-            padding: 100px 40px;
-            background: var(--dark-gray);
-            position: relative;
+        .marquee-section {
+            background: var(--electric);
+            padding: 24px 0;
+            overflow: hidden;
         }
 
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--maas-green), transparent);
-            opacity: 0.3;
+        .marquee {
+            display: flex;
+            animation: marquee 30s linear infinite;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
+        .marquee-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            flex-shrink: 0;
+            padding-right: 80px;
         }
 
-        .section-eyebrow {
-            font-family: var(--mono);
+        .marquee-item {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--black);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .marquee-item::before {
+            content: '●';
+            font-size: 0.5rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* =====================
+           MANIFESTO SECTION
+           ===================== */
+        .manifesto-section {
+            background: var(--cream);
+            padding: 160px 60px;
+        }
+
+        .manifesto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 120px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .manifesto-label {
+            font-family: var(--font-mono);
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: var(--maas-green);
-            margin-bottom: 16px;
+            color: var(--forest);
+            margin-bottom: 24px;
         }
 
-        .section-title {
-            font-family: var(--serif);
-            font-size: clamp(2rem, 4vw, 3rem);
+        .manifesto-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
             font-weight: 400;
-            margin-bottom: 16px;
+            line-height: 1.1;
+            color: var(--black);
         }
 
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
+        .manifesto-title em {
+            font-style: italic;
+            color: var(--forest);
         }
 
-        .stat-grid {
+        .manifesto-content {
+            padding-top: 20px;
+        }
+
+        .manifesto-text {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            line-height: 2;
+            color: rgba(10, 10, 10, 0.7);
+            margin-bottom: 32px;
+        }
+
+        .manifesto-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(10, 10, 10, 0.1);
+        }
+
+        .manifesto-stat-number {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 400;
+            color: var(--forest);
+            line-height: 1;
+        }
+
+        .manifesto-stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(10, 10, 10, 0.5);
+        }
+
+        /* =====================
+           STATS SECTION (BLACK)
+           ===================== */
+        .stats-section {
+            background: var(--black);
+            padding: 120px 60px;
+        }
+
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            max-width: 1200px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        .stat-card {
-            background: var(--charcoal);
-            border-radius: 12px;
-            padding: 40px 32px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .stat-item {
+            background: var(--black);
+            padding: 60px 40px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(45, 139, 78, 0.1);
         }
 
         .stat-number {
-            font-family: var(--mono);
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--maas-green);
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 400;
+            color: var(--electric);
             line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .stat-suffix {
-            font-size: 2rem;
-            opacity: 0.8;
-        }
-
-        .stat-label {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-secondary);
-        }
-
-        /* =====================
-           SERVICE PILLARS
-           ===================== */
-        .pillars-section {
-            padding: 100px 40px;
-            background: var(--near-black);
-        }
-
-        .pillar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .pillar-card {
-            background: var(--dark-gray);
-            border-radius: 16px;
-            padding: 48px 36px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pillar-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--maas-green), var(--biogas-blue));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .pillar-card:hover::before {
-            opacity: 1;
-        }
-
-        .pillar-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
-        }
-
-        .pillar-icon {
-            width: 56px;
-            height: 56px;
-            margin-bottom: 24px;
-            color: var(--maas-green);
-        }
-
-        .pillar-number {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--muted-green);
-            margin-bottom: 12px;
-            letter-spacing: 0.1em;
-        }
-
-        .pillar-title {
-            font-family: var(--sans);
-            font-size: 1.5rem;
-            font-weight: 700;
             margin-bottom: 16px;
         }
 
-        .pillar-description {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* =====================
-           ABOUT SECTION
+           SERVICES SECTION
            ===================== */
-        .about-section {
-            padding: 100px 40px;
-            background: linear-gradient(180deg, var(--charcoal) 0%, var(--dark-gray) 100%);
+        .services-section {
+            background: var(--cream);
+            padding: 160px 0;
         }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: center;
+        .services-header {
+            padding: 0 60px;
+            margin-bottom: 80px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .about-content h2 {
-            font-family: var(--serif);
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 400;
+        .services-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--forest);
             margin-bottom: 24px;
         }
 
-        .about-content h2 em {
-            font-style: italic;
-            color: var(--maas-green);
+        .services-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            color: var(--black);
         }
 
-        .about-content p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .about-visual {
+        .service-row {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            align-items: center;
+            gap: 40px;
+            padding: 40px 60px;
+            border-top: 1px solid rgba(10, 10, 10, 0.1);
+            transition: all 0.4s ease;
             position: relative;
-            height: 400px;
-            border-radius: 16px;
             overflow: hidden;
-            background: var(--charcoal);
+        }
+
+        .service-row::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--forest);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            z-index: 0;
+        }
+
+        .service-row:hover::before {
+            transform: translateY(0);
+        }
+
+        .service-row > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-row:last-child {
+            border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+        }
+
+        .service-number {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: rgba(10, 10, 10, 0.3);
+            transition: color 0.4s ease;
+        }
+
+        .service-row:hover .service-number {
+            color: var(--electric);
+        }
+
+        .service-name {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 400;
+            transition: color 0.4s ease;
+        }
+
+        .service-row:hover .service-name {
+            color: var(--white);
+        }
+
+        .service-arrow {
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(10, 10, 10, 0.2);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
         }
 
-        .about-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .service-row:hover .service-arrow {
+            opacity: 1;
+            transform: translateX(0);
+            border-color: var(--electric);
+            color: var(--electric);
         }
 
-        .about-visual-placeholder {
-            color: var(--muted-green);
-            font-family: var(--mono);
+        /* =====================
+           IMPACT SPLIT SECTION
+           ===================== */
+        .impact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+        }
+
+        .impact-left {
+            background: var(--cream-dark);
+            padding: 120px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-ghost {
+            position: absolute;
+            top: 50%;
+            left: -10%;
+            transform: translateY(-50%) rotate(-90deg);
+            font-family: var(--font-display);
+            font-size: 15rem;
+            font-weight: 700;
+            color: rgba(10, 61, 46, 0.04);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .impact-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--forest);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .impact-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--black);
+            max-width: 400px;
+            position: relative;
+        }
+
+        .impact-right {
+            background: var(--forest);
+            padding: 120px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .impact-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .impact-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 24px;
+        }
+
+        .impact-stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 5vw, 5rem);
+            font-weight: 400;
+            color: var(--electric);
+            line-height: 1;
+        }
+
+        .impact-stat-text {
+            font-family: var(--font-mono);
             font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
 
         /* =====================
-           TIMELINE/MILESTONES
+           CTA SECTION
            ===================== */
-        .timeline-section {
-            padding: 100px 40px;
-            background: var(--near-black);
+        .cta-section {
+            background: var(--forest);
+            padding: 200px 60px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .timeline {
+        /* Giant background logo */
+        .cta-logo-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140%;
+            max-width: none;
+            opacity: 0.04;
+            filter: grayscale(100%) brightness(10);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
             max-width: 800px;
             margin: 0 auto;
-            position: relative;
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--maas-green), var(--biogas-blue));
-            transform: translateX(-50%);
-            opacity: 0.3;
-        }
-
-        .timeline-item {
-            display: flex;
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 8rem);
+            font-weight: 400;
+            line-height: 1;
+            color: var(--white);
             margin-bottom: 48px;
-            position: relative;
         }
 
-        .timeline-item:nth-child(odd) {
-            flex-direction: row-reverse;
-            text-align: right;
+        .cta-title em {
+            font-style: italic;
+            color: var(--electric);
         }
 
-        .timeline-content {
-            width: 45%;
-            padding: 24px;
-            background: var(--dark-gray);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .timeline-year {
-            font-family: var(--mono);
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            font-family: var(--font-mono);
             font-size: 0.8rem;
-            color: var(--maas-green);
-            margin-bottom: 8px;
-            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--black);
+            background: var(--electric);
+            padding: 24px 48px;
+            transition: all 0.3s ease;
         }
 
-        .timeline-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .cta-button:hover {
+            background: var(--white);
         }
 
-        .timeline-description {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
+        .cta-button svg {
+            transition: transform 0.3s ease;
         }
 
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 24px;
-            width: 16px;
-            height: 16px;
-            background: var(--maas-green);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            border: 3px solid var(--near-black);
+        .cta-button:hover svg {
+            transform: translateX(8px);
         }
 
         /* =====================
-           BRAND TOOLS
+           BRAND TOOLS SECTION
            ===================== */
         .tools-section {
-            padding: 100px 40px;
-            background: var(--dark-gray);
+            background: var(--cream);
+            padding: 160px 60px;
+        }
+
+        .tools-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            max-width: 1400px;
+            margin: 0 auto 80px;
+        }
+
+        .tools-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--forest);
+            margin-bottom: 16px;
+        }
+
+        .tools-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 400;
+            color: var(--black);
         }
 
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .tool-card {
-            background: var(--charcoal);
-            border-radius: 12px;
-            padding: 32px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--white);
+            padding: 48px 40px;
+            border: 1px solid rgba(10, 10, 10, 0.08);
             transition: all 0.3s ease;
             display: block;
         }
 
         .tool-card:hover {
-            border-color: var(--maas-green);
+            border-color: var(--forest);
             transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(10, 61, 46, 0.1);
         }
 
-        .tool-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--maas-green-glow);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            color: var(--maas-green);
+        .tool-number {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--forest);
+            margin-bottom: 24px;
         }
 
-        .tool-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .tool-name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--black);
+            margin-bottom: 12px;
         }
 
-        .tool-description {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
+        .tool-desc {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: rgba(10, 10, 10, 0.5);
+            line-height: 1.7;
         }
 
         /* =====================
            FOOTER
            ===================== */
         .footer {
-            padding: 80px 40px 40px;
-            background: var(--near-black);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--black);
+            padding: 80px 60px 40px;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .footer-brand p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-top: 20px;
-            line-height: 1.7;
+        .footer-brand {
+            max-width: 300px;
         }
 
-        .footer-heading {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--muted-green);
-            margin-bottom: 20px;
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 24px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-tagline {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.8;
         }
 
         .footer-links {
+            display: flex;
+            gap: 80px;
+        }
+
+        .footer-column h4 {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 24px;
+        }
+
+        .footer-column ul {
             list-style: none;
         }
 
-        .footer-links li {
+        .footer-column li {
             margin-bottom: 12px;
         }
 
-        .footer-links a {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            transition: color 0.2s ease;
+        .footer-column a {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
-            color: var(--maas-green);
+        .footer-column a:hover {
+            color: var(--electric);
         }
 
         .footer-bottom {
-            max-width: 1200px;
-            margin: 60px auto 0;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .footer-copyright {
-            font-size: 0.8rem;
-            color: var(--muted-green);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .footer-legal {
             display: flex;
-            gap: 24px;
+            gap: 32px;
         }
 
         .footer-legal a {
-            font-size: 0.8rem;
-            color: var(--muted-green);
-            transition: color 0.2s ease;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+            transition: color 0.3s ease;
         }
 
         .footer-legal a:hover {
@@ -705,21 +862,10 @@
         /* =====================
            ANIMATIONS
            ===================== */
-        @keyframes fade-up {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .fade-up {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(60px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .fade-up.visible {
@@ -727,437 +873,385 @@
             transform: translateY(0);
         }
 
-        /* Staggered animation delay */
-        .fade-up:nth-child(1) { transition-delay: 0s; }
-        .fade-up:nth-child(2) { transition-delay: 0.1s; }
-        .fade-up:nth-child(3) { transition-delay: 0.2s; }
-        .fade-up:nth-child(4) { transition-delay: 0.3s; }
-
         /* =====================
-           RESPONSIVE BREAKPOINTS
+           RESPONSIVE
            ===================== */
-        @media (max-width: 900px) {
-            .nav {
-                padding: 16px 24px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: clamp(2rem, 5vw, 3.5rem);
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .about-visual {
-                height: 300px;
-            }
-
-            .pillar-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(odd) {
-                flex-direction: row;
-                text-align: left;
-                padding-left: 50px;
-            }
-
-            .timeline-content {
-                width: 100%;
-            }
-
-            .timeline-dot {
-                left: 20px;
-            }
+        @media (max-width: 1024px) {
+            .nav { padding: 0 40px; }
+            .hero { padding: 0 40px; }
+            .manifesto-section { padding: 100px 40px; }
+            .manifesto-grid { grid-template-columns: 1fr; gap: 60px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .services-header { padding: 0 40px; }
+            .service-row { padding: 32px 40px; }
+            .impact-section { grid-template-columns: 1fr; }
+            .cta-section { padding: 120px 40px; }
+            .tools-section { padding: 100px 40px; }
+            .tools-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer { padding: 60px 40px 30px; }
         }
 
-        @media (max-width: 600px) {
-            .hero {
-                padding: 100px 20px 60px;
-            }
+        @media (max-width: 768px) {
+            body { cursor: auto; }
+            .cursor { display: none; }
 
-            .stat-grid {
+            .nav { padding: 0 24px; height: 60px; }
+            .nav-links { display: none; }
+
+            .hero { padding: 0 24px; min-height: 90vh; }
+            .hero-title { font-size: clamp(3rem, 15vw, 6rem); }
+            .hero-ghost { display: none; }
+            .hero-logo-ghost { display: none; }
+
+            .manifesto-section { padding: 80px 24px; }
+            .stats-section { padding: 80px 24px; }
+            .stats-grid { grid-template-columns: 1fr; }
+
+            .services-section { padding: 80px 0; }
+            .services-header { padding: 0 24px; }
+            .service-row {
                 grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 60px 20px;
-            }
-
-            .stats-section,
-            .pillars-section,
-            .about-section,
-            .timeline-section,
-            .tools-section {
-                padding: 60px 20px;
-            }
-
-            .hero-cta-group {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
                 gap: 16px;
-                text-align: center;
+                padding: 24px;
             }
+            .service-arrow { display: none; }
+
+            .impact-left, .impact-right { padding: 80px 24px; }
+            .impact-ghost { display: none; }
+
+            .cta-section { padding: 80px 24px; }
+            .cta-logo-bg { display: none; }
+
+            .tools-section { padding: 80px 24px; }
+            .tools-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+            .tools-grid { grid-template-columns: 1fr; }
+
+            .footer { padding: 60px 24px 30px; }
+            .footer-content { flex-direction: column; gap: 48px; }
+            .footer-links { flex-wrap: wrap; gap: 40px; }
+            .footer-bottom { flex-direction: column; gap: 24px; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <!-- NAVIGATION -->
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Navigation -->
     <nav class="nav">
         <a href="index.html">
-            <img src="./assets/maas-logo-primary.svg" alt="MAAS Energy Works" class="nav-logo">
+            <img src="https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png" alt="MAAS Energy Works" class="nav-logo">
         </a>
         <div class="nav-links">
-            <a href="#about" class="nav-link">About</a>
+            <a href="#manifesto" class="nav-link">About</a>
             <a href="#services" class="nav-link">Services</a>
             <a href="#impact" class="nav-link">Impact</a>
-            <a href="#tools" class="nav-link">Brand Tools</a>
-            <a href="https://maasenergy.com" class="nav-cta" target="_blank">Visit Website</a>
+            <a href="#tools" class="nav-link">Brand</a>
+            <a href="https://maasenergy.com" class="nav-link" target="_blank">Website</a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-grid"></div>
-        <div class="hero-glow"></div>
+        <span class="hero-ghost">ENERGY</span>
+        <img src="https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png" alt="" class="hero-logo-ghost">
         <div class="hero-content">
-            <p class="hero-eyebrow">MAAS Energy Works Brand House</p>
-            <h1 class="hero-title">Powering Tomorrow<br>from <em>Today's Waste</em></h1>
-            <p class="hero-subtitle">America's leading dairy digester developer, transforming agricultural waste into renewable natural gas across 11 states since 2010.</p>
-            <div class="hero-cta-group">
-                <a href="#services" class="btn btn-primary">Explore Our Services</a>
-                <a href="#tools" class="btn btn-secondary">Brand Guidelines</a>
+            <p class="hero-eyebrow">MAAS Energy Works</p>
+            <h1 class="hero-title">Powering<br><em>Tomorrow</em></h1>
+            <p class="hero-subtitle">America's leading dairy digester developer. We transform agricultural waste into renewable natural gas across 11 states.</p>
+            <a href="#services" class="hero-cta">
+                Explore Our Work
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span class="marquee-item">70+ Digesters</span>
+                <span class="marquee-item">11 States</span>
+                <span class="marquee-item">$600M+ Financed</span>
+                <span class="marquee-item">#1 Developer</span>
+                <span class="marquee-item">Since 2010</span>
+                <span class="marquee-item">Renewable Natural Gas</span>
+                <span class="marquee-item">70+ Digesters</span>
+                <span class="marquee-item">11 States</span>
+                <span class="marquee-item">$600M+ Financed</span>
+                <span class="marquee-item">#1 Developer</span>
+                <span class="marquee-item">Since 2010</span>
+                <span class="marquee-item">Renewable Natural Gas</span>
+            </div>
+            <div class="marquee-content">
+                <span class="marquee-item">70+ Digesters</span>
+                <span class="marquee-item">11 States</span>
+                <span class="marquee-item">$600M+ Financed</span>
+                <span class="marquee-item">#1 Developer</span>
+                <span class="marquee-item">Since 2010</span>
+                <span class="marquee-item">Renewable Natural Gas</span>
+                <span class="marquee-item">70+ Digesters</span>
+                <span class="marquee-item">11 States</span>
+                <span class="marquee-item">$600M+ Financed</span>
+                <span class="marquee-item">#1 Developer</span>
+                <span class="marquee-item">Since 2010</span>
+                <span class="marquee-item">Renewable Natural Gas</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manifesto Section -->
+    <section class="manifesto-section" id="manifesto">
+        <div class="manifesto-grid">
+            <div class="manifesto-left">
+                <p class="manifesto-label">Our Mission</p>
+                <h2 class="manifesto-title">From <em>Waste</em> to Energy</h2>
+            </div>
+            <div class="manifesto-content fade-up">
+                <p class="manifesto-text">Since 2010, MAAS Energy Works has been at the forefront of America's renewable natural gas revolution. We partner with dairy farmers across the nation to transform agricultural waste into clean energy.</p>
+                <p class="manifesto-text">Our integrated approach combines deep technical expertise with strong farmer relationships, creating sustainable solutions that benefit both the environment and rural communities.</p>
+                <div class="manifesto-stat">
+                    <span class="manifesto-stat-number">15</span>
+                    <span class="manifesto-stat-label">Years transforming<br>agricultural waste</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- STATISTICS SECTION -->
-    <section class="stats-section" id="impact">
-        <div class="section-header">
-            <p class="section-eyebrow">Our Impact</p>
-            <h2 class="section-title">Measurable Environmental Results</h2>
-            <p class="section-subtitle">Over a decade of transforming waste into sustainable energy solutions.</p>
-        </div>
-        <div class="stat-grid">
-            <div class="stat-card fade-up">
-                <div class="stat-number"><span data-counter="70">0</span><span class="stat-suffix">+</span></div>
+    <!-- Stats Section (Black) -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item fade-up">
+                <div class="stat-number" data-counter="70">0</div>
                 <p class="stat-label">Digesters Developed</p>
             </div>
-            <div class="stat-card fade-up">
-                <div class="stat-number"><span data-counter="11">0</span></div>
-                <p class="stat-label">States with Active Projects</p>
+            <div class="stat-item fade-up">
+                <div class="stat-number" data-counter="11">0</div>
+                <p class="stat-label">States Active</p>
             </div>
-            <div class="stat-card fade-up">
-                <div class="stat-number">$<span data-counter="600">0</span><span class="stat-suffix">M+</span></div>
+            <div class="stat-item fade-up">
+                <div class="stat-number">$<span data-counter="600">0</span>M</div>
                 <p class="stat-label">Financing Secured</p>
             </div>
-            <div class="stat-card fade-up">
-                <div class="stat-number">#<span data-counter="1">0</span></div>
-                <p class="stat-label">Dairy Digester Developer in U.S.</p>
+            <div class="stat-item fade-up">
+                <div class="stat-number">#1</div>
+                <p class="stat-label">U.S. Developer</p>
             </div>
         </div>
     </section>
 
-    <!-- SERVICE PILLARS -->
-    <section class="pillars-section" id="services">
-        <div class="section-header">
-            <p class="section-eyebrow">What We Do</p>
-            <h2 class="section-title">Our Service Pillars</h2>
-            <p class="section-subtitle">End-to-end solutions for renewable natural gas production.</p>
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="services-header">
+            <p class="services-label">What We Do</p>
+            <h2 class="services-title">Our Services</h2>
         </div>
-        <div class="pillar-grid">
-            <div class="pillar-card fade-up">
-                <svg class="pillar-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="8" y="20" width="40" height="28" rx="4" stroke="currentColor" stroke-width="2"/>
-                    <path d="M28 8V20M20 12L28 8L36 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="28" cy="34" r="8" stroke="currentColor" stroke-width="2"/>
-                    <path d="M28 30V38M24 34H32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <p class="pillar-number">01</p>
-                <h3 class="pillar-title">Digester Development</h3>
-                <p class="pillar-description">Full-service development of anaerobic digester facilities, from site assessment and permitting through construction and commissioning.</p>
+        <div class="services-list">
+            <div class="service-row">
+                <span class="service-number">01</span>
+                <h3 class="service-name">Digester Development</h3>
+                <div class="service-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
             </div>
-            <div class="pillar-card fade-up">
-                <svg class="pillar-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="28" cy="28" r="20" stroke="currentColor" stroke-width="2"/>
-                    <path d="M28 16V28L36 36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="28" cy="28" r="4" fill="currentColor"/>
-                    <path d="M12 28H16M40 28H44M28 12V16M28 40V44" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <p class="pillar-number">02</p>
-                <h3 class="pillar-title">Operations & Maintenance</h3>
-                <p class="pillar-description">24/7 monitoring and professional operations management ensuring optimal biogas production and system reliability.</p>
+            <div class="service-row">
+                <span class="service-number">02</span>
+                <h3 class="service-name">Operations & Maintenance</h3>
+                <div class="service-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
             </div>
-            <div class="pillar-card fade-up">
-                <svg class="pillar-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 44L20 28L28 36L40 20L48 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="20" cy="28" r="3" fill="currentColor"/>
-                    <circle cx="28" cy="36" r="3" fill="currentColor"/>
-                    <circle cx="40" cy="20" r="3" fill="currentColor"/>
-                    <path d="M8 12V44H48" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <p class="pillar-number">03</p>
-                <h3 class="pillar-title">RNG Production</h3>
-                <p class="pillar-description">Converting raw biogas into pipeline-quality renewable natural gas, creating new revenue streams while reducing emissions.</p>
+            <div class="service-row">
+                <span class="service-number">03</span>
+                <h3 class="service-name">RNG Production</h3>
+                <div class="service-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
             </div>
-            <div class="pillar-card fade-up">
-                <svg class="pillar-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="12" y="8" width="32" height="40" rx="4" stroke="currentColor" stroke-width="2"/>
-                    <path d="M20 20H36M20 28H36M20 36H28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="40" cy="40" r="10" fill="#0D1210" stroke="currentColor" stroke-width="2"/>
-                    <path d="M40 36V44M36 40H44" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <p class="pillar-number">04</p>
-                <h3 class="pillar-title">Project Financing</h3>
-                <p class="pillar-description">Structured financing solutions and investment partnerships to make renewable energy projects economically viable.</p>
+            <div class="service-row">
+                <span class="service-number">04</span>
+                <h3 class="service-name">Project Financing</h3>
+                <div class="service-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
-    <section class="about-section" id="about">
-        <div class="about-grid">
-            <div class="about-content">
-                <h2>Founded in <em>Redding, California</em></h2>
-                <p>Since 2010, MAAS Energy Works has been at the forefront of America's renewable natural gas revolution. We partner with dairy farmers across the nation to transform agricultural waste into clean energy.</p>
-                <p>Our integrated approach combines deep technical expertise with strong farmer relationships, creating sustainable solutions that benefit both the environment and rural communities.</p>
-                <a href="maas-impact-report-2025.html" class="btn btn-primary" style="margin-top: 20px;">View Impact Report</a>
-            </div>
-            <div class="about-visual">
-                <object data="./assets/patterns/farm-silhouette.svg" type="image/svg+xml" style="width: 100%; height: auto;"></object>
+    <!-- Impact Split Section -->
+    <section class="impact-section" id="impact">
+        <div class="impact-left">
+            <span class="impact-ghost">IMPACT</span>
+            <p class="impact-label">Environmental Results</p>
+            <h2 class="impact-title">Measurable change for a sustainable future</h2>
+        </div>
+        <div class="impact-right">
+            <div class="impact-stats">
+                <div class="impact-stat fade-up">
+                    <span class="impact-stat-number">2.5M+</span>
+                    <span class="impact-stat-text">Tons methane<br>captured annually</span>
+                </div>
+                <div class="impact-stat fade-up">
+                    <span class="impact-stat-number">45M</span>
+                    <span class="impact-stat-text">MMBtu RNG<br>produced yearly</span>
+                </div>
+                <div class="impact-stat fade-up">
+                    <span class="impact-stat-number">150+</span>
+                    <span class="impact-stat-text">Farm partners<br>nationwide</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- TIMELINE -->
-    <section class="timeline-section">
-        <div class="section-header">
-            <p class="section-eyebrow">Our Journey</p>
-            <h2 class="section-title">Key Milestones</h2>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item fade-up">
-                <div class="timeline-content">
-                    <p class="timeline-year">2010</p>
-                    <h4 class="timeline-title">Company Founded</h4>
-                    <p class="timeline-description">MAAS Energy Works established in Redding, California with a vision to transform agricultural waste.</p>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
-            <div class="timeline-item fade-up">
-                <div class="timeline-content">
-                    <p class="timeline-year">2015</p>
-                    <h4 class="timeline-title">First Major RNG Project</h4>
-                    <p class="timeline-description">Completed first large-scale renewable natural gas facility, proving the commercial viability of dairy digesters.</p>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
-            <div class="timeline-item fade-up">
-                <div class="timeline-content">
-                    <p class="timeline-year">2020</p>
-                    <h4 class="timeline-title">National Expansion</h4>
-                    <p class="timeline-description">Expanded operations across multiple states, becoming a national leader in dairy digester development.</p>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
-            <div class="timeline-item fade-up">
-                <div class="timeline-content">
-                    <p class="timeline-year">2024</p>
-                    <h4 class="timeline-title">70+ Digesters Milestone</h4>
-                    <p class="timeline-description">Achieved milestone of 70+ digester facilities developed across 11 states with $600M+ in financing.</p>
-                </div>
-                <div class="timeline-dot"></div>
-            </div>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <img src="https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png" alt="" class="cta-logo-bg">
+        <div class="cta-content">
+            <h2 class="cta-title">Build the <em>Future</em></h2>
+            <a href="https://maasenergy.com" class="cta-button" target="_blank">
+                Visit Our Website
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
         </div>
     </section>
 
-    <!-- BRAND TOOLS -->
+    <!-- Brand Tools Section -->
     <section class="tools-section" id="tools">
-        <div class="section-header">
-            <p class="section-eyebrow">Brand Assets</p>
-            <h2 class="section-title">Brand Tools & Templates</h2>
-            <p class="section-subtitle">Resources for maintaining consistent brand presence across all touchpoints.</p>
+        <div class="tools-header">
+            <div>
+                <p class="tools-label">Brand Assets</p>
+                <h2 class="tools-title">Brand Tools</h2>
+            </div>
         </div>
         <div class="tools-grid">
             <a href="maas-pattern-studio.html" class="tool-card fade-up">
-                <div class="tool-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2"/>
-                        <path d="M3 9h18M9 21V9"/>
-                    </svg>
-                </div>
-                <h3 class="tool-title">Pattern Studio</h3>
-                <p class="tool-description">Create custom branded patterns for presentations and marketing materials.</p>
+                <span class="tool-number">01</span>
+                <h3 class="tool-name">Pattern Studio</h3>
+                <p class="tool-desc">Create custom branded patterns for presentations and marketing.</p>
             </a>
             <a href="maas-linkedin-header.html" class="tool-card fade-up">
-                <div class="tool-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="4" width="20" height="16" rx="2"/>
-                        <path d="M8 10h8M8 14h4"/>
-                    </svg>
-                </div>
-                <h3 class="tool-title">LinkedIn Header Builder</h3>
-                <p class="tool-description">Generate professional LinkedIn cover images with consistent branding.</p>
+                <span class="tool-number">02</span>
+                <h3 class="tool-name">LinkedIn Header</h3>
+                <p class="tool-desc">Generate professional cover images with consistent branding.</p>
             </a>
             <a href="maas-social-templates.html" class="tool-card fade-up">
-                <div class="tool-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2"/>
-                        <circle cx="8.5" cy="8.5" r="1.5"/>
-                        <path d="M21 15l-5-5L5 21"/>
-                    </svg>
-                </div>
-                <h3 class="tool-title">Social Templates</h3>
-                <p class="tool-description">Ready-to-use templates for social media posts and announcements.</p>
+                <span class="tool-number">03</span>
+                <h3 class="tool-name">Social Templates</h3>
+                <p class="tool-desc">Ready-to-use templates for social media posts.</p>
             </a>
             <a href="maas-email-signatures.html" class="tool-card fade-up">
-                <div class="tool-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="4" width="20" height="16" rx="2"/>
-                        <path d="M22 7l-10 7L2 7"/>
-                    </svg>
-                </div>
-                <h3 class="tool-title">Email Signatures</h3>
-                <p class="tool-description">Professional email signature designs for the entire team.</p>
+                <span class="tool-number">04</span>
+                <h3 class="tool-name">Email Signatures</h3>
+                <p class="tool-desc">Professional email signatures for the team.</p>
             </a>
             <a href="maas-business-cards.html" class="tool-card fade-up">
-                <div class="tool-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="5" width="20" height="14" rx="2"/>
-                        <path d="M6 10h4M6 14h8"/>
-                    </svg>
-                </div>
-                <h3 class="tool-title">Business Cards</h3>
-                <p class="tool-description">Print-ready business card designs and specifications.</p>
+                <span class="tool-number">05</span>
+                <h3 class="tool-name">Business Cards</h3>
+                <p class="tool-desc">Print-ready business card designs.</p>
             </a>
             <a href="maas-case-study-template.html" class="tool-card fade-up">
-                <div class="tool-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                    </svg>
-                </div>
-                <h3 class="tool-title">Case Study Template</h3>
-                <p class="tool-description">Structured template for documenting project successes and outcomes.</p>
-            </a>
-            <a href="maas-impact-report-2025.html" class="tool-card fade-up">
-                <div class="tool-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                        <line x1="12" y1="22.08" x2="12" y2="12"/>
-                    </svg>
-                </div>
-                <h3 class="tool-title">Impact Report</h3>
-                <p class="tool-description">Annual sustainability and environmental impact reporting template.</p>
+                <span class="tool-number">06</span>
+                <h3 class="tool-name">Case Studies</h3>
+                <p class="tool-desc">Template for documenting project successes.</p>
             </a>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <img src="./assets/maas-logo-primary.svg" alt="MAAS Energy Works" style="height: 36px;">
-                <p>Transforming agricultural waste into renewable energy. America's leading dairy digester developer since 2010.</p>
+                <img src="https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png" alt="MAAS Energy Works" class="footer-logo">
+                <p class="footer-tagline">Powering tomorrow from today's waste. America's leading dairy digester developer since 2010.</p>
             </div>
-            <div>
-                <h4 class="footer-heading">Services</h4>
-                <ul class="footer-links">
-                    <li><a href="#services">Digester Development</a></li>
-                    <li><a href="#services">Operations</a></li>
-                    <li><a href="#services">RNG Production</a></li>
-                    <li><a href="#services">Financing</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="footer-heading">Brand Tools</h4>
-                <ul class="footer-links">
-                    <li><a href="maas-pattern-studio.html">Pattern Studio</a></li>
-                    <li><a href="maas-social-templates.html">Social Templates</a></li>
-                    <li><a href="maas-email-signatures.html">Email Signatures</a></li>
-                    <li><a href="maas-business-cards.html">Business Cards</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="footer-heading">Company</h4>
-                <ul class="footer-links">
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="maas-impact-report-2025.html">Impact Report</a></li>
-                    <li><a href="https://maasenergy.com" target="_blank">Main Website</a></li>
-                    <li><a href="mailto:info@maasenergy.com">Contact</a></li>
-                </ul>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Development</a></li>
+                        <li><a href="#services">Operations</a></li>
+                        <li><a href="#services">RNG Production</a></li>
+                        <li><a href="#services">Financing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Brand</h4>
+                    <ul>
+                        <li><a href="maas-pattern-studio.html">Pattern Studio</a></li>
+                        <li><a href="maas-social-templates.html">Social Templates</a></li>
+                        <li><a href="maas-impact-report-2025.html">Impact Report</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#manifesto">About</a></li>
+                        <li><a href="https://maasenergy.com" target="_blank">Website</a></li>
+                        <li><a href="mailto:info@maasenergy.com">Contact</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p class="footer-copyright">&copy; 2025 MAAS Energy Works. All rights reserved.</p>
+            <p class="footer-copyright">&copy; 2025 MAAS Energy Works</p>
             <div class="footer-legal">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Navigation scroll effect
-        const nav = document.querySelector('.nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
 
-        // Intersection Observer for fade-up animations
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Cursor hover effect
+        const hoverElements = document.querySelectorAll('a, button, .service-row');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Fade-up animations
         const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.1, rootMargin: '-50px' });
 
         document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
 
-        // Animated counter on scroll
+        // Counter animation
         const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1165,7 +1259,7 @@
                     counterObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5, rootMargin: '0px' });
+        }, { threshold: 0.5 });
 
         document.querySelectorAll('[data-counter]').forEach(el => {
             counterObserver.observe(el);
@@ -1179,7 +1273,7 @@
             function update(currentTime) {
                 const elapsed = currentTime - start;
                 const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+                const eased = 1 - Math.pow(1 - progress, 3);
                 element.textContent = Math.round(eased * target);
 
                 if (progress < 1) {
@@ -1189,16 +1283,13 @@
             requestAnimationFrame(update);
         }
 
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
