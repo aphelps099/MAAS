@@ -8,29 +8,37 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/svg+xml" href="./assets/maas-icon.svg">
 
     <style>
         :root {
-            --maas-green: #2D8B4E;
-            --maas-green-bright: #3CAF5C;
-            --maas-green-glow: rgba(45, 139, 78, 0.15);
-            --biogas-blue: #1E7F9C;
-            --biogas-blue-light: #2CA3C4;
-            --earth-brown: #6B5344;
-            --cream: #F5F2EB;
-            --warm-white: #FDFCFA;
-            --near-black: #0D1210;
-            --dark-gray: #1A1F1C;
-            --charcoal: #242B27;
+            /* Primary - Deep Forest Green */
+            --forest: #0A3D2E;
+            --forest-dark: #062A1F;
+            --electric: #00FF88;
+            --electric-dim: rgba(0, 255, 136, 0.15);
+
+            /* Secondary - Sky/Teal */
+            --teal: #14B8A6;
+
+            /* Industrial Greys */
+            --steel: #64748B;
+            --slate: #475569;
+            --graphite: #334155;
+            --charcoal: #1E293B;
+
+            /* Neutrals */
+            --cream: #F8F6F1;
+            --near-black: #0F172A;
+            --dark-gray: #1E293B;
             --white: #ffffff;
-            --muted-green: #4A5D52;
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --serif: 'Georgia', serif;
-            --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            --mono: 'JetBrains Mono', 'Consolas', monospace;
+            --text-secondary: rgba(255, 255, 255, 0.6);
+
+            /* Typography */
+            --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            --mono: 'Space Mono', 'Courier New', monospace;
         }
 
         *, *::before, *::after {
@@ -42,7 +50,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--sans);
+            font-family: var(--font-display);
             background: var(--near-black);
             color: var(--white);
             line-height: 1.6;
@@ -63,7 +71,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
         }
 
         .nav-logo { height: 36px; width: auto; }
@@ -77,7 +85,7 @@
             transition: color 0.2s;
         }
 
-        .nav-back:hover { color: var(--maas-green); }
+        .nav-back:hover { color: var(--electric); }
 
         /* Header */
         .page-header {
@@ -90,7 +98,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: var(--maas-green);
+            color: var(--electric);
             margin-bottom: 16px;
         }
 
@@ -182,7 +190,7 @@
             font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: var(--maas-green);
+            color: var(--electric);
             background: var(--maas-green-glow);
             padding: 8px 16px;
             border-radius: 20px;
@@ -227,7 +235,7 @@
             font-family: var(--mono);
             font-size: 4rem;
             font-weight: 700;
-            color: var(--maas-green);
+            color: var(--electric);
             line-height: 1;
             position: relative;
         }
@@ -243,7 +251,7 @@
         }
 
         .preview-quote {
-            background: linear-gradient(180deg, var(--maas-green) 0%, #1f6b3b 100%);
+            background: linear-gradient(180deg, var(--electric) 0%, #1f6b3b 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -286,7 +294,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--maas-green);
+            color: var(--electric);
             margin-bottom: 12px;
         }
 
@@ -315,11 +323,11 @@
         .preview-milestone .visual svg {
             width: 48px;
             height: 48px;
-            color: var(--maas-green);
+            color: var(--electric);
         }
 
         .preview-story {
-            background: linear-gradient(180deg, var(--near-black) 0%, var(--maas-green) 100%);
+            background: linear-gradient(180deg, var(--near-black) 0%, var(--electric) 100%);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -336,7 +344,7 @@
             font-size: 0.55rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--maas-green);
+            color: var(--electric);
             margin-bottom: 20px;
         }
 
@@ -380,7 +388,7 @@
         .template-size {
             font-family: var(--mono);
             font-size: 0.75rem;
-            color: var(--muted-green);
+            color: var(--steel);
         }
 
         .template-download {
@@ -388,7 +396,7 @@
             align-items: center;
             gap: 6px;
             font-size: 0.85rem;
-            color: var(--maas-green);
+            color: var(--electric);
             transition: color 0.2s;
             cursor: pointer;
             background: none;
@@ -421,7 +429,7 @@
 
         .footer-text {
             font-size: 0.85rem;
-            color: var(--muted-green);
+            color: var(--steel);
         }
 
         /* Responsive */
@@ -650,19 +658,19 @@
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
             <div>
-                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--maas-green);">Colors</h3>
+                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--electric);">Colors</h3>
                 <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">Always use brand colors. Primary green (#2D8B4E) for accents, near-black (#0D1210) for backgrounds.</p>
             </div>
             <div>
-                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--maas-green);">Logo Placement</h3>
+                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--electric);">Logo Placement</h3>
                 <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">Include the MAAS logo on all social graphics. Use white version on dark backgrounds.</p>
             </div>
             <div>
-                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--maas-green);">Typography</h3>
+                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--electric);">Typography</h3>
                 <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">Use Inter for body text, JetBrains Mono for statistics and labels, Georgia for headlines.</p>
             </div>
             <div>
-                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--maas-green);">Hashtags</h3>
+                <h3 style="font-size: 1rem; margin-bottom: 12px; color: var(--electric);">Hashtags</h3>
                 <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7;">#MAASEnergy #RenewableNaturalGas #DairyDigester #CleanEnergy #Sustainability</p>
             </div>
         </div>

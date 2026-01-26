@@ -897,17 +897,86 @@
         }
 
         /* =====================
-           ANIMATIONS
+           ANIMATIONS - Snappy & Modern
            ===================== */
+
+        /* Base fade-up with snappy easing */
         .fade-up {
             opacity: 0;
-            transform: translateY(60px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(40px);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Staggered children animation */
+        .stagger-children > * {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stagger-children.visible > *:nth-child(1) { transition-delay: 0s; }
+        .stagger-children.visible > *:nth-child(2) { transition-delay: 0.08s; }
+        .stagger-children.visible > *:nth-child(3) { transition-delay: 0.16s; }
+        .stagger-children.visible > *:nth-child(4) { transition-delay: 0.24s; }
+        .stagger-children.visible > *:nth-child(5) { transition-delay: 0.32s; }
+        .stagger-children.visible > *:nth-child(6) { transition-delay: 0.4s; }
+
+        .stagger-children.visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scale in animation */
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Slide in from left */
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Parallax elements */
+        .parallax {
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        /* Hero parallax layers */
+        .hero-ghost {
+            will-change: transform;
+        }
+
+        .hero-logo-ghost {
+            will-change: transform;
+        }
+
+        /* Smooth counter animation */
+        .stat-number, .impact-stat-number, .manifesto-stat-number {
+            transition: color 0.3s ease;
         }
 
         /* =====================
@@ -1277,18 +1346,77 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
 
-        // Fade-up animations
-        const fadeObserver = new IntersectionObserver((entries) => {
+        // Snappy scroll-triggered animations
+        const animationObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1, rootMargin: '-50px' });
+        }, { threshold: 0.15, rootMargin: '-20px' });
 
-        document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+        // Observe all animated elements
+        document.querySelectorAll('.fade-up, .scale-in, .slide-left, .stagger-children').forEach(el => {
+            animationObserver.observe(el);
+        });
 
-        // Counter animation
+        // Parallax effect on scroll
+        const heroGhost = document.querySelector('.hero-ghost');
+        const heroLogoGhost = document.querySelector('.hero-logo-ghost');
+        const ctaLogoBg = document.querySelector('.cta-logo-bg');
+        const impactGhost = document.querySelector('.impact-ghost');
+
+        let ticking = false;
+
+        function updateParallax() {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            // Hero parallax - ghost text moves slower
+            if (heroGhost) {
+                const heroOffset = scrollY * 0.3;
+                heroGhost.style.transform = `translateY(calc(-50% + ${heroOffset}px))`;
+            }
+
+            // Hero logo ghost - subtle parallax
+            if (heroLogoGhost) {
+                const logoOffset = scrollY * 0.15;
+                heroLogoGhost.style.transform = `translateY(${logoOffset}px)`;
+            }
+
+            // CTA section logo parallax
+            if (ctaLogoBg) {
+                const ctaSection = ctaLogoBg.closest('.cta-section');
+                if (ctaSection) {
+                    const rect = ctaSection.getBoundingClientRect();
+                    const sectionProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                    const ctaOffset = (sectionProgress - 0.5) * 60;
+                    ctaLogoBg.style.transform = `translate(-50%, calc(-50% + ${ctaOffset}px))`;
+                }
+            }
+
+            // Impact ghost rotation parallax
+            if (impactGhost) {
+                const impactSection = impactGhost.closest('.impact-left');
+                if (impactSection) {
+                    const rect = impactSection.getBoundingClientRect();
+                    const sectionProgress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                    const rotateOffset = (sectionProgress - 0.5) * 30;
+                    impactGhost.style.transform = `translateY(-50%) rotate(-90deg) translateX(${rotateOffset}px)`;
+                }
+            }
+
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // Counter animation with snappier easing
         const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1304,13 +1432,14 @@
 
         function animateCounter(element) {
             const target = parseInt(element.dataset.counter);
-            const duration = 2000;
+            const duration = 1500; // Faster
             const start = performance.now();
 
             function update(currentTime) {
                 const elapsed = currentTime - start;
                 const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
+                // Snappy ease-out
+                const eased = 1 - Math.pow(1 - progress, 4);
                 element.textContent = Math.round(eased * target);
 
                 if (progress < 1) {
@@ -1320,16 +1449,24 @@
             requestAnimationFrame(update);
         }
 
-        // Smooth scroll
+        // Smooth scroll with offset
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const offset = 80; // nav height
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
+
+        // Initial parallax update
+        updateParallax();
     </script>
 </body>
 </html>
