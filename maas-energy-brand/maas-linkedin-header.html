@@ -474,32 +474,13 @@
 
         const LOGO_ASPECT_RATIO = 1000 / 350; // Hardcoded fallback: 2.857
 
-        // Logo image - set up onload BEFORE setting src
+        // Logo image
         const logoImg = new Image();
         logoImg.crossOrigin = 'anonymous';
-        logoImg.onload = () => {
-            console.log('Logo loaded');
-            render();
-        };
-        logoImg.onerror = () => {
-            console.error('Logo failed to load');
-            render();
-        };
 
-        // Gear icon image - set up onload BEFORE setting src
+        // Gear icon image
         const gearImg = new Image();
         gearImg.crossOrigin = 'anonymous';
-        gearImg.onload = () => {
-            console.log('Gear icon loaded');
-            render();
-        };
-        gearImg.onerror = () => {
-            console.error('Gear icon failed to load');
-        };
-
-        // Now set the src to trigger loading
-        logoImg.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
-        gearImg.src = 'https://look-serious.com/wp-content/uploads/2026/01/Gear_White.png';
 
         // DOM elements
         const templateCards = document.querySelectorAll('.template-card');
@@ -788,18 +769,20 @@
             link.click();
         }
 
-        // Initialize - render immediately
-        // The onload handlers are already set up before src assignment
-        // This ensures we render even if images haven't loaded yet
+        // Initialize - load images and render
+        logoImg.onload = render;
+        gearImg.onload = render;
+
+        // Set image sources
+        logoImg.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
+        gearImg.src = 'https://look-serious.com/wp-content/uploads/2026/01/Gear_White.png';
+
+        // Render immediately (background will show even if images haven't loaded)
         render();
 
-        // Handle already-cached images (onload may not fire)
-        if (logoImg.complete && logoImg.naturalWidth > 0) {
-            render();
-        }
-        if (gearImg.complete && gearImg.naturalWidth > 0) {
-            render();
-        }
+        // Re-render if images are already cached
+        if (logoImg.complete) render();
+        if (gearImg.complete) render();
     </script>
 </body>
 </html>
