@@ -395,6 +395,7 @@
                         <option value="#2D8B4E">MAAS Green</option>
                         <option value="#1E7F9C">Biogas Blue</option>
                         <option value="#F5F2EB">Cream</option>
+                        <option value="#E8E8E8">Light Gray</option>
                         <option value="#FFFFFF">White</option>
                     </select>
                 </div>
@@ -430,6 +431,14 @@
             <div class="sidebar-section">
                 <h3 class="sidebar-title">Add Logo</h3>
                 <div class="control-group">
+                    <label class="control-label">Logo Type</label>
+                    <select class="control-select" id="logoType">
+                        <option value="maas">MAAS Logo</option>
+                        <option value="gear">Gear Icon</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Position</label>
                     <select class="control-select" id="logoOption">
                         <option value="none">No Logo</option>
                         <option value="bottom-right">Bottom Right</option>
@@ -476,7 +485,8 @@
             opacity: 15,
             canvasWidth: 1920,
             canvasHeight: 1080,
-            logo: 'none'
+            logo: 'none',
+            logoType: 'maas'
         };
 
         // DOM elements
@@ -489,15 +499,19 @@
         const opacityRange = document.getElementById('patternOpacity');
         const canvasSizeSelect = document.getElementById('canvasSize');
         const logoSelect = document.getElementById('logoOption');
+        const logoTypeSelect = document.getElementById('logoType');
         const downloadBtn = document.getElementById('downloadBtn');
         const copyBtn = document.getElementById('copyBtn');
         const sizeValue = document.getElementById('sizeValue');
         const opacityValue = document.getElementById('opacityValue');
         const dimensionLabel = document.getElementById('dimensionLabel');
 
-        // Logo image
+        // Logo images
         const logoImg = new Image();
         logoImg.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
+
+        const gearImg = new Image();
+        gearImg.src = 'https://look-serious.com/wp-content/uploads/2026/01/Gear_White.png';
 
         // Initialize
         function init() {
@@ -554,6 +568,11 @@
                 updateCanvas();
             });
 
+            logoTypeSelect.addEventListener('change', (e) => {
+                state.logoType = e.target.value;
+                updateCanvas();
+            });
+
             downloadBtn.addEventListener('click', downloadImage);
             copyBtn.addEventListener('click', copyCSS);
         }
@@ -596,8 +615,11 @@
             }
 
             // Draw logo if selected
-            if (state.logo !== 'none' && logoImg.complete) {
-                drawLogo();
+            if (state.logo !== 'none') {
+                const currentLogo = state.logoType === 'gear' ? gearImg : logoImg;
+                if (currentLogo.complete) {
+                    drawLogo(currentLogo);
+                }
             }
         }
 
@@ -662,10 +684,26 @@
             }
         }
 
-        function drawLogo() {
-            const logoWidth = 180;
-            const logoHeight = 40;
-            const padding = 40;
+        function drawLogo(img) {
+            // Scale logo proportionally based on canvas size
+            const baseWidth = 1920;
+            const scaleFactor = canvas.width / baseWidth;
+            const padding = Math.round(40 * scaleFactor);
+
+            let logoWidth, logoHeight;
+
+            if (state.logoType === 'gear') {
+                // Gear icon is square
+                logoHeight = Math.round(80 * scaleFactor);
+                logoWidth = logoHeight;
+            } else {
+                // MAAS logo maintains aspect ratio (1000:350 = 2.857)
+                logoHeight = Math.round(60 * scaleFactor);
+                const aspectRatio = img.naturalWidth && img.naturalHeight
+                    ? img.naturalWidth / img.naturalHeight
+                    : 2.857;
+                logoWidth = Math.round(logoHeight * aspectRatio);
+            }
 
             let x, y;
 
@@ -684,7 +722,7 @@
                     break;
             }
 
-            ctx.drawImage(logoImg, x, y, logoWidth, logoHeight);
+            ctx.drawImage(img, x, y, logoWidth, logoHeight);
         }
 
         function downloadImage() {
@@ -746,9 +784,28 @@ background-size: ${state.size}px ${state.size}px;`;
 }`;
         }
 
-        // Wait for logo to load then init
-        logoImg.onload = init;
-        if (logoImg.complete) init();
+        // Wait for images to load then init
+        let imagesLoaded = 0;
+        const totalImages = 2;
+
+        function checkImagesLoaded() {
+            imagesLoaded++;
+            if (imagesLoaded >= totalImages) {
+                init();
+            }
+        }
+
+        logoImg.onload = checkImagesLoaded;
+        gearImg.onload = checkImagesLoaded;
+
+        // Handle already-cached images
+        if (logoImg.complete) checkImagesLoaded();
+        if (gearImg.complete) checkImagesLoaded();
+
+        // Fallback init if images fail to load
+        setTimeout(() => {
+            if (imagesLoaded < totalImages) init();
+        }, 2000);
     </script>
 </body>
 </html>
