@@ -917,6 +917,78 @@
         }
 
         /* =====================
+           CULTURE BLURB SECTION
+           ===================== */
+        .culture-blurb {
+            background: var(--near-black);
+            padding: 120px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top: 1px solid rgba(45, 139, 78, 0.1);
+            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+        }
+
+        .culture-blurb-content {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .culture-blurb-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--electric);
+            margin-bottom: 24px;
+        }
+
+        .culture-blurb-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .culture-blurb-title em {
+            font-style: italic;
+            color: var(--electric);
+        }
+
+        .culture-blurb-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .culture-blurb-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--electric);
+            transition: all 0.3s ease;
+        }
+
+        .culture-blurb-link:hover {
+            gap: 20px;
+        }
+
+        .culture-blurb-link svg {
+            transition: transform 0.3s ease;
+        }
+
+        .culture-blurb-link:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* =====================
            CTA SECTION
            ===================== */
         .cta-section {
@@ -1390,6 +1462,7 @@
             .services-header { padding: 0 40px; }
             .service-row { padding: 32px 40px; }
             .impact-section { grid-template-columns: 1fr; }
+            .culture-blurb { padding: 100px 40px; }
             .cta-section { padding: 120px 40px; }
             .tools-section { padding: 100px 40px; }
             .tools-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1425,6 +1498,9 @@
 
             .impact-left, .impact-right { padding: 80px 24px; }
             .impact-ghost { display: none; }
+
+            .culture-blurb { padding: 80px 24px; }
+            .culture-blurb-text { font-size: 1rem; }
 
             .cta-section { padding: 80px 24px; }
             .cta-logo-bg { display: none; }
@@ -1619,6 +1695,21 @@
                     </svg>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Culture Blurb Section -->
+    <section class="culture-blurb">
+        <div class="culture-blurb-content fade-up">
+            <p class="culture-blurb-label">Our Team</p>
+            <h2 class="culture-blurb-title">Built by People Who <em>Believe</em></h2>
+            <p class="culture-blurb-text">Behind every digester is a team of engineers, operators, and innovators passionate about creating a sustainable future. Discover what drives us and what it's like to be part of the MAAS family.</p>
+            <a href="maas-culture.html" class="culture-blurb-link">
+                Explore Our Culture
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
         </div>
     </section>
 
