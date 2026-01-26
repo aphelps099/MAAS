@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAAS Energy Works</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --cream: #F8F6F1;
+            --green: #0A3D2E;
+            --green-bright: #00FF88;
+            --green-muted: #1A5C45;
+            --gray: #888888;
+            --gray-dark: #333333;
+            
+            --font-display: 'Playfair Display', 'Times New Roman', serif;
+            --font-mono: 'Space Mono', monospace;
+            
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        ::selection {
+            background: var(--green-bright);
+            color: var(--black);
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-mono);
+            background: var(--cream);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* CUSTOM CURSOR */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--black);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s var(--ease-out-expo), 
+                        background 0.15s ease,
+                        border-color 0.15s ease;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor.hover {
+            transform: scale(3);
+            background: var(--white);
+            border-color: var(--white);
+        }
+        
+        /* NAVIGATION */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 32px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: difference;
+        }
+        
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+        
+        .nav-logo-img {
+            height: 32px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 48px;
+        }
+        
+        .nav-link {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--white);
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--white);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s var(--ease-out-expo);
+        }
+        
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        /* HERO - MONUMENTAL */
+        .hero {
+            min-height: 100vh;
+            background: var(--green);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 48px 80px;
+            overflow: hidden;
+        }
+        
+        .hero-bg-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-display);
+            font-size: clamp(20vw, 35vw, 50vw);
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .hero-bg-logo {
+            position: absolute;
+            top: 15%;
+            right: -5%;
+            width: 50%;
+            max-width: 600px;
+            height: auto;
+            opacity: 0.06;
+            filter: grayscale(100%);
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--green-bright);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .hero-eyebrow::before {
+            content: '';
+            width: 60px;
+            height: 1px;
+            background: var(--green-bright);
+        }
+        
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 12vw, 14rem);
+            font-weight: 400;
+            line-height: 0.85;
+            color: var(--white);
+            letter-spacing: -0.03em;
+            margin-bottom: 48px;
+        }
+        
+        .hero-title em {
+            font-style: italic;
+        }
+        
+        .hero-title .line {
+            display: block;
+            overflow: hidden;
+        }
+        
+        .hero-title .line span {
+            display: block;
+            transform: translateY(100%);
+            animation: reveal 1.2s var(--ease-out-expo) forwards;
+        }
+        
+        .hero-title .line:nth-child(2) span { animation-delay: 0.1s; }
+        .hero-title .line:nth-child(3) span { animation-delay: 0.2s; }
+        
+        @keyframes reveal {
+            to { transform: translateY(0); }
+        }
+        
+        .hero-meta {
+            display: flex;
+            gap: 80px;
+        }
+        
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .hero-meta-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .hero-meta-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--white);
+        }
+        
+        .hero-scroll {
+            position: absolute;
+            right: 48px;
+            bottom: 80px;
+            writing-mode: vertical-rl;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .hero-scroll-line {
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, var(--green-bright), transparent);
+            animation: scroll-line 2s infinite;
+        }
+        
+        @keyframes scroll-line {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.5); transform-origin: top; }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+        
+        /* MANIFESTO */
+        .manifesto {
+            padding: 200px 48px;
+            background: var(--cream);
+        }
+        
+        .manifesto-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 120px;
+        }
+        
+        .manifesto-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gray);
+            position: sticky;
+            top: 200px;
+            height: fit-content;
+        }
+        
+        .manifesto-text {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: 400;
+            line-height: 1.3;
+            color: var(--black);
+        }
+        
+        .manifesto-text em {
+            font-style: italic;
+            color: var(--green);
+        }
+        
+        /* STATS */
+        .stats {
+            background: var(--black);
+            color: var(--white);
+            padding: 160px 48px;
+        }
+        
+        .stats-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat {
+            padding: 80px 40px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat:last-child {
+            border-right: none;
+        }
+        
+        .stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--green);
+            transform: translateY(100%);
+            transition: transform 0.6s var(--ease-out-expo);
+        }
+        
+        .stat:hover::before {
+            transform: translateY(0);
+        }
+        
+        .stat-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        .stat:hover .stat-number {
+            color: var(--green-bright);
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.3s ease;
+        }
+        
+        .stat:hover .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* SERVICES */
+        .services {
+            background: var(--cream);
+            padding: 200px 0;
+        }
+        
+        .services-header {
+            padding: 0 48px;
+            margin-bottom: 120px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .services-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+        }
+        
+        .services-title em {
+            font-style: italic;
+            color: var(--green);
+        }
+        
+        .services-count {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+            padding-bottom: 20px;
+        }
+        
+        .services-list {
+            border-top: 1px solid var(--black);
+        }
+        
+        .service {
+            border-bottom: 1px solid var(--black);
+        }
+        
+        .service-link {
+            display: grid;
+            grid-template-columns: 120px 1fr 400px 120px;
+            align-items: center;
+            padding: 48px;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+        
+        .service:hover .service-link {
+            background: var(--green);
+            color: var(--white);
+        }
+        
+        .service-number {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--gray);
+            transition: color 0.4s ease;
+        }
+        
+        .service:hover .service-number {
+            color: var(--green-bright);
+        }
+        
+        .service-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+        
+        .service-description {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--gray);
+            padding-right: 60px;
+            transition: color 0.4s ease;
+        }
+        
+        .service:hover .service-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .service-arrow {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s var(--ease-out-expo);
+        }
+        
+        .service:hover .service-arrow {
+            opacity: 1;
+            transform: translateX(0);
+            color: var(--green-bright);
+        }
+        
+        /* IMPACT */
+        .impact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+        
+        .impact-visual {
+            background: var(--green);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .impact-visual-text {
+            font-family: var(--font-display);
+            font-size: clamp(8rem, 20vw, 20rem);
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+            position: absolute;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+        
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        
+        .impact-icon {
+            width: 120px;
+            height: 120px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .impact-icon svg {
+            width: 48px;
+            height: 48px;
+            color: var(--green-bright);
+        }
+        
+        .impact-content {
+            background: var(--black);
+            color: var(--white);
+            padding: 120px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .impact-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--green-bright);
+            margin-bottom: 48px;
+        }
+        
+        .impact-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 48px;
+        }
+        
+        .impact-title em { font-style: italic; }
+        
+        .impact-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 500px;
+            margin-bottom: 64px;
+        }
+        
+        .impact-list { display: flex; flex-direction: column; gap: 32px; }
+        
+        .impact-item {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        
+        .impact-item-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--green-bright);
+            line-height: 1;
+        }
+        
+        .impact-item-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* MARQUEE */
+        .marquee-section {
+            background: var(--green-bright);
+            padding: 32px 0;
+            overflow: hidden;
+        }
+        
+        .marquee-track {
+            display: flex;
+            animation: marquee-scroll 30s linear infinite;
+        }
+        
+        @keyframes marquee-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        
+        .marquee-item {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 400;
+            color: var(--black);
+            white-space: nowrap;
+            padding: 0 48px;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+        
+        .marquee-item::after { content: '◆'; font-size: 0.5em; }
+        
+        /* LOCATIONS */
+        .locations {
+            background: var(--cream);
+            padding: 200px 48px;
+        }
+        
+        .locations-header {
+            max-width: 1600px;
+            margin: 0 auto 120px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 120px;
+            align-items: end;
+        }
+        
+        .locations-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+        
+        .locations-title em { font-style: italic; color: var(--green); }
+        
+        .locations-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--gray-dark);
+            max-width: 500px;
+        }
+        
+        .locations-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: var(--black);
+        }
+        
+        .location {
+            background: var(--cream);
+            padding: 48px 32px;
+            transition: all 0.4s ease;
+        }
+        
+        .location:hover {
+            background: var(--green);
+            color: var(--white);
+        }
+        
+        .location-state {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        
+        .location-count {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+            transition: color 0.4s ease;
+        }
+        
+        .location:hover .location-count { color: var(--green-bright); }
+        
+        /* CTA */
+        .cta {
+            min-height: 100vh;
+            background: var(--green);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        
+        .cta-bg-circle {
+            width: 60vw;
+            height: 60vw;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .cta-bg-circle:nth-child(2) { width: 80vw; height: 80vw; }
+        .cta-bg-circle:nth-child(3) { width: 100vw; height: 100vw; }
+        
+        .cta-bg-logo {
+            position: absolute;
+            width: 140%;
+            max-width: none;
+            height: auto;
+            opacity: 0.04;
+            filter: grayscale(100%);
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .cta-content { position: relative; z-index: 2; max-width: 1000px; }
+        
+        .cta-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--green-bright);
+            margin-bottom: 48px;
+        }
+        
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 400;
+            line-height: 1;
+            color: var(--white);
+            margin-bottom: 64px;
+            letter-spacing: -0.03em;
+        }
+        
+        .cta-title em { font-style: italic; }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 24px 48px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-out-expo);
+        }
+        
+        .btn-primary {
+            background: var(--green-bright);
+            color: var(--black);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 80px 48px;
+        }
+        
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 120px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-logo {
+            display: block;
+            margin-bottom: 24px;
+        }
+        
+        .footer-logo-img {
+            height: 40px;
+            width: auto;
+            opacity: 0.9;
+        }
+        
+        .footer-tagline {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .footer-links { display: flex; gap: 80px; }
+        
+        .footer-column h4 {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 24px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .footer-column a {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.2s ease;
+        }
+        
+        .footer-column a:hover { color: var(--green-bright); }
+        
+        .footer-bottom {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding-top: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-copyright {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .footer-legal { display: flex; gap: 32px; }
+        
+        .footer-legal a {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+            transition: color 0.2s ease;
+        }
+        
+        .footer-legal a:hover { color: var(--white); }
+        
+        /* ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+        
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
+        .reveal-stagger > * {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
+        }
+        
+        .reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+        .reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+        .reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.2s; }
+        .reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.3s; }
+        .reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.4s; }
+        .reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.5s; }
+        .reveal-stagger.visible > *:nth-child(7) { transition-delay: 0.6s; }
+        .reveal-stagger.visible > *:nth-child(8) { transition-delay: 0.7s; }
+        
+        .reveal-stagger.visible > * { opacity: 1; transform: translateY(0); }
+        
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .service-link { grid-template-columns: 80px 1fr 1fr 80px; }
+            .impact { grid-template-columns: 1fr; }
+            .impact-visual { min-height: 50vh; }
+            .locations-header { grid-template-columns: 1fr; gap: 48px; }
+            .locations-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 900px) {
+            .nav { padding: 24px; }
+            .nav-links { display: none; }
+            .hero { padding: 0 24px 60px; }
+            .hero-meta { flex-direction: column; gap: 32px; }
+            .hero-scroll { display: none; }
+            .manifesto { padding: 120px 24px; }
+            .manifesto-content { grid-template-columns: 1fr; gap: 48px; }
+            .manifesto-label { position: static; }
+            .stats { padding: 80px 24px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .services { padding: 120px 0; }
+            .services-header { padding: 0 24px; flex-direction: column; align-items: flex-start; gap: 24px; }
+            .service-link { grid-template-columns: 1fr; gap: 16px; padding: 32px 24px; }
+            .service-number { order: -1; }
+            .service-description { padding-right: 0; }
+            .service-arrow { display: none; }
+            .impact-content { padding: 80px 24px; }
+            .locations { padding: 120px 24px; }
+            .locations-grid { grid-template-columns: 1fr; }
+            .cta { padding: 80px 24px; }
+            .cta-buttons { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+            .footer { padding: 60px 24px; }
+            .footer-content { grid-template-columns: 1fr; gap: 60px; }
+            .footer-links { flex-wrap: wrap; gap: 40px; }
+            .footer-bottom { flex-direction: column; gap: 24px; text-align: center; }
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .stat { border-right: none; }
+        }
+        
+        @media (hover: none) { .cursor { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    
+    <nav class="nav">
+        <a href="/" class="nav-logo"><img src="https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png" alt="MAAS Energy Works" class="nav-logo-img"></a>
+        <div class="nav-links">
+            <a href="#manifesto" class="nav-link" data-hover>About</a>
+            <a href="#services" class="nav-link" data-hover>Expertise</a>
+            <a href="#impact" class="nav-link" data-hover>Impact</a>
+            <a href="#contact" class="nav-link" data-hover>Contact</a>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-bg-text">ENERGY</div>
+        <img src="https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png" alt="" class="hero-bg-logo" aria-hidden="true">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Renewable Natural Gas Pioneer</div>
+            <h1 class="hero-title">
+                <span class="line"><span>Waste</span></span>
+                <span class="line"><span><em>Becomes</em></span></span>
+                <span class="line"><span>Power</span></span>
+            </h1>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Founded</span>
+                    <span class="hero-meta-value">2010</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Headquarters</span>
+                    <span class="hero-meta-value">Redding, CA</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-label">Position</span>
+                    <span class="hero-meta-value">#1 in U.S.</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+    
+    <section class="manifesto" id="manifesto">
+        <div class="manifesto-content">
+            <div class="manifesto-label reveal">Our Belief</div>
+            <p class="manifesto-text reveal">
+                We believe agricultural waste isn't a problem to solve—it's an <em>opportunity to seize</em>. 
+                Since 2010, we've pioneered the transformation of dairy waste into renewable natural gas, 
+                building America's largest portfolio of digester facilities across <em>eleven states</em>. 
+                This isn't just clean energy. This is the future of <em>American agriculture</em>.
+            </p>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="stats-grid reveal-stagger">
+            <div class="stat" data-hover>
+                <div class="stat-content">
+                    <div class="stat-number">70+</div>
+                    <div class="stat-label">Facilities Developed</div>
+                </div>
+            </div>
+            <div class="stat" data-hover>
+                <div class="stat-content">
+                    <div class="stat-number">$600M</div>
+                    <div class="stat-label">Financing Secured</div>
+                </div>
+            </div>
+            <div class="stat" data-hover>
+                <div class="stat-content">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">States Active</div>
+                </div>
+            </div>
+            <div class="stat" data-hover>
+                <div class="stat-content">
+                    <div class="stat-number">#1</div>
+                    <div class="stat-label">U.S. Developer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="services" id="services">
+        <div class="services-header reveal">
+            <h2 class="services-title">Our<br><em>Expertise</em></h2>
+            <div class="services-count">03 Core Services</div>
+        </div>
+        <div class="services-list">
+            <div class="service">
+                <a href="#" class="service-link" data-hover>
+                    <span class="service-number">01</span>
+                    <h3 class="service-title">Digester Development</h3>
+                    <p class="service-description">Full-service project development from site assessment through construction. Engineering, permitting, financing—delivered.</p>
+                    <span class="service-arrow">→</span>
+                </a>
+            </div>
+            <div class="service">
+                <a href="#" class="service-link" data-hover>
+                    <span class="service-number">02</span>
+                    <h3 class="service-title">Operations</h3>
+                    <p class="service-description">24/7 facility management ensuring optimal performance and maximum ROI throughout the entire asset lifecycle.</p>
+                    <span class="service-arrow">→</span>
+                </a>
+            </div>
+            <div class="service">
+                <a href="#" class="service-link" data-hover>
+                    <span class="service-number">03</span>
+                    <h3 class="service-title">RNG Production</h3>
+                    <p class="service-description">State-of-the-art biogas upgrading systems transforming raw biogas into pipeline-quality renewable natural gas.</p>
+                    <span class="service-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="impact" id="impact">
+        <div class="impact-visual">
+            <div class="impact-visual-text">IMPACT IMPACT IMPACT IMPACT </div>
+            <div class="impact-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M12 3v18M3 12h18"/>
+                </svg>
+            </div>
+        </div>
+        <div class="impact-content">
+            <div class="impact-label reveal">Environmental Impact</div>
+            <h2 class="impact-title reveal">Creating measurable<br><em>planetary change</em></h2>
+            <p class="impact-text reveal">
+                Every facility captures methane that would otherwise escape into the atmosphere—
+                a greenhouse gas 80× more potent than CO2—and converts it into clean, usable energy.
+            </p>
+            <div class="impact-list reveal-stagger">
+                <div class="impact-item">
+                    <span class="impact-item-number">01</span>
+                    <p class="impact-item-text">Methane capture preventing millions of tons of emissions annually</p>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-item-number">02</span>
+                    <p class="impact-item-text">Clean energy generation displacing fossil fuel consumption</p>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-item-number">03</span>
+                    <p class="impact-item-text">Rural economic development creating sustainable farm revenue</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <span class="marquee-item">Renewable Natural Gas</span>
+            <span class="marquee-item">Dairy Digesters</span>
+            <span class="marquee-item">Carbon Negative</span>
+            <span class="marquee-item">Clean Energy</span>
+            <span class="marquee-item">Sustainable Agriculture</span>
+            <span class="marquee-item">Renewable Natural Gas</span>
+            <span class="marquee-item">Dairy Digesters</span>
+            <span class="marquee-item">Carbon Negative</span>
+            <span class="marquee-item">Clean Energy</span>
+            <span class="marquee-item">Sustainable Agriculture</span>
+        </div>
+    </div>
+    
+    <section class="locations">
+        <div class="locations-header">
+            <h2 class="locations-title reveal">Across<br><em>America</em></h2>
+            <p class="locations-text reveal">
+                From California's Central Valley to the heartland of the Midwest, 
+                our facilities power communities and transform agricultural operations nationwide.
+            </p>
+        </div>
+        <div class="locations-grid reveal-stagger">
+            <div class="location" data-hover>
+                <div class="location-state">California</div>
+                <div class="location-count">24 Facilities</div>
+            </div>
+            <div class="location" data-hover>
+                <div class="location-state">Idaho</div>
+                <div class="location-count">12 Facilities</div>
+            </div>
+            <div class="location" data-hover>
+                <div class="location-state">Texas</div>
+                <div class="location-count">9 Facilities</div>
+            </div>
+            <div class="location" data-hover>
+                <div class="location-state">Wisconsin</div>
+                <div class="location-count">8 Facilities</div>
+            </div>
+            <div class="location" data-hover>
+                <div class="location-state">Michigan</div>
+                <div class="location-count">6 Facilities</div>
+            </div>
+            <div class="location" data-hover>
+                <div class="location-state">Oregon</div>
+                <div class="location-count">4 Facilities</div>
+            </div>
+            <div class="location" data-hover>
+                <div class="location-state">Washington</div>
+                <div class="location-count">3 Facilities</div>
+            </div>
+            <div class="location" data-hover>
+                <div class="location-state">+ 4 More</div>
+                <div class="location-count">States</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta" id="contact">
+        <div class="cta-bg">
+            <div class="cta-bg-circle"></div>
+            <div class="cta-bg-circle"></div>
+            <div class="cta-bg-circle"></div>
+            <img src="https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png" alt="" class="cta-bg-logo" aria-hidden="true">
+        </div>
+        <div class="cta-content">
+            <div class="cta-label reveal">Partner With Us</div>
+            <h2 class="cta-title reveal">Let's build the<br><em>future together</em></h2>
+            <div class="cta-buttons reveal">
+                <a href="mailto:info@maasenergy.com" class="btn btn-primary" data-hover>Start a Conversation</a>
+                <a href="#" class="btn btn-outline" data-hover>Download Brand Kit</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="/" class="footer-logo"><img src="https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png" alt="MAAS Energy Works" class="footer-logo-img"></a>
+                <p class="footer-tagline">Powering tomorrow from today's waste.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Brand</h4>
+                    <ul>
+                        <li><a href="#" data-hover>Logo Files</a></li>
+                        <li><a href="#" data-hover>Color System</a></li>
+                        <li><a href="#" data-hover>Typography</a></li>
+                        <li><a href="#" data-hover>Photography</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Templates</h4>
+                    <ul>
+                        <li><a href="#" data-hover>Presentations</a></li>
+                        <li><a href="#" data-hover>Social Media</a></li>
+                        <li><a href="#" data-hover>Email Signatures</a></li>
+                        <li><a href="#" data-hover>Case Studies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#" data-hover>About</a></li>
+                        <li><a href="#" data-hover>Projects</a></li>
+                        <li><a href="#" data-hover>Careers</a></li>
+                        <li><a href="#" data-hover>Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2025 MAAS Energy Works. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#" data-hover>Privacy</a>
+                <a href="#" data-hover>Terms</a>
+                <a href="#" data-hover>Brand Guidelines</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+        
+        document.querySelectorAll('[data-hover]').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+        
+        // Scroll Reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+        
+        document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
+        
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
