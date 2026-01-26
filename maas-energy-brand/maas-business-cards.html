@@ -8,29 +8,37 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/svg+xml" href="./assets/maas-icon.svg">
 
     <style>
         :root {
-            --maas-green: #2D8B4E;
-            --maas-green-bright: #3CAF5C;
-            --maas-green-glow: rgba(45, 139, 78, 0.15);
-            --biogas-blue: #1E7F9C;
-            --biogas-blue-light: #2CA3C4;
-            --earth-brown: #6B5344;
-            --cream: #F5F2EB;
-            --warm-white: #FDFCFA;
-            --near-black: #0D1210;
-            --dark-gray: #1A1F1C;
-            --charcoal: #242B27;
+            /* Primary - Deep Forest Green */
+            --forest: #0A3D2E;
+            --forest-dark: #062A1F;
+            --electric: #00FF88;
+            --electric-dim: rgba(0, 255, 136, 0.15);
+
+            /* Secondary - Sky/Teal */
+            --teal: #14B8A6;
+
+            /* Industrial Greys */
+            --steel: #64748B;
+            --slate: #475569;
+            --graphite: #334155;
+            --charcoal: #1E293B;
+
+            /* Neutrals */
+            --cream: #F8F6F1;
+            --near-black: #0F172A;
+            --dark-gray: #1E293B;
             --white: #ffffff;
-            --muted-green: #4A5D52;
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --serif: 'Georgia', serif;
-            --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            --mono: 'JetBrains Mono', 'Consolas', monospace;
+            --text-secondary: rgba(255, 255, 255, 0.6);
+
+            /* Typography */
+            --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            --mono: 'Space Mono', 'Courier New', monospace;
         }
 
         *, *::before, *::after {
@@ -42,7 +50,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--sans);
+            font-family: var(--font-display);
             background: var(--near-black);
             color: var(--white);
             line-height: 1.6;
@@ -63,7 +71,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(45, 139, 78, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
         }
 
         .nav-logo { height: 36px; width: auto; }
@@ -77,7 +85,7 @@
             transition: color 0.2s;
         }
 
-        .nav-back:hover { color: var(--maas-green); }
+        .nav-back:hover { color: var(--electric); }
 
         /* Layout */
         .builder-layout {
@@ -105,7 +113,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--muted-green);
+            color: var(--steel);
             margin-bottom: 16px;
         }
 
@@ -135,11 +143,11 @@
 
         .control-input:focus {
             outline: none;
-            border-color: var(--maas-green);
+            border-color: var(--electric);
         }
 
         .control-input::placeholder {
-            color: var(--muted-green);
+            color: var(--steel);
         }
 
         .control-select {
@@ -160,7 +168,7 @@
 
         .control-select:focus {
             outline: none;
-            border-color: var(--maas-green);
+            border-color: var(--electric);
         }
 
         /* Buttons */
@@ -183,7 +191,7 @@
         }
 
         .btn-primary {
-            background: var(--maas-green);
+            background: var(--electric);
             color: var(--near-black);
         }
 
@@ -260,7 +268,7 @@
 
         .card-dark .card-title {
             font-size: 12px;
-            color: var(--maas-green);
+            color: var(--electric);
             margin-bottom: 16px;
         }
 
@@ -271,12 +279,12 @@
         }
 
         .card-dark .card-contact a {
-            color: var(--maas-green);
+            color: var(--electric);
         }
 
         /* Style: Light */
         .card-light {
-            background: var(--warm-white);
+            background: var(--cream);
             color: var(--near-black);
         }
 
@@ -293,18 +301,18 @@
 
         .card-light .card-title {
             font-size: 12px;
-            color: var(--maas-green);
+            color: var(--forest);
             margin-bottom: 16px;
         }
 
         .card-light .card-contact {
             font-size: 11px;
-            color: #666;
+            color: var(--slate);
             line-height: 1.7;
         }
 
         .card-light .card-contact a {
-            color: var(--maas-green);
+            color: var(--forest);
         }
 
         /* Style: Green Accent */
@@ -321,7 +329,7 @@
             top: 0;
             bottom: 0;
             width: 6px;
-            background: var(--maas-green);
+            background: var(--electric);
         }
 
         .card-accent .card-logo {
@@ -339,7 +347,7 @@
 
         .card-accent .card-title {
             font-size: 12px;
-            color: var(--maas-green);
+            color: var(--electric);
             margin-bottom: 16px;
             margin-left: 6px;
         }
@@ -352,7 +360,7 @@
         }
 
         .card-accent .card-contact a {
-            color: var(--maas-green);
+            color: var(--electric);
         }
 
         /* Card Back */
@@ -381,7 +389,7 @@
         }
 
         .card-back-light {
-            background: var(--warm-white);
+            background: var(--cream);
         }
 
         .card-back-light::before {
@@ -407,14 +415,14 @@
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: var(--maas-green);
+            color: var(--electric);
         }
 
         .card-back-website {
             position: absolute;
             bottom: 20px;
             font-size: 10px;
-            color: var(--muted-green);
+            color: var(--steel);
         }
 
         /* Flip Button */
@@ -434,8 +442,8 @@
         }
 
         .flip-btn:hover {
-            border-color: var(--maas-green);
-            color: var(--maas-green);
+            border-color: var(--electric);
+            color: var(--electric);
         }
 
         /* Specs */
@@ -451,7 +459,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--muted-green);
+            color: var(--steel);
             margin-bottom: 12px;
         }
 
