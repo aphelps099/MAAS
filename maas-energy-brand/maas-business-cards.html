@@ -51,7 +51,7 @@
 
         body {
             font-family: var(--font-display);
-            background: var(--near-black);
+            background: var(--graphite);
             color: var(--white);
             line-height: 1.6;
         }
@@ -66,12 +66,11 @@
             right: 0;
             z-index: 1000;
             padding: 20px 40px;
-            background: rgba(13, 18, 16, 0.98);
-            backdrop-filter: blur(10px);
+            background: var(--graphite);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .nav-logo { height: 36px; width: auto; }
@@ -97,8 +96,8 @@
 
         /* Sidebar */
         .sidebar {
-            background: var(--dark-gray);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--charcoal);
+            border-right: 1px solid rgba(255, 255, 255, 0.04);
             padding: 32px 24px;
             overflow-y: auto;
             max-height: calc(100vh - 76px);
@@ -199,15 +198,28 @@
             background: var(--maas-green-bright);
         }
 
-        /* Preview Area */
+        /* Preview Area - Industrial Grey with Grid */
         .preview-area {
-            padding: 40px;
+            padding: 60px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: var(--charcoal);
+            background: var(--slate);
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
             min-height: calc(100vh - 76px);
+            position: relative;
+        }
+
+        .preview-area::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(71, 85, 105, 0.5) 100%);
+            pointer-events: none;
         }
 
         .card-preview-container {
@@ -231,9 +243,9 @@
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
         }
 
         .card-back {
@@ -244,41 +256,57 @@
         .business-card {
             width: 100%;
             height: 100%;
-            padding: 24px;
+            padding: 28px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-logo {
+            height: 24px;
+            width: auto;
+            max-width: 140px;
+            object-fit: contain;
+            object-position: left;
+        }
+
+        .card-info {
+            margin-top: auto;
+        }
+
+        .card-name {
+            font-family: var(--font-display);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 2px;
+            letter-spacing: -0.01em;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 11px;
+            font-weight: 400;
+            margin-bottom: 14px;
+        }
+
+        .card-contact {
+            font-family: var(--mono);
+            font-size: 10px;
+            line-height: 1.8;
         }
 
         /* Style: Dark */
         .card-dark {
-            background: linear-gradient(135deg, var(--near-black) 0%, var(--charcoal) 100%);
+            background: var(--near-black);
             color: var(--white);
         }
 
-        .card-dark .card-logo {
-            height: 28px;
-            width: auto;
-            max-width: 180px;
-            object-fit: contain;
-            margin-bottom: auto;
-        }
-
-        .card-dark .card-name {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
         .card-dark .card-title {
-            font-size: 12px;
             color: var(--electric);
-            margin-bottom: 16px;
         }
 
         .card-dark .card-contact {
-            font-size: 11px;
             color: var(--text-secondary);
-            line-height: 1.7;
         }
 
         .card-dark .card-contact a {
@@ -287,34 +315,16 @@
 
         /* Style: Light */
         .card-light {
-            background: var(--cream);
+            background: var(--white);
             color: var(--near-black);
         }
 
-        .card-light .card-logo {
-            height: 28px;
-            width: auto;
-            max-width: 180px;
-            object-fit: contain;
-            margin-bottom: auto;
-        }
-
-        .card-light .card-name {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
         .card-light .card-title {
-            font-size: 12px;
             color: var(--forest);
-            margin-bottom: 16px;
         }
 
         .card-light .card-contact {
-            font-size: 11px;
             color: var(--slate);
-            line-height: 1.7;
         }
 
         .card-light .card-contact a {
@@ -326,6 +336,7 @@
             background: var(--near-black);
             color: var(--white);
             position: relative;
+            padding-left: 36px;
         }
 
         .card-accent::before {
@@ -334,38 +345,16 @@
             left: 0;
             top: 0;
             bottom: 0;
-            width: 6px;
+            width: 4px;
             background: var(--electric);
         }
 
-        .card-accent .card-logo {
-            height: 28px;
-            width: auto;
-            max-width: 180px;
-            object-fit: contain;
-            margin-bottom: auto;
-            margin-left: 6px;
-        }
-
-        .card-accent .card-name {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 2px;
-            margin-left: 6px;
-        }
-
         .card-accent .card-title {
-            font-size: 12px;
             color: var(--electric);
-            margin-bottom: 16px;
-            margin-left: 6px;
         }
 
         .card-accent .card-contact {
-            font-size: 11px;
             color: var(--text-secondary);
-            line-height: 1.7;
-            margin-left: 6px;
         }
 
         .card-accent .card-contact a {
@@ -707,24 +696,27 @@
 
             const cardLogo = cardFrontContent.querySelector('.card-logo');
 
+            const whiteLogo = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
+            const darkLogo = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-bg-1000x350-1920w.png';
+
             switch (state.style) {
                 case 'dark':
                     cardFrontContent.classList.add('card-dark');
                     cardBackContent.classList.add('card-back-dark');
-                    cardLogo.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
-                    cardBackLogo.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
+                    cardLogo.src = whiteLogo;
+                    cardBackLogo.src = whiteLogo;
                     break;
                 case 'light':
                     cardFrontContent.classList.add('card-light');
                     cardBackContent.classList.add('card-back-light');
-                    cardLogo.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
-                    cardBackLogo.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
+                    cardLogo.src = darkLogo;
+                    cardBackLogo.src = darkLogo;
                     break;
                 case 'accent':
                     cardFrontContent.classList.add('card-accent');
                     cardBackContent.classList.add('card-back-dark');
-                    cardLogo.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
-                    cardBackLogo.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
+                    cardLogo.src = whiteLogo;
+                    cardBackLogo.src = whiteLogo;
                     break;
             }
         }
