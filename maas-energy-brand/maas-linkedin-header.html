@@ -520,12 +520,13 @@
                 } else if (template === 'split') {
                     ctx.fillStyle = '#0D1210';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    // Draw green section as a single polygon to avoid seams
                     ctx.fillStyle = '#2D8B4E';
-                    ctx.fillRect(canvas.width * 0.65, 0, canvas.width * 0.35, canvas.height);
                     ctx.beginPath();
                     ctx.moveTo(canvas.width * 0.6, 0);
+                    ctx.lineTo(canvas.width, 0);
+                    ctx.lineTo(canvas.width, canvas.height);
                     ctx.lineTo(canvas.width * 0.65, canvas.height);
-                    ctx.lineTo(canvas.width * 0.65, 0);
                     ctx.closePath();
                     ctx.fill();
                 }
@@ -539,8 +540,8 @@
                     ctx.restore();
                 }
 
-                // Draw decorative dots
-                if (template === 'gradient' || template === 'solid') {
+                // Draw decorative dots (only when gear background is not shown)
+                if ((template === 'gradient' || template === 'solid') && !state.showGearBg) {
                     ctx.fillStyle = 'rgba(45, 139, 78, 0.1)';
                     for (let i = 0; i < 5; i++) {
                         for (let j = 0; j < 3; j++) {
