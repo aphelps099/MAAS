@@ -770,10 +770,25 @@
             link.click();
         }
 
-        // Initialize
-        logoImg.onload = render;
-        gearImg.onload = render;
-        if (logoImg.complete) render();
+        // Initialize - render immediately, then re-render when images load
+        render();
+
+        logoImg.onload = () => {
+            console.log('Logo loaded');
+            render();
+        };
+        logoImg.onerror = () => {
+            console.error('Logo failed to load');
+            render();
+        };
+
+        gearImg.onload = () => {
+            console.log('Gear icon loaded');
+            render();
+        };
+        gearImg.onerror = () => {
+            console.error('Gear icon failed to load');
+        };
     </script>
 </body>
 </html>
