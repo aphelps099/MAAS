@@ -452,337 +452,340 @@
     </div>
 
     <script>
-        // State
-        const state = {
-            template: 'gradient',
-            role: 'Engineering',
-            userName: '',
-            userTitle: '',
-            tagline: 'Powering Tomorrow from Today\'s Waste',
-            showLogo: true,
-            showTagline: true,
-            showName: true,
-            showRole: false,
-            showGearBg: false
-        };
+        (function() {
+            'use strict';
 
-        // Canvas setup
-        const canvas = document.getElementById('headerCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = 1584;
-        canvas.height = 396;
+            // Canvas setup
+            const canvas = document.getElementById('headerCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = 1584;
+            canvas.height = 396;
 
-        const LOGO_ASPECT_RATIO = 1000 / 350; // Hardcoded fallback: 2.857
+            // State - initialized from DOM
+            const state = {
+                template: 'gradient',
+                role: 'Engineering',
+                userName: '',
+                userTitle: '',
+                tagline: 'Powering Tomorrow from Today\'s Waste',
+                showLogo: true,
+                showTagline: true,
+                showName: true,
+                showRole: false,
+                showGearBg: false,
+                logoLoaded: false,
+                gearLoaded: false
+            };
 
-        // Logo image
-        const logoImg = new Image();
-        logoImg.crossOrigin = 'anonymous';
-
-        // Gear icon image
-        const gearImg = new Image();
-        gearImg.crossOrigin = 'anonymous';
-
-        // DOM elements
-        const templateCards = document.querySelectorAll('.template-card');
-        const roleTags = document.querySelectorAll('.role-tag');
-        const userNameInput = document.getElementById('userName');
-        const userTitleInput = document.getElementById('userTitle');
-        const taglineSelect = document.getElementById('tagline');
-        const customTaglineInput = document.getElementById('customTagline');
-        const customTaglineGroup = document.getElementById('customTaglineGroup');
-        const showLogoCheckbox = document.getElementById('showLogo');
-        const showTaglineCheckbox = document.getElementById('showTagline');
-        const showNameCheckbox = document.getElementById('showName');
-        const showRoleCheckbox = document.getElementById('showRole');
-        const showGearBgCheckbox = document.getElementById('showGearBg');
-        const downloadBtn = document.getElementById('downloadBtn');
-
-        // Event listeners
-        templateCards.forEach(card => {
-            card.addEventListener('click', () => {
-                templateCards.forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
-                state.template = card.dataset.template;
-                render();
-            });
-        });
-
-        roleTags.forEach(tag => {
-            tag.addEventListener('click', () => {
-                roleTags.forEach(t => t.classList.remove('active'));
-                tag.classList.add('active');
-                state.role = tag.dataset.role;
-                render();
-            });
-        });
-
-        userNameInput.addEventListener('input', (e) => {
-            state.userName = e.target.value;
-            render();
-        });
-
-        userTitleInput.addEventListener('input', (e) => {
-            state.userTitle = e.target.value;
-            render();
-        });
-
-        taglineSelect.addEventListener('change', (e) => {
-            if (e.target.value === 'custom') {
-                customTaglineGroup.style.display = 'block';
-                state.tagline = customTaglineInput.value || '';
-            } else {
-                customTaglineGroup.style.display = 'none';
-                state.tagline = e.target.value;
-            }
-            render();
-        });
-
-        customTaglineInput.addEventListener('input', (e) => {
-            state.tagline = e.target.value;
-            render();
-        });
-
-        showLogoCheckbox.addEventListener('change', (e) => {
-            state.showLogo = e.target.checked;
-            render();
-        });
-
-        showTaglineCheckbox.addEventListener('change', (e) => {
-            state.showTagline = e.target.checked;
-            render();
-        });
-
-        showNameCheckbox.addEventListener('change', (e) => {
-            state.showName = e.target.checked;
-            render();
-        });
-
-        showRoleCheckbox.addEventListener('change', (e) => {
-            state.showRole = e.target.checked;
-            render();
-        });
-
-        showGearBgCheckbox.addEventListener('change', (e) => {
-            state.showGearBg = e.target.checked;
-            render();
-        });
-
-        downloadBtn.addEventListener('click', downloadImage);
-
-        // Render function
-        function render() {
-            // Clear canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Images
+            const logoImg = new Image();
+            const gearImg = new Image();
 
             // Draw background based on template
-            drawBackground();
+            function drawBackground() {
+                const template = state.template;
 
-            // Draw content
-            drawContent();
-        }
-
-        function drawBackground() {
-            switch (state.template) {
-                case 'gradient':
+                if (template === 'gradient') {
                     const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
                     gradient.addColorStop(0, '#0D1210');
                     gradient.addColorStop(0.5, '#1A1F1C');
                     gradient.addColorStop(1, '#2D8B4E');
                     ctx.fillStyle = gradient;
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    break;
-
-                case 'solid':
+                } else if (template === 'solid') {
                     ctx.fillStyle = '#0D1210';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    // Add subtle gradient overlay
                     const solidGrad = ctx.createLinearGradient(0, 0, canvas.width, 0);
                     solidGrad.addColorStop(0, 'rgba(45, 139, 78, 0)');
                     solidGrad.addColorStop(1, 'rgba(45, 139, 78, 0.1)');
                     ctx.fillStyle = solidGrad;
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    break;
-
-                case 'pattern':
+                } else if (template === 'pattern') {
                     ctx.fillStyle = '#0D1210';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    // Draw grid pattern
                     ctx.strokeStyle = 'rgba(45, 139, 78, 0.08)';
                     ctx.lineWidth = 1;
-                    const gridSize = 40;
-                    for (let x = 0; x <= canvas.width; x += gridSize) {
+                    for (let x = 0; x <= canvas.width; x += 40) {
                         ctx.beginPath();
                         ctx.moveTo(x, 0);
                         ctx.lineTo(x, canvas.height);
                         ctx.stroke();
                     }
-                    for (let y = 0; y <= canvas.height; y += gridSize) {
+                    for (let y = 0; y <= canvas.height; y += 40) {
                         ctx.beginPath();
                         ctx.moveTo(0, y);
                         ctx.lineTo(canvas.width, y);
                         ctx.stroke();
                     }
-                    break;
-
-                case 'split':
+                } else if (template === 'split') {
                     ctx.fillStyle = '#0D1210';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     ctx.fillStyle = '#2D8B4E';
                     ctx.fillRect(canvas.width * 0.65, 0, canvas.width * 0.35, canvas.height);
-                    // Add diagonal transition
                     ctx.beginPath();
                     ctx.moveTo(canvas.width * 0.6, 0);
                     ctx.lineTo(canvas.width * 0.65, canvas.height);
                     ctx.lineTo(canvas.width * 0.65, 0);
                     ctx.closePath();
-                    ctx.fillStyle = '#2D8B4E';
                     ctx.fill();
-                    break;
-            }
-
-            // Draw gear icon background if enabled
-            if (state.showGearBg && gearImg.complete) {
-                drawGearBackground();
-            }
-        }
-
-        function drawGearBackground() {
-            // Draw large gear icon as background texture element
-            // Positioned on the left side, cropped/oversized for visual impact
-            const gearSize = canvas.height * 1.8; // Larger than canvas height
-            const gearX = -gearSize * 0.25; // Cropped on left edge
-            const gearY = (canvas.height - gearSize) / 2;
-
-            ctx.save();
-            ctx.globalAlpha = 0.06; // Very subtle
-            ctx.drawImage(gearImg, gearX, gearY, gearSize, gearSize);
-            ctx.restore();
-        }
-
-        function drawContent() {
-            const rightPadding = 80;
-            const contentX = canvas.width - rightPadding;
-
-            // Calculate vertical positioning based on what's shown
-            let currentY = 80;
-
-            // Draw logo with correct aspect ratio
-            if (state.showLogo && logoImg.complete) {
-                // Use hardcoded aspect ratio (1000:350 = 2.857) to ensure correct proportions
-                const logoHeight = 70;
-                const aspectRatio = logoImg.naturalWidth && logoImg.naturalHeight
-                    ? logoImg.naturalWidth / logoImg.naturalHeight
-                    : LOGO_ASPECT_RATIO;
-                const logoWidth = logoHeight * aspectRatio;
-                const logoX = contentX - logoWidth;
-                ctx.drawImage(logoImg, logoX, currentY, logoWidth, logoHeight);
-                currentY += logoHeight + 24;
-            }
-
-            // Draw tagline
-            if (state.showTagline) {
-                ctx.font = '600 24px Outfit, sans-serif';
-                ctx.fillStyle = state.template === 'split' ? '#0D1210' : '#FFFFFF';
-                ctx.textAlign = 'right';
-                ctx.fillText(state.tagline, contentX, currentY + 24);
-                currentY += 48;
-            }
-
-            // Draw personalization (name and title)
-            if (state.showName && (state.userName || state.userTitle)) {
-                currentY += 16;
-
-                if (state.userName) {
-                    ctx.font = '700 32px Outfit, sans-serif';
-                    ctx.fillStyle = state.template === 'split' ? '#0D1210' : '#FFFFFF';
-                    ctx.textAlign = 'right';
-                    ctx.fillText(state.userName, contentX, currentY + 32);
-                    currentY += 40;
                 }
 
-                if (state.userTitle) {
-                    ctx.font = '400 18px "Space Mono", monospace';
-                    ctx.fillStyle = state.template === 'split' ? 'rgba(13, 18, 16, 0.7)' : 'rgba(255, 255, 255, 0.7)';
-                    ctx.textAlign = 'right';
-                    ctx.fillText(state.userTitle, contentX, currentY + 18);
+                // Draw gear background if enabled and loaded
+                if (state.showGearBg && state.gearLoaded) {
+                    const gearSize = canvas.height * 1.8;
+                    ctx.save();
+                    ctx.globalAlpha = 0.06;
+                    ctx.drawImage(gearImg, -gearSize * 0.25, (canvas.height - gearSize) / 2, gearSize, gearSize);
+                    ctx.restore();
                 }
-            }
 
-            // Draw role badge
-            if (state.showRole) {
-                const badgeText = state.role.toUpperCase();
-                ctx.font = '700 14px "Space Mono", monospace';
-                const badgeWidth = ctx.measureText(badgeText).width + 32;
-                const badgeHeight = 36;
-                const badgeX = contentX - badgeWidth;
-                const badgeY = canvas.height - 80;
-
-                // Badge background
-                ctx.fillStyle = 'rgba(45, 139, 78, 0.2)';
-                roundRect(ctx, badgeX, badgeY, badgeWidth, badgeHeight, 6);
-                ctx.fill();
-
-                // Badge border
-                ctx.strokeStyle = '#2D8B4E';
-                ctx.lineWidth = 1;
-                roundRect(ctx, badgeX, badgeY, badgeWidth, badgeHeight, 6);
-                ctx.stroke();
-
-                // Badge text
-                ctx.fillStyle = '#3CAF5C';
-                ctx.textAlign = 'center';
-                ctx.fillText(badgeText, badgeX + badgeWidth / 2, badgeY + 24);
-            }
-
-            // Draw decorative elements based on template
-            if (state.template === 'gradient' || state.template === 'solid') {
-                // Draw subtle dots pattern on left side
-                ctx.fillStyle = 'rgba(45, 139, 78, 0.1)';
-                for (let i = 0; i < 5; i++) {
-                    for (let j = 0; j < 3; j++) {
-                        ctx.beginPath();
-                        ctx.arc(100 + i * 60, 120 + j * 80, 4, 0, Math.PI * 2);
-                        ctx.fill();
+                // Draw decorative dots
+                if (template === 'gradient' || template === 'solid') {
+                    ctx.fillStyle = 'rgba(45, 139, 78, 0.1)';
+                    for (let i = 0; i < 5; i++) {
+                        for (let j = 0; j < 3; j++) {
+                            ctx.beginPath();
+                            ctx.arc(100 + i * 60, 120 + j * 80, 4, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
                     }
                 }
             }
-        }
 
-        function roundRect(ctx, x, y, width, height, radius) {
-            ctx.beginPath();
-            ctx.moveTo(x + radius, y);
-            ctx.lineTo(x + width - radius, y);
-            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-            ctx.lineTo(x + width, y + height - radius);
-            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-            ctx.lineTo(x + radius, y + height);
-            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-            ctx.lineTo(x, y + radius);
-            ctx.quadraticCurveTo(x, y, x + radius, y);
-            ctx.closePath();
-        }
+            // Draw text-based logo as fallback
+            function drawTextLogo(x, y) {
+                ctx.save();
+                ctx.font = '700 28px Outfit, sans-serif';
+                ctx.fillStyle = state.template === 'split' ? '#0D1210' : '#FFFFFF';
+                ctx.textAlign = 'right';
+                ctx.fillText('MAAS', x, y + 28);
+                ctx.font = '400 14px "Space Mono", monospace';
+                ctx.fillStyle = state.template === 'split' ? 'rgba(13, 18, 16, 0.7)' : 'rgba(255, 255, 255, 0.6)';
+                ctx.fillText('ENERGY WORKS', x, y + 48);
+                ctx.restore();
+            }
 
-        function downloadImage() {
-            const link = document.createElement('a');
-            link.download = `maas-linkedin-header-${state.template}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }
+            // Draw content
+            function drawContent() {
+                const rightPadding = 80;
+                const contentX = canvas.width - rightPadding;
+                const isSplit = state.template === 'split';
+                let currentY = 80;
 
-        // Initialize - load images and render
-        logoImg.onload = render;
-        gearImg.onload = render;
+                // Draw logo
+                if (state.showLogo) {
+                    if (state.logoLoaded) {
+                        const logoHeight = 70;
+                        const aspectRatio = (logoImg.naturalWidth && logoImg.naturalHeight)
+                            ? logoImg.naturalWidth / logoImg.naturalHeight
+                            : 2.857;
+                        const logoWidth = logoHeight * aspectRatio;
+                        ctx.drawImage(logoImg, contentX - logoWidth, currentY, logoWidth, logoHeight);
+                        currentY += logoHeight + 24;
+                    } else {
+                        drawTextLogo(contentX, currentY);
+                        currentY += 70;
+                    }
+                }
 
-        // Set image sources
-        logoImg.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
-        gearImg.src = 'https://look-serious.com/wp-content/uploads/2026/01/Gear_White.png';
+                // Draw tagline
+                if (state.showTagline && state.tagline) {
+                    ctx.font = '600 24px Outfit, sans-serif';
+                    ctx.fillStyle = isSplit ? '#0D1210' : '#FFFFFF';
+                    ctx.textAlign = 'right';
+                    ctx.fillText(state.tagline, contentX, currentY + 24);
+                    currentY += 48;
+                }
 
-        // Render immediately (background will show even if images haven't loaded)
-        render();
+                // Draw name and title
+                if (state.showName && (state.userName || state.userTitle)) {
+                    currentY += 16;
+                    if (state.userName) {
+                        ctx.font = '700 32px Outfit, sans-serif';
+                        ctx.fillStyle = isSplit ? '#0D1210' : '#FFFFFF';
+                        ctx.textAlign = 'right';
+                        ctx.fillText(state.userName, contentX, currentY + 32);
+                        currentY += 40;
+                    }
+                    if (state.userTitle) {
+                        ctx.font = '400 18px "Space Mono", monospace';
+                        ctx.fillStyle = isSplit ? 'rgba(13, 18, 16, 0.7)' : 'rgba(255, 255, 255, 0.7)';
+                        ctx.textAlign = 'right';
+                        ctx.fillText(state.userTitle, contentX, currentY + 18);
+                    }
+                }
 
-        // Re-render if images are already cached
-        if (logoImg.complete) render();
-        if (gearImg.complete) render();
+                // Draw role badge
+                if (state.showRole) {
+                    const badgeText = state.role.toUpperCase();
+                    ctx.font = '700 14px "Space Mono", monospace';
+                    const badgeWidth = ctx.measureText(badgeText).width + 32;
+                    const badgeHeight = 36;
+                    const badgeX = contentX - badgeWidth;
+                    const badgeY = canvas.height - 80;
+
+                    ctx.fillStyle = 'rgba(45, 139, 78, 0.2)';
+                    ctx.beginPath();
+                    ctx.roundRect(badgeX, badgeY, badgeWidth, badgeHeight, 6);
+                    ctx.fill();
+
+                    ctx.strokeStyle = '#2D8B4E';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.roundRect(badgeX, badgeY, badgeWidth, badgeHeight, 6);
+                    ctx.stroke();
+
+                    ctx.fillStyle = '#3CAF5C';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(badgeText, badgeX + badgeWidth / 2, badgeY + 24);
+                }
+            }
+
+            // Main render function
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawBackground();
+                drawContent();
+            }
+
+            // Download function
+            function downloadImage() {
+                const link = document.createElement('a');
+                link.download = 'maas-linkedin-header-' + state.template + '.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
+
+            // Setup event listeners
+            function setupEventListeners() {
+                // Template cards
+                document.querySelectorAll('.template-card').forEach(function(card) {
+                    card.addEventListener('click', function() {
+                        document.querySelectorAll('.template-card').forEach(function(c) {
+                            c.classList.remove('active');
+                        });
+                        card.classList.add('active');
+                        state.template = card.dataset.template;
+                        render();
+                    });
+                });
+
+                // Role tags
+                document.querySelectorAll('.role-tag').forEach(function(tag) {
+                    tag.addEventListener('click', function() {
+                        document.querySelectorAll('.role-tag').forEach(function(t) {
+                            t.classList.remove('active');
+                        });
+                        tag.classList.add('active');
+                        state.role = tag.dataset.role;
+                        render();
+                    });
+                });
+
+                // Text inputs
+                document.getElementById('userName').addEventListener('input', function(e) {
+                    state.userName = e.target.value;
+                    render();
+                });
+
+                document.getElementById('userTitle').addEventListener('input', function(e) {
+                    state.userTitle = e.target.value;
+                    render();
+                });
+
+                // Tagline select
+                var taglineSelect = document.getElementById('tagline');
+                var customTaglineGroup = document.getElementById('customTaglineGroup');
+                var customTaglineInput = document.getElementById('customTagline');
+
+                taglineSelect.addEventListener('change', function(e) {
+                    if (e.target.value === 'custom') {
+                        customTaglineGroup.style.display = 'block';
+                        state.tagline = customTaglineInput.value || '';
+                    } else {
+                        customTaglineGroup.style.display = 'none';
+                        state.tagline = e.target.value;
+                    }
+                    render();
+                });
+
+                customTaglineInput.addEventListener('input', function(e) {
+                    state.tagline = e.target.value;
+                    render();
+                });
+
+                // Checkboxes
+                document.getElementById('showLogo').addEventListener('change', function(e) {
+                    state.showLogo = e.target.checked;
+                    render();
+                });
+
+                document.getElementById('showTagline').addEventListener('change', function(e) {
+                    state.showTagline = e.target.checked;
+                    render();
+                });
+
+                document.getElementById('showName').addEventListener('change', function(e) {
+                    state.showName = e.target.checked;
+                    render();
+                });
+
+                document.getElementById('showRole').addEventListener('change', function(e) {
+                    state.showRole = e.target.checked;
+                    render();
+                });
+
+                document.getElementById('showGearBg').addEventListener('change', function(e) {
+                    state.showGearBg = e.target.checked;
+                    render();
+                });
+
+                // Download button
+                document.getElementById('downloadBtn').addEventListener('click', downloadImage);
+            }
+
+            // Initialize
+            function init() {
+                // Sync state from DOM
+                state.showLogo = document.getElementById('showLogo').checked;
+                state.showTagline = document.getElementById('showTagline').checked;
+                state.showName = document.getElementById('showName').checked;
+                state.showRole = document.getElementById('showRole').checked;
+                state.showGearBg = document.getElementById('showGearBg').checked;
+                state.tagline = document.getElementById('tagline').value;
+
+                setupEventListeners();
+
+                // Load images
+                logoImg.crossOrigin = 'anonymous';
+                logoImg.onload = function() {
+                    state.logoLoaded = true;
+                    render();
+                };
+                logoImg.onerror = function() {
+                    state.logoLoaded = false;
+                    render();
+                };
+                logoImg.src = 'https://lirp.cdn-website.com/dd98e30d/dms3rep/multi/opt/maas-energy-works-logo-main-wg-1000x350-1920w.png';
+
+                gearImg.crossOrigin = 'anonymous';
+                gearImg.onload = function() {
+                    state.gearLoaded = true;
+                    render();
+                };
+                gearImg.src = 'https://look-serious.com/wp-content/uploads/2026/01/Gear_White.png';
+
+                // Initial render with text fallback
+                render();
+            }
+
+            // Start when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
     </script>
 </body>
 </html>
