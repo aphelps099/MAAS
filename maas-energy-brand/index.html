@@ -920,7 +920,7 @@
            CULTURE BLURB SECTION
            ===================== */
         .culture-blurb {
-            background: var(--charcoal);
+            background: #0A0A0A;
             padding: 120px 60px;
             display: flex;
             align-items: center;
@@ -933,8 +933,10 @@
             content: '';
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(circle, rgba(0, 255, 136, 0.06) 1.5px, transparent 1.5px);
-            background-size: 32px 32px;
+            background-image:
+                linear-gradient(rgba(0, 255, 136, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
             pointer-events: none;
         }
 
@@ -1593,13 +1595,13 @@
     <div class="marquee-section">
         <div class="marquee">
             <div class="marquee-content">
-                <span class="marquee-item">70+ Digesters</span>
+                <span class="marquee-item">85+ Digesters</span>
                 <span class="marquee-item">11 States</span>
                 <span class="marquee-item">$600M+ Financed</span>
                 <span class="marquee-item">#1 Developer</span>
                 <span class="marquee-item">Since 2010</span>
                 <span class="marquee-item">Renewable Natural Gas</span>
-                <span class="marquee-item">70+ Digesters</span>
+                <span class="marquee-item">85+ Digesters</span>
                 <span class="marquee-item">11 States</span>
                 <span class="marquee-item">$600M+ Financed</span>
                 <span class="marquee-item">#1 Developer</span>
@@ -1607,13 +1609,13 @@
                 <span class="marquee-item">Renewable Natural Gas</span>
             </div>
             <div class="marquee-content">
-                <span class="marquee-item">70+ Digesters</span>
+                <span class="marquee-item">85+ Digesters</span>
                 <span class="marquee-item">11 States</span>
                 <span class="marquee-item">$600M+ Financed</span>
                 <span class="marquee-item">#1 Developer</span>
                 <span class="marquee-item">Since 2010</span>
                 <span class="marquee-item">Renewable Natural Gas</span>
-                <span class="marquee-item">70+ Digesters</span>
+                <span class="marquee-item">85+ Digesters</span>
                 <span class="marquee-item">11 States</span>
                 <span class="marquee-item">$600M+ Financed</span>
                 <span class="marquee-item">#1 Developer</span>
@@ -1645,20 +1647,20 @@
     <section class="stats-section">
         <div class="stats-grid">
             <div class="stat-item fade-up">
-                <div class="stat-number" data-counter="70">0</div>
-                <p class="stat-label">Digesters Developed</p>
+                <div class="stat-number"><span data-counter="85">0</span>+</div>
+                <p class="stat-label">Operational Digesters</p>
+            </div>
+            <div class="stat-item fade-up">
+                <div class="stat-number"><span data-counter="25">0</span>+</div>
+                <p class="stat-label">In Construction</p>
+            </div>
+            <div class="stat-item fade-up">
+                <div class="stat-number"><span data-counter="185">0</span>+</div>
+                <p class="stat-label">Miles of Pipeline</p>
             </div>
             <div class="stat-item fade-up">
                 <div class="stat-number" data-counter="11">0</div>
                 <p class="stat-label">States Active</p>
-            </div>
-            <div class="stat-item fade-up">
-                <div class="stat-number">$<span data-counter="600">0</span>M</div>
-                <p class="stat-label">Financing Secured</p>
-            </div>
-            <div class="stat-item fade-up">
-                <div class="stat-number">#1</div>
-                <p class="stat-label">U.S. Developer</p>
             </div>
         </div>
     </section>
@@ -1829,6 +1831,21 @@
             <p class="modal-text">This section will contain the full MAAS Energy Works Impact Report, showcasing our environmental achievements, methane capture metrics, RNG production data, and community benefits across all 11 states of operation.</p>
             <p class="modal-text" style="margin-top: 16px;">The complete report will include detailed breakdowns of emissions reductions, farm partnerships, and our roadmap to carbon-negative operations.</p>
             <span class="modal-demo-badge">For Demo Only</span>
+        </div>
+    </div>
+
+    <!-- Services Demo Modal -->
+    <div class="modal-overlay" id="servicesModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeServicesModal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            <p class="modal-label" id="serviceModalLabel">Service Details</p>
+            <h3 class="modal-title" id="serviceModalTitle">Service Name</h3>
+            <p class="modal-text">This is a demonstration of the MAAS Energy Works Brand House. In a production environment, this section would contain detailed information about this service offering, including capabilities, case studies, and contact options.</p>
+            <span class="modal-demo-badge">Demo Only</span>
         </div>
     </div>
 
@@ -2055,6 +2072,40 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && impactReportModal.classList.contains('active')) {
                 impactReportModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            if (e.key === 'Escape' && servicesModal.classList.contains('active')) {
+                servicesModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Services Modal
+        const servicesModal = document.getElementById('servicesModal');
+        const closeServicesModalBtn = document.getElementById('closeServicesModal');
+        const serviceModalTitle = document.getElementById('serviceModalTitle');
+        const serviceModalLabel = document.getElementById('serviceModalLabel');
+
+        document.querySelectorAll('.service-row').forEach(row => {
+            row.style.cursor = 'pointer';
+            row.addEventListener('click', () => {
+                const serviceName = row.querySelector('.service-name').textContent;
+                const serviceNumber = row.querySelector('.service-number').textContent;
+                serviceModalTitle.textContent = serviceName;
+                serviceModalLabel.textContent = 'Service ' + serviceNumber;
+                servicesModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeServicesModalBtn.addEventListener('click', () => {
+            servicesModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        servicesModal.addEventListener('click', (e) => {
+            if (e.target === servicesModal) {
+                servicesModal.classList.remove('active');
                 document.body.style.overflow = '';
             }
         });
